@@ -96,6 +96,24 @@ python examples/run_choice_once.py "jedzenie zdrowe"
 Pierwsze uruchomienie pobiera wagi modelu. Skrypt wypisuje niezmienioną
 odpowiedź LAYA razem z czasem całej operacji.
 
+Porównanie tego samego zapytania z dwoma budżetami opcji:
+
+```bash
+python examples/compare_choice_budgets.py "jedzenie zdrowe"
+```
+
+Porównanie pełnych opisów z samymi etykietami:
+
+```bash
+python examples/compare_choice_descriptions.py "jedzenie zdrowe"
+```
+
+Porównanie semantycznych identyfikatorów z neutralnymi kluczami `A–P`:
+
+```bash
+python examples/compare_choice_keys.py "jedzenie zdrowe"
+```
+
 ## Porównywanie `choice` i `noul`
 
 Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie

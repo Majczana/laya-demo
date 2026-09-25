@@ -20,17 +20,63 @@ class ChoiceRequest(TypedDict):
     questions: dict[str, ChoiceQuestion]
 
 
-def build_choice_request(text: str, catalog: EmojiCatalog) -> ChoiceRequest:
+CriteriaMode = Literal["descriptions", "labels"]
+OptionKeyMode = Literal["ids", "opaque"]
+
+
+def build_option_key_map(
+    catalog: EmojiCatalog,
+    *,
+    option_key_mode: OptionKeyMode = "ids",
+) -> dict[str, str]:
+    """Map model-facing option keys to stable emoji IDs."""
+
+    if option_key_mode == "ids":
+        return {item.id: item.id for item in catalog.items}
+    if option_key_mode == "opaque":
+        if len(catalog.items) > 26:
+            raise ValueError("opaque A-Z keys support at most 26 options")
+        return {
+            chr(ord("A") + index): item.id
+            for index, item in enumerate(catalog.items)
+        }
+    raise ValueError(f"unsupported option key mode: {option_key_mode}")
+
+
+def build_choice_request(
+    text: str,
+    catalog: EmojiCatalog,
+    *,
+    criteria_mode: CriteriaMode = "descriptions",
+    option_key_mode: OptionKeyMode = "ids",
+) -> ChoiceRequest:
     """Create a choice request without loading or running the model."""
 
     normalized_text = text.strip()
     if not normalized_text:
         raise ValueError("text must not be empty")
 
-    criteria = {
-        item.id: f"{item.label}: {item.description}"
-        for item in catalog.items
-    }
+    option_keys = build_option_key_map(
+        catalog,
+        option_key_mode=option_key_mode,
+    )
+    items_by_id = {item.id: item for item in catalog.items}
+
+    if criteria_mode == "descriptions":
+        criteria = {
+            option_key: (
+                f"{items_by_id[emoji_id].label}: "
+                f"{items_by_id[emoji_id].description}"
+            )
+            for option_key, emoji_id in option_keys.items()
+        }
+    elif criteria_mode == "labels":
+        criteria = {
+            option_key: items_by_id[emoji_id].label
+            for option_key, emoji_id in option_keys.items()
+        }
+    else:
+        raise ValueError(f"unsupported criteria mode: {criteria_mode}")
 
     return {
         "state": {"text": normalized_text},

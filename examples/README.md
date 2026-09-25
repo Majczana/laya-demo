@@ -29,3 +29,34 @@ python examples/run_choice_once.py "jedzenie zdrowe"
 
 Pierwsze wywołanie pobiera wagi modelu i dlatego trwa dłużej. Kolejne
 wywołania korzystają z lokalnej pamięci podręcznej.
+
+## Porównanie budżetu opcji
+
+Uruchom ten sam tekst z `head_max_len` równym 256 i 512:
+
+```bash
+python examples/compare_choice_budgets.py "jedzenie zdrowe"
+```
+
+Skrypt najpierw rozgrzewa model, a następnie porównuje oba rankingi w tym samym
+procesie. Nie zmienia opisów ani kolejności emoji.
+
+## Porównanie długości kryteriów
+
+Porównaj pełne opisy z samymi polskimi etykietami:
+
+```bash
+python examples/compare_choice_descriptions.py "jedzenie zdrowe"
+```
+
+Budżet i kolejność emoji pozostają bez zmian.
+
+## Porównanie kluczy opcji
+
+Porównaj semantyczne identyfikatory z neutralnymi kluczami `A–P`:
+
+```bash
+python examples/compare_choice_keys.py "jedzenie zdrowe"
+```
+
+Pełne polskie opisy, budżet i kolejność emoji pozostają bez zmian.

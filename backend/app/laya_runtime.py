@@ -23,12 +23,13 @@ def predict_choice(
     request: ChoiceRequest,
     *,
     model: str = "multilingual",
+    head_max_len: int | None = None,
 ) -> dict[str, Any]:
     """Run one choice request against the selected LAYA checkpoint."""
 
     router = get_router()
-    return router.predict(
-        request["state"],
-        request["questions"],
-        model=model,
-    )
+    options: dict[str, Any] = {"model": model}
+    if head_max_len is not None:
+        options["head_max_len"] = head_max_len
+
+    return router.predict(request["state"], request["questions"], **options)
