@@ -3,6 +3,7 @@
 from contextlib import asynccontextmanager
 from functools import lru_cache
 from pathlib import Path
+from threading import Lock
 from time import perf_counter
 from typing import Any
 
@@ -20,6 +21,10 @@ CATALOG_PATH = Path(DEFAULT_DATA_DIR) / "emojis_100.json"
 MODEL_NAME = "multilingual"
 HEAD_MAX_LEN = 256
 WARMUP_TEXT = "jedzenie zdrowe"
+
+# FastAPI runs sync endpoints in a thread pool; GPU backends such as MPS crash
+# when two predictions share the device concurrently, so run them one by one.
+MODEL_LOCK = Lock()
 
 
 class PredictionRequest(BaseModel):
@@ -42,11 +47,12 @@ def predict_scores(text: str) -> tuple[tuple[str, float], ...]:
     """Cache recent prefixes so deleting and retyping feels immediate."""
 
     request = build_noul_request(text, get_catalog())
-    result = predict_noul(
-        request,
-        model=MODEL_NAME,
-        head_max_len=HEAD_MAX_LEN,
-    )
+    with MODEL_LOCK:
+        result = predict_noul(
+            request,
+            model=MODEL_NAME,
+            head_max_len=HEAD_MAX_LEN,
+        )
     return tuple(
         (emoji_id, float(answer["noul"]))
         for emoji_id, answer in result["answers"].items()
