@@ -74,6 +74,17 @@ python -m app.data_loader
 Loader odczytuje oba pliki JSON, sprawdza ich strukturę oraz zależności między
 nimi. Nie uruchamia jeszcze modelu LAYA.
 
+## Podgląd zapytania `choice`
+
+Możesz zbudować i obejrzeć zapytanie bez uruchamiania modelu:
+
+```bash
+python examples/build_choice_request.py "jedzenie zdrowe"
+```
+
+Każde emoji staje się jedną opcją w `criteria`. Kluczem jest stabilne `id`, a
+wartością polska etykieta połączona z opisem semantycznym.
+
 ## Porównywanie `choice` i `noul`
 
 Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie
