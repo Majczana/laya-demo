@@ -114,6 +114,17 @@ Porównanie semantycznych identyfikatorów z neutralnymi kluczami `A–P`:
 python examples/compare_choice_keys.py "jedzenie zdrowe"
 ```
 
+Porównanie polskich i angielskich opisów na wszystkich polskich przypadkach
+testowych:
+
+```bash
+python examples/compare_choice_languages.py
+```
+
+Angielski katalog znajduje się w `data/emojis_eng.json`. Skrypt zachowuje te
+same emoji, identyfikatory, kolejność, zapytania i ustawienia modelu, a zmienia
+wyłącznie język etykiet oraz opisów.
+
 ## Porównywanie `choice` i `noul`
 
 Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie

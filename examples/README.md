@@ -60,3 +60,14 @@ python examples/compare_choice_keys.py "jedzenie zdrowe"
 ```
 
 Pełne polskie opisy, budżet i kolejność emoji pozostają bez zmian.
+
+## Porównanie języka opisów
+
+Porównaj katalog polski z angielskim na wszystkich 13 polskich frazach:
+
+```bash
+python examples/compare_choice_languages.py
+```
+
+Zmieniają się tylko etykiety i opisy. Identyfikatory, emoji, kolejność,
+zapytania, budżet oraz model pozostają takie same.

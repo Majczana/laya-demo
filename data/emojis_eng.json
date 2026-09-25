@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "language": "en",
+  "items": [
+    {
+      "id": "pizza",
+      "emoji": "🍕",
+      "label": "pizza",
+      "description": "warm, filling fast food"
+    },
+    {
+      "id": "broccoli",
+      "emoji": "🥦",
+      "label": "broccoli",
+      "description": "a healthy green vegetable and light food"
+    },
+    {
+      "id": "apple",
+      "emoji": "🍎",
+      "label": "apple",
+      "description": "a healthy fruit and light snack"
+    },
+    {
+      "id": "coffee",
+      "emoji": "☕",
+      "label": "coffee",
+      "description": "a hot drink that provides energy"
+    },
+    {
+      "id": "coat",
+      "emoji": "🧥",
+      "label": "coat",
+      "description": "warm outerwear for cold days"
+    },
+    {
+      "id": "scarf",
+      "emoji": "🧣",
+      "label": "scarf",
+      "description": "winter clothing that protects the neck from cold"
+    },
+    {
+      "id": "sneaker",
+      "emoji": "👟",
+      "label": "sneaker",
+      "description": "comfortable footwear for walking, running, and sports"
+    },
+    {
+      "id": "dress",
+      "emoji": "👗",
+      "label": "dress",
+      "description": "light or elegant clothing"
+    },
+    {
+      "id": "rain",
+      "emoji": "🌧️",
+      "label": "rain",
+      "description": "wet, cloudy weather and water falling from the sky"
+    },
+    {
+      "id": "snow",
+      "emoji": "❄️",
+      "label": "snow",
+      "description": "cold winter weather and snowfall"
+    },
+    {
+      "id": "sun",
+      "emoji": "☀️",
+      "label": "sun",
+      "description": "bright, warm, and sunny weather"
+    },
+    {
+      "id": "umbrella",
+      "emoji": "☂️",
+      "label": "umbrella",
+      "description": "an object that protects a person from rain"
+    },
+    {
+      "id": "football",
+      "emoji": "⚽",
+      "label": "football",
+      "description": "a team sport and outdoor physical activity"
+    },
+    {
+      "id": "video-game",
+      "emoji": "🎮",
+      "label": "video game",
+      "description": "digital entertainment and an indoor activity"
+    },
+    {
+      "id": "books",
+      "emoji": "📚",
+      "label": "books",
+      "description": "reading, learning, and a quiet activity at home"
+    },
+    {
+      "id": "guitar",
+      "emoji": "🎸",
+      "label": "guitar",
+      "description": "a musical instrument, playing music, and creativity"
+    }
+  ]
+}
