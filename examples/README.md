@@ -83,3 +83,19 @@ python examples/compare_choice_noul.py
 Skrypt porównuje średnie NDCG@5, czas działania, liczbę tokenów oraz ranking
 dla przypadku „jedzenie zdrowe”. Wszystkie 16 pytań `noul` trafia do modelu w
 jednym wywołaniu i używa polskich etykiet odpowiedzi `nie`/`tak`.
+
+## Benchmark CPU i GPU
+
+Po zainstalowaniu opcjonalnego wariantu PyTorch CUDA porównaj urządzenia w
+osobnych procesach:
+
+```powershell
+python examples/benchmark_noul_device.py --device cpu
+python examples/benchmark_noul_device.py --device cuda
+```
+
+Skrypt oddziela czas pierwszego załadowania modelu od czasu dziesięciu
+rozgrzanych predykcji i raportuje faktycznie użyte urządzenie.
+
+Na referencyjnym RTX 3060 Ti średni czas rozgrzanej predykcji spadł z
+`0,3336 s` na CPU do `0,0336 s` na CUDA, czyli około `9,9×`.

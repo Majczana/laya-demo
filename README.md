@@ -62,6 +62,29 @@ Kontrola działania API: `http://localhost:8000/health`.
 Przy pierwszym rzeczywistym użyciu LAYA zostaną pobrane wagi modelu z Hugging
 Face. Nie zapisujemy ich w repozytorium.
 
+### Urządzenie obliczeniowe
+
+Domyślne `LAYA_DEVICE=auto` pozwala LAYA wybrać dostępne GPU, a przy jego braku
+automatycznie używa CPU. Wymuszenie urządzenia w PowerShell:
+
+```powershell
+$env:LAYA_DEVICE = "cpu"
+$env:LAYA_DEVICE = "cuda"
+```
+
+Podstawowy plik zależności pozostaje przenośny. Użytkownik Windows z kartą
+NVIDIA i odpowiednim sterownikiem może po jego instalacji zastąpić PyTorch
+wariantem CUDA 13.2:
+
+```powershell
+python -m pip install --force-reinstall --no-deps `
+  -r .\backend\requirements-cuda.lock
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+Druga komenda powinna wypisać `True`. Wariant CUDA nie jest wymagany do
+uruchomienia repozytorium na komputerze bez karty NVIDIA.
+
 ## Sprawdzenie danych
 
 Po aktywowaniu środowiska backendu uruchom loader z katalogu głównego:
@@ -86,7 +109,8 @@ wartością polska etykieta połączona z opisem semantycznym.
 
 ## Pierwsza decyzja LAYA
 
-Jedno kontrolowane wywołanie wielojęzycznego modelu na CPU:
+Jedno kontrolowane wywołanie wielojęzycznego modelu na urządzeniu wybranym
+przez `LAYA_DEVICE`:
 
 ```bash
 python examples/run_choice_once.py "jedzenie zdrowe"
@@ -137,6 +161,28 @@ W eksperymencie na 13 przypadkach polskich opisów wariant `noul` korzystający
 z polskich etykiet odpowiedzi `nie`/`tak` osiągnął średnie NDCG@5 równe
 `0,8889`, a `choice` — `0,5795`. Jest przy tym wolniejszy i zużywa więcej
 tokenów, co skrypt pokazuje razem z jakością.
+
+Benchmark `noul` na wybranym urządzeniu:
+
+```powershell
+python examples/benchmark_noul_device.py --device cpu
+python examples/benchmark_noul_device.py --device cuda
+```
+
+Pierwszy pomiar obejmuje załadowanie modelu, a statystyki `warm_seconds`
+obejmują dziesięć kolejnych predykcji po rozgrzaniu.
+
+Pomiar referencyjny na RTX 3060 Ti dla 16 pytań `noul`:
+
+| Urządzenie | Średni czas po rozgrzaniu |
+| --- | ---: |
+| CPU | `0,3336 s` |
+| CUDA | `0,0336 s` |
+
+GPU było około `9,9×` szybsze i wykorzystało około `1528 MB` pamięci. Czas
+pierwszego wywołania wynosił około `5,2 s` na obu urządzeniach, ponieważ
+obejmuje wczytanie i zbudowanie modelu. Ranking pięciu najlepszych emoji
+pozostał taki sam.
 
 ## Porównywanie `choice` i `noul`
 

@@ -10,13 +10,26 @@ from app.laya_requests import ChoiceRequest, NoulRequest
 os.environ.setdefault("USE_TF", "0")
 
 
+def configured_device() -> str | None:
+    """Resolve LAYA_DEVICE; None lets LAYA select the best available device."""
+
+    value = os.environ.get("LAYA_DEVICE", "auto").strip().lower()
+    if value == "auto":
+        return None
+    if value in {"cpu", "cuda", "mps", "xpu"}:
+        return value
+    raise ValueError(
+        "LAYA_DEVICE must be one of: auto, cpu, cuda, mps, xpu"
+    )
+
+
 @lru_cache(maxsize=1)
 def get_router() -> Any:
-    """Create one lazy CPU router and reuse it for later predictions."""
+    """Create one lazy router on the configured device and reuse it."""
 
     from laya import Router
 
-    return Router(device="cpu", max_loaded=1, preload=False)
+    return Router(device=configured_device(), max_loaded=1, preload=False)
 
 
 def predict_choice(
