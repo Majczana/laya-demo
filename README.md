@@ -85,6 +85,17 @@ python examples/build_choice_request.py "jedzenie zdrowe"
 Każde emoji staje się jedną opcją w `criteria`. Kluczem jest stabilne `id`, a
 wartością polska etykieta połączona z opisem semantycznym.
 
+## Pierwsza decyzja LAYA
+
+Jedno kontrolowane wywołanie wielojęzycznego modelu na CPU:
+
+```bash
+python examples/run_choice_once.py "jedzenie zdrowe"
+```
+
+Pierwsze uruchomienie pobiera wagi modelu. Skrypt wypisuje niezmienioną
+odpowiedź LAYA razem z czasem całej operacji.
+
 ## Porównywanie `choice` i `noul`
 
 Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie

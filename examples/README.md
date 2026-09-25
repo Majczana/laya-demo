@@ -18,3 +18,14 @@ python examples/build_choice_request.py "jedzenie zdrowe"
 ```
 
 Skrypt wypisuje gotowe zapytanie, ale nie ładuje ani nie uruchamia modelu.
+
+## Pierwsza decyzja modelu
+
+Uruchom pojedynczy przypadek na wielojęzycznym checkpointcie:
+
+```bash
+python examples/run_choice_once.py "jedzenie zdrowe"
+```
+
+Pierwsze wywołanie pobiera wagi modelu i dlatego trwa dłużej. Kolejne
+wywołania korzystają z lokalnej pamięci podręcznej.
