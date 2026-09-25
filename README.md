@@ -63,6 +63,17 @@ Kontrola działania API: `http://localhost:8000/health`.
 Przy pierwszym rzeczywistym użyciu LAYA zostaną pobrane wagi modelu z Hugging
 Face. Nie zapisujemy ich w repozytorium.
 
+## Sprawdzenie danych
+
+Po aktywowaniu środowiska backendu uruchom loader z katalogu głównego:
+
+```bash
+python -m app.data_loader
+```
+
+Loader odczytuje oba pliki JSON, sprawdza ich strukturę oraz zależności między
+nimi. Nie uruchamia jeszcze modelu LAYA.
+
 ## Porównywanie `choice` i `noul`
 
 Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie
