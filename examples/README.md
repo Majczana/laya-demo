@@ -82,4 +82,4 @@ python examples/compare_choice_noul.py
 
 Skrypt porównuje średnie NDCG@5, czas działania, liczbę tokenów oraz ranking
 dla przypadku „jedzenie zdrowe”. Wszystkie 16 pytań `noul` trafia do modelu w
-jednym wywołaniu.
+jednym wywołaniu i używa polskich etykiet odpowiedzi `nie`/`tak`.

@@ -25,6 +25,7 @@ class NoulQuestion(TypedDict):
 
     type: Literal["noul"]
     instructions: str
+    labels: dict[Literal["false", "true"], str]
 
 
 class NoulRequest(TypedDict):
@@ -123,6 +124,7 @@ def build_noul_request(text: str, catalog: EmojiCatalog) -> NoulRequest:
                     "Czy treść użytkownika w polu `text` pasuje znaczeniowo "
                     f"do kategorii „{item.label}: {item.description}”?"
                 ),
+                "labels": {"false": "nie", "true": "tak"},
             }
             for item in catalog.items
         },

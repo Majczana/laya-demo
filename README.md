@@ -133,9 +133,10 @@ python examples/compare_choice_noul.py
 Wariant `noul` ocenia każde emoji niezależnie, ale wszystkie pytania przekazuje
 modelowi razem w jednym wywołaniu.
 
-W pierwszym eksperymencie na 13 przypadkach polskich opisów wariant `noul`
-osiągnął średnie NDCG@5 równe `0,8337`, a `choice` — `0,5795`. Jest przy tym
-wolniejszy i zużywa więcej tokenów, co skrypt pokazuje razem z jakością.
+W eksperymencie na 13 przypadkach polskich opisów wariant `noul` korzystający
+z polskich etykiet odpowiedzi `nie`/`tak` osiągnął średnie NDCG@5 równe
+`0,8889`, a `choice` — `0,5795`. Jest przy tym wolniejszy i zużywa więcej
+tokenów, co skrypt pokazuje razem z jakością.
 
 ## Porównywanie `choice` i `noul`
 
