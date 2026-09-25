@@ -92,6 +92,7 @@ osobnych procesach:
 ```powershell
 python examples/benchmark_noul_device.py --device cpu
 python examples/benchmark_noul_device.py --device cuda
+python examples/benchmark_noul_device.py --device cuda --catalog-size 100
 ```
 
 Skrypt oddziela czas pierwszego załadowania modelu od czasu dziesięciu
@@ -99,3 +100,18 @@ rozgrzanych predykcji i raportuje faktycznie użyte urządzenie.
 
 Na referencyjnym RTX 3060 Ti średni czas rozgrzanej predykcji spadł z
 `0,3336 s` na CPU do `0,0336 s` na CUDA, czyli około `9,9×`.
+
+## Porównanie wielkości katalogu
+
+Porównaj ten sam wariant `noul` dla 16 i 100 emoji:
+
+```powershell
+python examples/compare_noul_catalog_sizes.py
+```
+
+Skrypt sprawdza, czy większy katalog zachowuje oryginalne emoji, czy oba zbiory
+używają tych samych fraz, a następnie porównuje NDCG@5, czas, tokeny i ranking
+„jedzenie zdrowe”. Oczekiwane odpowiedzi są rozszerzone o nowe trafne emoji.
+
+W pierwszym pomiarze katalog 100 emoji osiągnął NDCG@5 `0,7297`. Rozgrzana
+predykcja trwała średnio `2,6654 s` na CPU i `0,1430 s` na RTX 3060 Ti.

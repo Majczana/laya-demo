@@ -96,6 +96,11 @@ python -m app.data_loader
 Loader odczytuje oba pliki JSON, sprawdza ich strukturę oraz zależności między
 nimi. Nie uruchamia jeszcze modelu LAYA.
 
+Rozszerzony katalog `data/emojis_100.json` zawiera 100 emoji. Zachowuje
+wszystkie elementy katalogu podstawowego i dodaje kandydatów z obszarów takich
+jak jedzenie, odzież, pogoda, sport, kultura, transport, zwierzęta, technologia,
+miejsca i emocje. Katalogi obsługują od 1 do 100 unikalnych emoji.
+
 ## Podgląd zapytania `choice`
 
 Możesz zbudować i obejrzeć zapytanie bez uruchamiania modelu:
@@ -167,6 +172,7 @@ Benchmark `noul` na wybranym urządzeniu:
 ```powershell
 python examples/benchmark_noul_device.py --device cpu
 python examples/benchmark_noul_device.py --device cuda
+python examples/benchmark_noul_device.py --device cuda --catalog-size 100
 ```
 
 Pierwszy pomiar obejmuje załadowanie modelu, a statystyki `warm_seconds`
@@ -183,6 +189,28 @@ GPU było około `9,9×` szybsze i wykorzystało około `1528 MB` pamięci. Czas
 pierwszego wywołania wynosił około `5,2 s` na obu urządzeniach, ponieważ
 obejmuje wczytanie i zbudowanie modelu. Ranking pięciu najlepszych emoji
 pozostał taki sam.
+
+Porównanie jakości i kosztu katalogów 16 oraz 100 emoji:
+
+```powershell
+python examples/compare_noul_catalog_sizes.py
+```
+
+Skrypt używa tych samych 13 fraz testowych. Plik `data/test-cases_100.json`
+rozszerza jednak listy oczekiwanych odpowiedzi, ponieważ np. marchew i
+truskawka również są poprawnymi wynikami dla „jedzenie zdrowe”.
+
+Pierwszy pomiar rozszerzonego katalogu:
+
+| Katalog | NDCG@5 | Tokeny | CPU | RTX 3060 Ti |
+| --- | ---: | ---: | ---: | ---: |
+| 16 emoji | `0,8889` | `1112` | `0,3336 s` | `0,0336 s` |
+| 100 emoji | `0,7297` | `7256` | `2,6654 s` | `0,1430 s` |
+
+Dla 100 emoji GPU było około `18,6×` szybsze od CPU i wykorzystało około
+`1685 MB` VRAM. Dla frazy „jedzenie zdrowe” pierwsze cztery miejsca zajęły
+brokuły, truskawka, marchew i jabłko. Spadek średniej jakości stanowi bazę do
+późniejszego strojenia opisów i pytań na trudniejszym katalogu.
 
 ## Porównywanie `choice` i `noul`
 

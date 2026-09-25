@@ -56,8 +56,17 @@ def load_demo_data(data_dir: Path | None = None) -> DemoData:
     """Load both files and validate relationships between them."""
 
     source_dir = data_dir or DEFAULT_DATA_DIR
-    emojis = load_emoji_catalog(source_dir / "emojis.json")
-    tests = load_test_suite(source_dir / "test-cases.json")
+    return load_demo_data_files(
+        source_dir / "emojis.json",
+        source_dir / "test-cases.json",
+    )
+
+
+def load_demo_data_files(emoji_path: Path, test_path: Path) -> DemoData:
+    """Load a selected catalog and test suite, then validate their links."""
+
+    emojis = load_emoji_catalog(emoji_path)
+    tests = load_test_suite(test_path)
 
     if emojis.language != tests.language:
         raise DataLoadError(

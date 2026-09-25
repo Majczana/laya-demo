@@ -4,15 +4,23 @@ import argparse
 import json
 import os
 import sys
+from pathlib import Path
 from statistics import mean, median
 from time import perf_counter
 from typing import Any
 
 import torch
 
-from app.data_loader import load_demo_data
+from app.data_loader import load_emoji_catalog
 from app.laya_requests import build_noul_request
 from app.laya_runtime import get_router, predict_noul
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+CATALOG_PATHS = {
+    "16": PROJECT_ROOT / "data" / "emojis.json",
+    "100": PROJECT_ROOT / "data" / "emojis_100.json",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,6 +32,12 @@ def parse_args() -> argparse.Namespace:
         choices=("auto", "cpu", "cuda"),
         default="auto",
         help="Device requested through LAYA_DEVICE.",
+    )
+    parser.add_argument(
+        "--catalog-size",
+        choices=("16", "100"),
+        default="16",
+        help="Emoji catalog used to build the noul question batch.",
     )
     parser.add_argument(
         "--iterations",
@@ -66,8 +80,8 @@ def main() -> None:
     args = parse_args()
     os.environ["LAYA_DEVICE"] = args.device
 
-    data = load_demo_data()
-    request = build_noul_request(args.text, data.emojis)
+    catalog = load_emoji_catalog(CATALOG_PATHS[args.catalog_size])
+    request = build_noul_request(args.text, catalog)
 
     cold_started_at = perf_counter()
     result = predict_noul(request, head_max_len=256)
@@ -103,6 +117,7 @@ def main() -> None:
         "device_name": device_name,
         "torch_version": torch.__version__,
         "cuda_available": torch.cuda.is_available(),
+        "emoji_count": len(catalog.items),
         "iterations": args.iterations,
         "cold_seconds": round(cold_seconds, 3),
         "warm_seconds": {

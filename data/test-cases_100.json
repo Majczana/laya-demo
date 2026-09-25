@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "language": "pl",
+  "evaluation": {
+    "metric": "ndcg",
+    "k": 5,
+    "relevance": {"primary": 2, "related": 1, "other": 0}
+  },
+  "cases": [
+    {
+      "id": "food-general",
+      "input": "jedzenie",
+      "expected": {
+        "primary": ["pizza", "broccoli", "apple", "bread", "cheese", "carrot", "strawberry", "burger"],
+        "related": ["coffee", "tea"]
+      },
+      "rationale": "Ogólna fraza powinna promować produkty spożywcze, a napoje mogą być wynikiem pobocznym."
+    },
+    {
+      "id": "healthy-food",
+      "input": "jedzenie zdrowe",
+      "expected": {
+        "primary": ["broccoli", "apple", "carrot", "strawberry"],
+        "related": ["bread", "tea"]
+      },
+      "rationale": "Zdrowe warzywa i owoce powinny znaleźć się najwyżej, przed pozostałym jedzeniem."
+    },
+    {
+      "id": "hot-drink",
+      "input": "gorący napój",
+      "expected": {
+        "primary": ["coffee", "tea"],
+        "related": []
+      },
+      "rationale": "Kawa i herbata są bezpośrednimi przykładami gorącego napoju."
+    },
+    {
+      "id": "clothing-general",
+      "input": "ubrania",
+      "expected": {
+        "primary": ["coat", "scarf", "sneaker", "dress", "t-shirt", "jeans", "hat", "gloves", "boots"],
+        "related": ["backpack"]
+      },
+      "rationale": "Ogólna kategoria powinna obejmować odzież, obuwie i nakrycia głowy."
+    },
+    {
+      "id": "winter-clothing",
+      "input": "ubrania na zimę",
+      "expected": {
+        "primary": ["coat", "scarf", "gloves", "boots"],
+        "related": ["sneaker"]
+      },
+      "rationale": "Zawężenie powinno promować ciepłą odzież i obuwie przydatne zimą."
+    },
+    {
+      "id": "elegant-clothing",
+      "input": "eleganckie ubranie",
+      "expected": {
+        "primary": ["dress", "hat"],
+        "related": ["coat"]
+      },
+      "rationale": "Sukienka i elegancki kapelusz są bezpośrednim dopasowaniem do stylu."
+    },
+    {
+      "id": "rain-protection",
+      "input": "coś na deszcz",
+      "expected": {
+        "primary": ["umbrella"],
+        "related": ["coat", "rain", "boots"]
+      },
+      "rationale": "Parasol bezpośrednio chroni przed deszczem, a część odzieży i samo zjawisko są powiązane."
+    },
+    {
+      "id": "winter-weather",
+      "input": "zimowa pogoda",
+      "expected": {
+        "primary": ["snow"],
+        "related": ["coat", "scarf", "gloves", "skiing"]
+      },
+      "rationale": "Śnieg opisuje pogodę, natomiast zimowa odzież i sport są jej kontekstem."
+    },
+    {
+      "id": "sunny-weather",
+      "input": "ciepły słoneczny dzień",
+      "expected": {
+        "primary": ["sun"],
+        "related": ["dress", "football", "beach", "cycling"]
+      },
+      "rationale": "Słońce jest głównym wynikiem, a lekka odzież i aktywności plenerowe są powiązane."
+    },
+    {
+      "id": "outdoor-activity",
+      "input": "aktywność fizyczna na zewnątrz",
+      "expected": {
+        "primary": ["football", "sneaker", "basketball", "tennis", "cycling", "running", "skiing"],
+        "related": ["sun", "camping", "mountain"]
+      },
+      "rationale": "Fraza obejmuje sporty plenerowe oraz potrzebne do ruchu obuwie."
+    },
+    {
+      "id": "quiet-home-activity",
+      "input": "spokojne zajęcie w domu",
+      "expected": {
+        "primary": ["books", "puzzle"],
+        "related": ["video-game", "guitar", "tea", "yoga"]
+      },
+      "rationale": "Czytanie i puzzle są spokojne, a pozostałe domowe zajęcia mają słabszy związek."
+    },
+    {
+      "id": "creative-music",
+      "input": "chcę tworzyć muzykę",
+      "expected": {
+        "primary": ["guitar", "microphone"],
+        "related": ["headphones", "dancing"]
+      },
+      "rationale": "Instrument i mikrofon służą tworzeniu muzyki, a odsłuch i taniec są powiązane."
+    },
+    {
+      "id": "ambiguous-warm",
+      "input": "coś ciepłego",
+      "expected": {
+        "primary": ["coffee", "coat", "scarf", "tea", "gloves"],
+        "related": ["pizza", "sun", "fire"]
+      },
+      "rationale": "Celowo niejednoznaczna fraza obejmuje ciepłe napoje, ubrania, jedzenie i źródła ciepła."
+    }
+  ]
+}

@@ -29,8 +29,8 @@ class EmojiCatalog(DataModel):
 
     @model_validator(mode="after")
     def validate_catalog(self) -> "EmojiCatalog":
-        if len(self.items) != 16:
-            raise ValueError("the demo requires exactly 16 emoji")
+        if len(self.items) > 100:
+            raise ValueError("the demo supports at most 100 emoji")
 
         item_ids = [item.id for item in self.items]
         if len(item_ids) != len(set(item_ids)):
