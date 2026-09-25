@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "language": "pl",
+  "items": [
+    {
+      "id": "pizza",
+      "emoji": "🍕",
+      "label": "pizza",
+      "description": "ciepłe, sycące jedzenie typu fast food"
+    },
+    {
+      "id": "broccoli",
+      "emoji": "🥦",
+      "label": "brokuły",
+      "description": "zdrowe zielone warzywo i lekkie jedzenie"
+    },
+    {
+      "id": "apple",
+      "emoji": "🍎",
+      "label": "jabłko",
+      "description": "zdrowy owoc i lekka przekąska"
+    },
+    {
+      "id": "coffee",
+      "emoji": "☕",
+      "label": "kawa",
+      "description": "gorący napój dodający energii"
+    },
+    {
+      "id": "coat",
+      "emoji": "🧥",
+      "label": "kurtka",
+      "description": "ciepłe ubranie wierzchnie na chłodne dni"
+    },
+    {
+      "id": "scarf",
+      "emoji": "🧣",
+      "label": "szalik",
+      "description": "zimowe ubranie chroniące szyję przed chłodem"
+    },
+    {
+      "id": "sneaker",
+      "emoji": "👟",
+      "label": "but sportowy",
+      "description": "wygodne obuwie do chodzenia, biegania i sportu"
+    },
+    {
+      "id": "dress",
+      "emoji": "👗",
+      "label": "sukienka",
+      "description": "lekkie lub eleganckie ubranie"
+    },
+    {
+      "id": "rain",
+      "emoji": "🌧️",
+      "label": "deszcz",
+      "description": "mokra, pochmurna pogoda i opady wody"
+    },
+    {
+      "id": "snow",
+      "emoji": "❄️",
+      "label": "śnieg",
+      "description": "zimowa, mroźna pogoda i opady śniegu"
+    },
+    {
+      "id": "sun",
+      "emoji": "☀️",
+      "label": "słońce",
+      "description": "jasna, ciepła i słoneczna pogoda"
+    },
+    {
+      "id": "umbrella",
+      "emoji": "☂️",
+      "label": "parasol",
+      "description": "przedmiot chroniący człowieka przed deszczem"
+    },
+    {
+      "id": "football",
+      "emoji": "⚽",
+      "label": "piłka nożna",
+      "description": "sport zespołowy i aktywność fizyczna na zewnątrz"
+    },
+    {
+      "id": "video-game",
+      "emoji": "🎮",
+      "label": "gra komputerowa",
+      "description": "cyfrowa rozrywka i aktywność wykonywana w domu"
+    },
+    {
+      "id": "books",
+      "emoji": "📚",
+      "label": "książki",
+      "description": "czytanie, nauka i spokojne zajęcie w domu"
+    },
+    {
+      "id": "guitar",
+      "emoji": "🎸",
+      "label": "gitara",
+      "description": "instrument muzyczny, granie muzyki i kreatywność"
+    }
+  ]
+}

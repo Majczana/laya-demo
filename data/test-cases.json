@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "language": "pl",
+  "evaluation": {
+    "metric": "ndcg",
+    "k": 5,
+    "relevance": {
+      "primary": 2,
+      "related": 1,
+      "other": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "food-general",
+      "input": "jedzenie",
+      "expected": {
+        "primary": ["pizza", "broccoli", "apple"],
+        "related": []
+      },
+      "rationale": "Ogólna fraza powinna wskazać wszystkie produkty spożywcze."
+    },
+    {
+      "id": "healthy-food",
+      "input": "jedzenie zdrowe",
+      "expected": {
+        "primary": ["broccoli", "apple"],
+        "related": []
+      },
+      "rationale": "Dodatkowe słowo powinno obniżyć trafność pizzy i pozostawić zdrowe produkty."
+    },
+    {
+      "id": "hot-drink",
+      "input": "gorący napój",
+      "expected": {
+        "primary": ["coffee"],
+        "related": []
+      },
+      "rationale": "Test jednoznacznego dopasowania do jednej opcji."
+    },
+    {
+      "id": "clothing-general",
+      "input": "ubrania",
+      "expected": {
+        "primary": ["coat", "scarf", "sneaker", "dress"],
+        "related": []
+      },
+      "rationale": "Ogólna kategoria powinna zachować wszystkie elementy garderoby."
+    },
+    {
+      "id": "winter-clothing",
+      "input": "ubrania na zimę",
+      "expected": {
+        "primary": ["coat", "scarf"],
+        "related": ["sneaker"]
+      },
+      "rationale": "Zawężenie powinno promować ciepłe ubrania, a zwykłe obuwie może być wynikiem pobocznym."
+    },
+    {
+      "id": "elegant-clothing",
+      "input": "eleganckie ubranie",
+      "expected": {
+        "primary": ["dress"],
+        "related": ["coat"]
+      },
+      "rationale": "Test znaczenia stylu, które nie pokrywa się bezpośrednio z nazwą kategorii."
+    },
+    {
+      "id": "rain-protection",
+      "input": "coś na deszcz",
+      "expected": {
+        "primary": ["umbrella"],
+        "related": ["coat", "rain"]
+      },
+      "rationale": "Model powinien odróżnić przedmiot chroniący przed pogodą od samego zjawiska."
+    },
+    {
+      "id": "winter-weather",
+      "input": "zimowa pogoda",
+      "expected": {
+        "primary": ["snow"],
+        "related": ["coat", "scarf"]
+      },
+      "rationale": "Test zjawiska pogodowego i powiązanych przedmiotów."
+    },
+    {
+      "id": "sunny-weather",
+      "input": "ciepły słoneczny dzień",
+      "expected": {
+        "primary": ["sun"],
+        "related": ["dress", "football"]
+      },
+      "rationale": "Test pogody z możliwymi, lecz słabszymi skojarzeniami sytuacyjnymi."
+    },
+    {
+      "id": "outdoor-activity",
+      "input": "aktywność fizyczna na zewnątrz",
+      "expected": {
+        "primary": ["football", "sneaker"],
+        "related": ["sun"]
+      },
+      "rationale": "Fraza opisuje czynność i potrzebny przedmiot, a nie nazywa żadnego emoji wprost."
+    },
+    {
+      "id": "quiet-home-activity",
+      "input": "spokojne zajęcie w domu",
+      "expected": {
+        "primary": ["books"],
+        "related": ["video-game", "guitar"]
+      },
+      "rationale": "Test różnicy pomiędzy spokojnym zajęciem a ogólną domową rozrywką."
+    },
+    {
+      "id": "creative-music",
+      "input": "chcę tworzyć muzykę",
+      "expected": {
+        "primary": ["guitar"],
+        "related": []
+      },
+      "rationale": "Test intencji wyrażonej całym zdaniem."
+    },
+    {
+      "id": "ambiguous-warm",
+      "input": "coś ciepłego",
+      "expected": {
+        "primary": ["coffee", "coat", "scarf"],
+        "related": ["pizza", "sun"]
+      },
+      "rationale": "Celowo niejednoznaczny test pokazujący, jak model rozdziela różne znaczenia słowa ciepłe."
+    }
+  ]
+}

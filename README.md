@@ -1,0 +1,78 @@
+# LAYA Emoji Demo
+
+Lokalne demo technologiczne pokazujące, jak model decyzyjny LAYA może oceniać,
+które emoji najlepiej pasują do wpisanego zdania.
+
+Projekt rozwijamy małymi krokami. Obecny etap przygotowuje środowisko i granicę
+między interfejsem a modelem. Logika porównująca `choice` i `noul` powstanie w
+następnym kroku.
+
+## Architektura
+
+```text
+przeglądarka -> React/Vite -> FastAPI -> LAYA
+```
+
+- `frontend/` — interfejs React + TypeScript,
+- `backend/` — lokalne API FastAPI i późniejsza integracja LAYA,
+- `data/` — wspólny katalog emoji oraz oczekiwanych wyników testów,
+- `examples/` — skrypty uruchamiające eksperymenty `choice` i `noul`.
+
+## Wymagania
+
+- Node.js 22.12 lub nowszy,
+- Python 3.10 lub nowszy (środowisko zostało sprawdzone na Pythonie 3.14),
+- Git.
+
+## Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Interfejs będzie dostępny pod adresem `http://localhost:5173`.
+
+## Backend
+
+Windows PowerShell:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r .\backend\requirements.lock
+python -m pip install --no-deps -e .\backend
+uvicorn app.main:app --reload --app-dir backend
+```
+
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r ./backend/requirements.lock
+python -m pip install --no-deps -e ./backend
+uvicorn app.main:app --reload --app-dir backend
+```
+
+Kontrola działania API: `http://localhost:8000/health`.
+
+Przy pierwszym rzeczywistym użyciu LAYA zostaną pobrane wagi modelu z Hugging
+Face. Nie zapisujemy ich w repozytorium.
+
+## Porównywanie `choice` i `noul`
+
+Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie
+porównujemy ich surowych wartości. W obu przypadkach sortujemy emoji malejąco
+według wyniku i mierzymy jakość rankingu za pomocą NDCG@5:
+
+- oczekiwany wynik `primary` ma trafność `2`,
+- wynik `related` ma trafność `1`,
+- pozostałe wyniki mają trafność `0`.
+
+Takie porównanie sprawdza, czy właściwe emoji znalazły się wysoko, niezależnie
+od tego, czy wyniki pochodzą ze wspólnego rozkładu `choice`, czy z niezależnych
+prawdopodobieństw `noul`.
