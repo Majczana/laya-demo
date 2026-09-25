@@ -79,9 +79,16 @@ export function EmojiPile({ items, lifted, anchorRef }: EmojiPileProps) {
 
     const world = new World(items.length, field.clientWidth, field.clientHeight);
     worldRef.current = world;
+    const rendered = world.bodies.map(() => ({
+      x: NaN,
+      y: NaN,
+      angle: NaN,
+      scale: NaN,
+    }));
 
     const observer = new ResizeObserver(() => {
       world.resize(field.clientWidth, field.clientHeight);
+      rendered.forEach((shown) => (shown.x = NaN));
       field.style.setProperty("--body-size", `${world.radius * 2}px`);
       syncLift(world);
     });
@@ -98,12 +105,25 @@ export function EmojiPile({ items, lifted, anchorRef }: EmojiPileProps) {
 
       world.bodies.forEach((body, index) => {
         const node = nodeRefs.current[index];
-        if (!node) return;
+        const shown = rendered[index];
+        // Sleeping emoji do not move, so skip their DOM writes entirely.
+        if (
+          !node ||
+          (Math.abs(shown.x - body.x) < 0.05 &&
+            Math.abs(shown.y - body.y) < 0.05 &&
+            Math.abs(shown.angle - body.angle) < 0.002 &&
+            Math.abs(shown.scale - body.scale) < 0.002)
+        ) {
+          return;
+        }
+        shown.x = body.x;
+        shown.y = body.y;
+        shown.angle = body.angle;
+        shown.scale = body.scale;
         node.style.transform =
-          `translate3d(${body.x - body.r}px, ${body.y - body.r}px, 0) ` +
-          `scale(${body.scale})`;
-        const glyph = node.firstElementChild as HTMLElement | null;
-        if (glyph) glyph.style.transform = `rotate(${body.angle}rad)`;
+          `translate3d(${(body.x - body.r).toFixed(2)}px, ` +
+          `${(body.y - body.r).toFixed(2)}px, 0) ` +
+          `scale(${body.scale.toFixed(3)}) rotate(${body.angle.toFixed(3)}rad)`;
       });
 
       frame = requestAnimationFrame(tick);

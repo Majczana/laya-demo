@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { EmojiPile, type LiftedItem } from "./EmojiPile";
 
 type CatalogItem = {
@@ -41,7 +41,8 @@ export default function App() {
   const [status, setStatus] = useState("Ładowanie katalogu…");
   const [error, setError] = useState<string | null>(null);
   const [threshold, setThreshold] = useState(readStoredThreshold);
-  const requestId = useRef(0);
+  const latestQuery = useRef("");
+  const inFlight = useRef(false);
   const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -73,9 +74,45 @@ export default function App() {
     return () => controller.abort();
   }, []);
 
+  // The model handles one prediction at a time, so keep at most one request in
+  // flight and, when it returns, send only the newest text. Firing a request
+  // per keystroke would queue them on the backend and add up their latency.
+  const sendLatest = useCallback(async () => {
+    const query = latestQuery.current;
+    if (inFlight.current || !query) return;
+
+    inFlight.current = true;
+    setStatus("LAYA analizuje…");
+    setError(null);
+
+    try {
+      const response = await fetch("/api/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: query }),
+      });
+      if (!response.ok) throw new Error(`API zwróciło ${response.status}`);
+
+      const data = (await response.json()) as PredictionResponse;
+      if (latestQuery.current) {
+        setPrediction(data);
+        setStatus(`${data.elapsed_ms.toFixed(0)} ms · ${data.device}`);
+      }
+    } catch {
+      if (latestQuery.current) {
+        setError("Predykcja nie powiodła się. Sprawdź backend.");
+        setStatus("Błąd predykcji");
+      }
+    } finally {
+      inFlight.current = false;
+    }
+
+    if (latestQuery.current && latestQuery.current !== query) sendLatest();
+  }, []);
+
   useEffect(() => {
     const query = text.trim();
-    const currentRequest = ++requestId.current;
+    latestQuery.current = query;
 
     if (!query) {
       setPrediction(null);
@@ -84,37 +121,9 @@ export default function App() {
       return;
     }
 
-    const controller = new AbortController();
-    const timer = window.setTimeout(async () => {
-      setStatus("LAYA analizuje…");
-      setError(null);
-
-      try {
-        const response = await fetch("/api/predict", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: query }),
-          signal: controller.signal,
-        });
-        if (!response.ok) throw new Error(`API zwróciło ${response.status}`);
-
-        const data = (await response.json()) as PredictionResponse;
-        if (currentRequest !== requestId.current) return;
-        setPrediction(data);
-        setStatus(`${data.elapsed_ms.toFixed(0)} ms · ${data.device}`);
-      } catch (reason) {
-        if (reason instanceof DOMException && reason.name === "AbortError") return;
-        if (currentRequest !== requestId.current) return;
-        setError("Predykcja nie powiodła się. Sprawdź backend.");
-        setStatus("Błąd predykcji");
-      }
-    }, REQUEST_DELAY_MS);
-
-    return () => {
-      window.clearTimeout(timer);
-      controller.abort();
-    };
-  }, [text, catalog.length]);
+    const timer = window.setTimeout(sendLatest, REQUEST_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [text, catalog.length, sendLatest]);
 
   const lifted = useMemo<LiftedItem[]>(
     () =>

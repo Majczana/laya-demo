@@ -46,6 +46,9 @@ export class World {
   radius = 20;
   private accumulator = 0;
   private time = 0;
+  private prevX = new Float64Array(0);
+  private prevY = new Float64Array(0);
+  private order: number[] = [];
 
   constructor(count: number, width: number, height: number) {
     this.resize(width, height);
@@ -127,8 +130,12 @@ export class World {
   private step(dt: number) {
     this.time += dt;
     const bodies = this.bodies;
-    const prevX = new Float64Array(bodies.length);
-    const prevY = new Float64Array(bodies.length);
+    if (this.prevX.length !== bodies.length) {
+      this.prevX = new Float64Array(bodies.length);
+      this.prevY = new Float64Array(bodies.length);
+      this.order = bodies.map((_, index) => index);
+    }
+    const { prevX, prevY } = this;
 
     for (let index = 0; index < bodies.length; index += 1) {
       const body = bodies[index];
@@ -155,6 +162,20 @@ export class World {
       body.vx *= AIR_DAMPING;
       body.x += body.vx * dt;
       body.y += body.vy * dt;
+    }
+
+    // Sweep and prune: sorted by x, a pair can only touch while their x ranges
+    // overlap. Insertion sort is near-linear because order barely changes.
+    const order = this.order;
+    for (let i = 1; i < order.length; i += 1) {
+      const current = order[i];
+      const x = bodies[current].x;
+      let j = i - 1;
+      while (j >= 0 && bodies[order[j]].x > x) {
+        order[j + 1] = order[j];
+        j -= 1;
+      }
+      order[j + 1] = current;
     }
 
     for (let iteration = 0; iteration < ITERATIONS; iteration += 1) {
@@ -189,11 +210,15 @@ export class World {
 
   private solveContacts() {
     const bodies = this.bodies;
-    for (let i = 0; i < bodies.length; i += 1) {
-      const a = bodies[i];
-      for (let j = i + 1; j < bodies.length; j += 1) {
-        const b = bodies[j];
-        if (a.lifted || b.lifted) continue;
+    const order = this.order;
+    const maxReach = this.radius * 2 * LIFT_SCALE + 1.5;
+    for (let i = 0; i < order.length; i += 1) {
+      const a = bodies[order[i]];
+      if (a.lifted) continue;
+      for (let j = i + 1; j < order.length; j += 1) {
+        const b = bodies[order[j]];
+        if (b.x - a.x > maxReach) break;
+        if (b.lifted) continue;
         if (a.asleep && b.asleep) continue;
 
         const dx = b.x - a.x;
