@@ -1,10 +1,5 @@
-import {
-  type CSSProperties,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { EmojiPile, type LiftedItem } from "./EmojiPile";
 
 type CatalogItem = {
   id: string;
@@ -25,39 +20,18 @@ type PredictionResponse = {
   items: PredictionItem[];
 };
 
-type EmojiStyle = CSSProperties & {
-  "--x": string;
-  "--y": string;
-  "--rotation": string;
-  "--delay": string;
-  "--lift": string;
-  "--scale": string;
-  "--opacity": string;
-};
-
 const REQUEST_DELAY_MS = 70;
+const DEFAULT_THRESHOLD = 0.7;
+const MAX_LIFTED = 12;
+const THRESHOLD_KEY = "laya-demo:threshold";
 
-function pseudoRandom(seed: number) {
-  const value = Math.sin(seed * 12.9898) * 43758.5453;
-  return value - Math.floor(value);
-}
-
-function emojiStyle(index: number, score: number | null): EmojiStyle {
-  const column = index % 10;
-  const row = Math.floor(index / 10);
-  const jitterX = (pseudoRandom(index + 1) - 0.5) * 5;
-  const jitterY = (pseudoRandom(index + 101) - 0.5) * 5;
-  const strength = score ?? 0.36;
-
-  return {
-    "--x": `${5 + column * 10 + jitterX}%`,
-    "--y": `${5 + row * 10 + jitterY}%`,
-    "--rotation": `${(pseudoRandom(index + 211) - 0.5) * 18}deg`,
-    "--delay": `${-pseudoRandom(index + 307) * 4}s`,
-    "--lift": `${-8 - strength * 76}px`,
-    "--scale": `${0.72 + strength * 0.62}`,
-    "--opacity": `${score === null ? 0.74 : 0.12 + strength * 0.88}`,
-  };
+function readStoredThreshold() {
+  try {
+    const stored = Number(window.localStorage.getItem(THRESHOLD_KEY));
+    return stored > 0 && stored < 1 ? stored : DEFAULT_THRESHOLD;
+  } catch {
+    return DEFAULT_THRESHOLD;
+  }
 }
 
 export default function App() {
@@ -66,7 +40,17 @@ export default function App() {
   const [prediction, setPrediction] = useState<PredictionResponse | null>(null);
   const [status, setStatus] = useState("Ładowanie katalogu…");
   const [error, setError] = useState<string | null>(null);
+  const [threshold, setThreshold] = useState(readStoredThreshold);
   const requestId = useRef(0);
+  const panelRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(THRESHOLD_KEY, String(threshold));
+    } catch {
+      // Storage is only a convenience; the slider still works without it.
+    }
+  }, [threshold]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -132,42 +116,30 @@ export default function App() {
     };
   }, [text, catalog.length]);
 
-  const scores = useMemo(
-    () => new Map(prediction?.items.map((item) => [item.id, item]) ?? []),
-    [prediction],
-  );
-
-  const topItems = useMemo(
+  const lifted = useMemo<LiftedItem[]>(
     () =>
       prediction
-        ? [...prediction.items].sort((a, b) => a.rank - b.rank).slice(0, 5)
+        ? prediction.items
+            .filter((item) => item.score >= threshold)
+            .sort((a, b) => a.rank - b.rank)
+            .slice(0, MAX_LIFTED)
+            .map(({ id, score }) => ({ id, score }))
         : [],
-    [prediction],
+    [prediction, threshold],
   );
+
+  const matchCount = prediction
+    ? prediction.items.filter((item) => item.score >= threshold).length
+    : 0;
 
   return (
     <main className="stage">
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
 
-      <div className="emoji-field" aria-label="Pole stu emoji ocenianych przez LAYA">
-        {catalog.map((item, index) => {
-          const result = scores.get(item.id);
-          const score = result?.score ?? null;
-          return (
-            <span
-              className={`emoji-slot ${result && result.rank <= 5 ? "is-top" : ""}`}
-              key={item.id}
-              style={emojiStyle(index, score)}
-              title={`${item.label}${score === null ? "" : ` · ${(score * 100).toFixed(1)}%`}`}
-            >
-              <span className="emoji-glyph">{item.emoji}</span>
-            </span>
-          );
-        })}
-      </div>
+      <EmojiPile items={catalog} lifted={lifted} anchorRef={panelRef} />
 
-      <section className="control-panel">
+      <section className="control-panel" ref={panelRef}>
         <p className="eyebrow">LAYA · 100 niezależnych decyzji</p>
         <h1>Co masz na myśli?</h1>
         <p className="intro">
@@ -190,15 +162,26 @@ export default function App() {
           </span>
         </label>
 
-        <div className="top-results" aria-live="polite">
-          {topItems.map((item) => (
-            <span className="result-chip" key={item.id}>
-              <span>{item.emoji}</span>
-              {item.label}
-              <strong>{Math.round(item.score * 100)}%</strong>
-            </span>
-          ))}
-        </div>
+        <label className="threshold">
+          <span>
+            Próg dopasowania <strong>{Math.round(threshold * 100)}%</strong>
+          </span>
+          <input
+            type="range"
+            min={0.05}
+            max={0.95}
+            step={0.05}
+            value={threshold}
+            onChange={(event) => setThreshold(Number(event.target.value))}
+          />
+          <span className="threshold-note" aria-live="polite">
+            {prediction
+              ? matchCount > MAX_LIFTED
+                ? `${matchCount} pasuje · unosi się ${MAX_LIFTED} najlepszych`
+                : `${matchCount} z ${prediction.items.length} emoji pasuje`
+              : "Emoji powyżej progu uniosą się nad stos"}
+          </span>
+        </label>
       </section>
     </main>
   );

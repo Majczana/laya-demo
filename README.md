@@ -33,6 +33,13 @@ npm run dev
 
 Interfejs będzie dostępny pod adresem `http://localhost:5173`.
 
+Wszystkie 100 emoji z `data/emojis_100.json` leży nieruchomo na dnie ekranu
+jako stos z prostą fizyką. Emoji, których wynik `noul` przekracza próg
+dopasowania, unoszą się i świecą w szeregu pod panelem. Mieści się tam do 12
+najlepszych. Gdy emoji przestaje pasować, spada bezwładnie na stos. Domyślny
+próg to `70%` (`DEFAULT_THRESHOLD` w `frontend/src/App.tsx`), a w interfejsie
+można go zmienić suwakiem.
+
 ## Backend
 
 Windows PowerShell:

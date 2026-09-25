@@ -28,7 +28,9 @@ input {
   position: relative;
   min-height: 100svh;
   display: grid;
-  place-items: center;
+  justify-items: center;
+  align-items: start;
+  padding-top: clamp(1rem, 6vh, 4rem);
   isolation: isolate;
   overflow: hidden;
   background:
@@ -59,50 +61,76 @@ input {
 }
 
 .emoji-field {
+  --body-size: 40px;
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.emoji-slot {
-  --x: 50%;
-  --y: 50%;
-  --rotation: 0deg;
-  --lift: -30px;
-  --scale: 1;
-  --opacity: 0.7;
+.emoji-body {
   position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: clamp(2rem, 3.2vw, 3.5rem);
-  height: clamp(2rem, 3.2vw, 3.5rem);
+  top: 0;
+  left: 0;
+  width: var(--body-size);
+  height: var(--body-size);
   display: grid;
   place-items: center;
-  opacity: var(--opacity);
-  transform: translate(-50%, calc(-50% + var(--lift))) rotate(var(--rotation)) scale(var(--scale));
+  opacity: 0.72;
+  filter: saturate(0.55) brightness(0.85);
   transition:
-    transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1),
     opacity 320ms ease,
     filter 320ms ease;
-  filter: saturate(calc(0.55 + var(--scale) * 0.38));
-  will-change: transform, opacity;
+  will-change: transform;
 }
 
-.emoji-slot.is-top {
+.emoji-body.is-lifted {
   z-index: 2;
+  opacity: 1;
   filter:
-    saturate(1.25)
-    drop-shadow(0 12px 20px rgba(116, 94, 255, 0.4));
+    saturate(1.2)
+    drop-shadow(0 0 10px rgba(255, 230, 150, 0.75))
+    drop-shadow(0 0 26px rgba(140, 118, 255, 0.65));
 }
 
 .emoji-glyph {
   display: block;
-  font-size: clamp(1.35rem, 2.6vw, 2.7rem);
+  font-size: calc(var(--body-size) * 0.8);
   line-height: 1;
-  animation: drift 4s ease-in-out var(--delay) infinite alternate;
+}
+
+.emoji-caption {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  width: max-content;
+  max-width: 5.5rem;
+  margin-top: 0.2rem;
+  color: #e7e5ff;
+  font-size: 0.5rem;
+  line-height: 1.2;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity 200ms ease;
+}
+
+.emoji-caption strong {
+  color: #c8bfff;
+  font-variant-numeric: tabular-nums;
+}
+
+.is-lifted .emoji-caption {
+  opacity: 1;
+  transition-delay: 250ms;
 }
 
 .control-panel {
+  position: relative;
+  z-index: 1;
   width: min(42rem, calc(100vw - 2rem));
   display: grid;
   justify-items: center;
@@ -199,30 +227,33 @@ h1 {
   background: #ff6d84;
 }
 
-.top-results {
-  min-height: 2.1rem;
+.threshold {
+  width: min(34rem, 100%);
+  display: grid;
+  gap: 0.4rem;
+  color: #b6b9ca;
+  font-size: 0.78rem;
+}
+
+.threshold > span:first-child {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.45rem;
+  justify-content: space-between;
 }
 
-.result-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.38rem 0.58rem;
-  color: #d9dbea;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.055);
-  font-size: 0.72rem;
-  animation: chip-in 260ms ease both;
-}
-
-.result-chip strong {
-  color: #aaa1ff;
+.threshold strong {
+  color: #c8bfff;
   font-variant-numeric: tabular-nums;
+}
+
+.threshold input {
+  width: 100%;
+  accent-color: #8f7dff;
+}
+
+.threshold-note {
+  color: #8d91a6;
+  font-size: 0.72rem;
+  text-align: center;
 }
 
 .sr-only {
@@ -237,44 +268,17 @@ h1 {
   border: 0;
 }
 
-@keyframes drift {
-  from {
-    transform: translate3d(-2px, 2px, 0);
-  }
-  to {
-    transform: translate3d(3px, -5px, 0);
-  }
-}
-
-@keyframes chip-in {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-}
-
 @media (max-width: 720px) {
   .control-panel {
     width: calc(100vw - 1.25rem);
     padding: 1.35rem 1rem;
     border-radius: 1.4rem;
   }
-
-  .emoji-slot {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .emoji-glyph {
-    font-size: 1.45rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .emoji-slot,
-  .emoji-glyph,
-  .result-chip {
-    animation: none;
+  .emoji-body,
+  .emoji-caption {
     transition-duration: 0.01ms;
   }
 }
