@@ -20,6 +20,20 @@ class ChoiceRequest(TypedDict):
     questions: dict[str, ChoiceQuestion]
 
 
+class NoulQuestion(TypedDict):
+    """One independent LAYA yes-or-no question."""
+
+    type: Literal["noul"]
+    instructions: str
+
+
+class NoulRequest(TypedDict):
+    """A batch of independent emoji matching questions."""
+
+    state: dict[str, str]
+    questions: dict[str, NoulQuestion]
+
+
 CriteriaMode = Literal["descriptions", "labels"]
 OptionKeyMode = Literal["ids", "opaque"]
 
@@ -89,5 +103,27 @@ def build_choice_request(
                 ),
                 "criteria": criteria,
             }
+        },
+    }
+
+
+def build_noul_request(text: str, catalog: EmojiCatalog) -> NoulRequest:
+    """Create one independent yes-or-no matching question per emoji."""
+
+    normalized_text = text.strip()
+    if not normalized_text:
+        raise ValueError("text must not be empty")
+
+    return {
+        "state": {"text": normalized_text},
+        "questions": {
+            item.id: {
+                "type": "noul",
+                "instructions": (
+                    "Czy treść użytkownika w polu `text` pasuje znaczeniowo "
+                    f"do kategorii „{item.label}: {item.description}”?"
+                ),
+            }
+            for item in catalog.items
         },
     }

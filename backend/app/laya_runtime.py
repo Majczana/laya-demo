@@ -4,7 +4,7 @@ import os
 from functools import lru_cache
 from typing import Any
 
-from app.laya_requests import ChoiceRequest
+from app.laya_requests import ChoiceRequest, NoulRequest
 
 
 os.environ.setdefault("USE_TF", "0")
@@ -26,6 +26,22 @@ def predict_choice(
     head_max_len: int | None = None,
 ) -> dict[str, Any]:
     """Run one choice request against the selected LAYA checkpoint."""
+
+    router = get_router()
+    options: dict[str, Any] = {"model": model}
+    if head_max_len is not None:
+        options["head_max_len"] = head_max_len
+
+    return router.predict(request["state"], request["questions"], **options)
+
+
+def predict_noul(
+    request: NoulRequest,
+    *,
+    model: str = "multilingual",
+    head_max_len: int | None = None,
+) -> dict[str, Any]:
+    """Run a batch of independent noul questions in one model call."""
 
     router = get_router()
     options: dict[str, Any] = {"model": model}

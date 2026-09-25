@@ -1,6 +1,6 @@
 # Skrypty eksperymentalne
 
-W tym katalogu zapiszemy skrypty uruchamiające dwa eksperymenty:
+W tym katalogu znajdują się skrypty uruchamiające dwa rodzaje eksperymentów:
 
 1. jedno pytanie `choice` ze wszystkimi emoji jako opcjami,
 2. osobne pytanie `noul` dla każdego emoji.
@@ -71,3 +71,15 @@ python examples/compare_choice_languages.py
 
 Zmieniają się tylko etykiety i opisy. Identyfikatory, emoji, kolejność,
 zapytania, budżet oraz model pozostają takie same.
+
+## Porównanie `choice` i `noul`
+
+Uruchom oba podejścia na wszystkich przypadkach testowych:
+
+```bash
+python examples/compare_choice_noul.py
+```
+
+Skrypt porównuje średnie NDCG@5, czas działania, liczbę tokenów oraz ranking
+dla przypadku „jedzenie zdrowe”. Wszystkie 16 pytań `noul` trafia do modelu w
+jednym wywołaniu.

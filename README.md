@@ -3,9 +3,8 @@
 Lokalne demo technologiczne pokazujące, jak model decyzyjny LAYA może oceniać,
 które emoji najlepiej pasują do wpisanego zdania.
 
-Projekt rozwijamy małymi krokami. Obecny etap przygotowuje środowisko i granicę
-między interfejsem a modelem. Logika porównująca `choice` i `noul` powstanie w
-następnym kroku.
+Projekt rozwijamy małymi krokami. Obecny etap obejmuje działającą lokalnie
+integrację LAYA oraz kontrolowane eksperymenty porównujące `choice` i `noul`.
 
 ## Architektura
 
@@ -124,6 +123,19 @@ python examples/compare_choice_languages.py
 Angielski katalog znajduje się w `data/emojis_eng.json`. Skrypt zachowuje te
 same emoji, identyfikatory, kolejność, zapytania i ustawienia modelu, a zmienia
 wyłącznie język etykiet oraz opisów.
+
+Porównanie jednego pytania `choice` z 16 niezależnymi pytaniami `noul`:
+
+```bash
+python examples/compare_choice_noul.py
+```
+
+Wariant `noul` ocenia każde emoji niezależnie, ale wszystkie pytania przekazuje
+modelowi razem w jednym wywołaniu.
+
+W pierwszym eksperymencie na 13 przypadkach polskich opisów wariant `noul`
+osiągnął średnie NDCG@5 równe `0,8337`, a `choice` — `0,5795`. Jest przy tym
+wolniejszy i zużywa więcej tokenów, co skrypt pokazuje razem z jakością.
 
 ## Porównywanie `choice` i `noul`
 
