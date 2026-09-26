@@ -1,0 +1,1206 @@
+{
+  "version": 2,
+  "language": "en",
+  "items": [
+    {
+      "id": "pizza",
+      "emoji": "🍕",
+      "label": "pizza",
+      "description": "round baked dough with sauce and toppings, associated with a quick meal, a pizzeria, and sharing food with friends"
+    },
+    {
+      "id": "broccoli",
+      "emoji": "🥦",
+      "label": "broccoli",
+      "description": "green vegetable with branching florets, associated with healthy eating, diet food, cooking, and a light meal"
+    },
+    {
+      "id": "apple",
+      "emoji": "🍎",
+      "label": "apple",
+      "description": "round red fruit eaten raw or in desserts, associated with a healthy snack and vitamins"
+    },
+    {
+      "id": "coffee",
+      "emoji": "☕",
+      "label": "coffee",
+      "description": "hot dark drink made from roasted beans, enjoyed in the morning for energy or during work and conversation"
+    },
+    {
+      "id": "coat",
+      "emoji": "🧥",
+      "label": "coat",
+      "description": "outer layer worn to stay warm or dry in cold, windy, or rainy weather outdoors"
+    },
+    {
+      "id": "scarf",
+      "emoji": "🧣",
+      "label": "scarf",
+      "description": "long fabric worn around the neck to protect against cold weather, usually part of winter clothing"
+    },
+    {
+      "id": "sneaker",
+      "emoji": "👟",
+      "label": "sneaker",
+      "description": "light lace-up shoe for walking, running, training, exercise, or casual everyday wear"
+    },
+    {
+      "id": "dress",
+      "emoji": "👗",
+      "label": "dress",
+      "description": "one-piece garment worn for everyday life, a celebration, a date, or an elegant occasion"
+    },
+    {
+      "id": "rain",
+      "emoji": "🌧️",
+      "label": "rain",
+      "description": "water falling from dark clouds, wet weather, a shower, umbrellas, rain boots, and the need to stay dry"
+    },
+    {
+      "id": "snow",
+      "emoji": "❄️",
+      "label": "snow",
+      "description": "white ice crystals falling in winter, associated with frost, snowmen, skiing, and slippery weather"
+    },
+    {
+      "id": "sun",
+      "emoji": "☀️",
+      "label": "sun",
+      "description": "bright sun in a clear sky, warmth, daylight, summer, good weather, and relaxing outdoors"
+    },
+    {
+      "id": "umbrella",
+      "emoji": "☂️",
+      "label": "umbrella",
+      "description": "folding item held above the head to protect a person from rain, showers, or sometimes sunlight"
+    },
+    {
+      "id": "football",
+      "emoji": "⚽",
+      "label": "football",
+      "description": "round ball used in a match between two teams, associated with a pitch, kicking, training, and soccer"
+    },
+    {
+      "id": "video-game",
+      "emoji": "🎮",
+      "label": "video game",
+      "description": "controller for a digital game on a console or computer, associated with screens, play, and entertainment"
+    },
+    {
+      "id": "books",
+      "emoji": "📚",
+      "label": "books",
+      "description": "stack of books for reading, study, or work, associated with libraries, school, knowledge, and literature"
+    },
+    {
+      "id": "guitar",
+      "emoji": "🎸",
+      "label": "guitar",
+      "description": "stringed instrument with a neck, used to play songs, perform concerts, make rock music, or learn music"
+    },
+    {
+      "id": "bread",
+      "emoji": "🍞",
+      "label": "bread",
+      "description": "loaf made from flour, sliced for breakfast, sandwiches, soup, or an everyday meal"
+    },
+    {
+      "id": "cheese",
+      "emoji": "🧀",
+      "label": "cheese",
+      "description": "dairy product served sliced or melted in sandwiches, pizza, pasta, and snacks"
+    },
+    {
+      "id": "carrot",
+      "emoji": "🥕",
+      "label": "carrot",
+      "description": "orange root vegetable eaten raw or cooked, associated with health, soup, and a crunchy snack"
+    },
+    {
+      "id": "strawberry",
+      "emoji": "🍓",
+      "label": "strawberry",
+      "description": "small sweet red fruit with green leaves, used in desserts, smoothies, and summer snacks"
+    },
+    {
+      "id": "burger",
+      "emoji": "🍔",
+      "label": "burger",
+      "description": "round bun with a patty and toppings, a typical fast-food meal eaten at a restaurant or on the go"
+    },
+    {
+      "id": "tea",
+      "emoji": "🍵",
+      "label": "tea",
+      "description": "hot drink brewed from leaves or herbs, enjoyed for warmth, relaxation, flavor, or quiet conversation"
+    },
+    {
+      "id": "t-shirt",
+      "emoji": "👕",
+      "label": "t-shirt",
+      "description": "light short-sleeved top worn every day, in hot weather, during exercise, or under another layer"
+    },
+    {
+      "id": "jeans",
+      "emoji": "👖",
+      "label": "jeans",
+      "description": "long denim trousers covering the legs, durable everyday clothing for work, school, or going out"
+    },
+    {
+      "id": "hat",
+      "emoji": "🎩",
+      "label": "hat",
+      "description": "head covering with a brim, worn as an elegant accessory, sun protection, or part of an outfit"
+    },
+    {
+      "id": "gloves",
+      "emoji": "🧤",
+      "label": "gloves",
+      "description": "pair of garments worn on the hands to protect fingers from cold, frost, and wind"
+    },
+    {
+      "id": "boots",
+      "emoji": "🥾",
+      "label": "hiking boots",
+      "description": "sturdy high boots with a thick sole for mountain trails, hiking, mud, and uneven ground"
+    },
+    {
+      "id": "backpack",
+      "emoji": "🎒",
+      "label": "backpack",
+      "description": "bag carried on the shoulders for books, a laptop, clothing, or supplies during travel"
+    },
+    {
+      "id": "cloud",
+      "emoji": "☁️",
+      "label": "cloud",
+      "description": "white or gray mass of water vapor in the sky, associated with overcast weather, shade, and possible rain"
+    },
+    {
+      "id": "lightning",
+      "emoji": "⚡",
+      "label": "lightning",
+      "description": "bright electrical discharge seen during a storm, associated with thunder, lightning strikes, and severe weather"
+    },
+    {
+      "id": "rainbow",
+      "emoji": "🌈",
+      "label": "rainbow",
+      "description": "arc of colors in the sky created when sunlight passes through raindrops after rain"
+    },
+    {
+      "id": "tree",
+      "emoji": "🌳",
+      "label": "tree",
+      "description": "large plant with a trunk, roots, and leafy crown, associated with forests, shade, parks, and nature"
+    },
+    {
+      "id": "flower",
+      "emoji": "🌻",
+      "label": "flower",
+      "description": "flowering ornamental plant with petals, associated with gardens, spring, gifts, fragrance, and beauty"
+    },
+    {
+      "id": "fire",
+      "emoji": "🔥",
+      "label": "fire",
+      "description": "visible flame that gives heat and light, associated with campfires, cooking, danger, or strong emotions"
+    },
+    {
+      "id": "basketball",
+      "emoji": "🏀",
+      "label": "basketball",
+      "description": "sport between two teams using an orange ball, a court, dribbling, passes, and shots into a hoop"
+    },
+    {
+      "id": "tennis",
+      "emoji": "🎾",
+      "label": "tennis",
+      "description": "racket sport played across a net on a court by hitting a yellow ball back and forth"
+    },
+    {
+      "id": "swimming",
+      "emoji": "🏊",
+      "label": "swimming",
+      "description": "moving through water in a pool, lake, or sea for sport, training, health, or recreation"
+    },
+    {
+      "id": "cycling",
+      "emoji": "🚴",
+      "label": "cycling",
+      "description": "activity of pedaling and riding a bicycle on a road, path, trail, or through a city"
+    },
+    {
+      "id": "running",
+      "emoji": "🏃",
+      "label": "running",
+      "description": "moving quickly on foot, including jogging, endurance training, races, or outdoor exercise"
+    },
+    {
+      "id": "skiing",
+      "emoji": "⛷️",
+      "label": "skiing",
+      "description": "sliding downhill on two skis, associated with winter, snow, mountain resorts, and sport"
+    },
+    {
+      "id": "camping",
+      "emoji": "⛺",
+      "label": "camping",
+      "description": "staying overnight in a tent outdoors, associated with a campsite, campfire, nature, hiking, and relaxation"
+    },
+    {
+      "id": "fishing",
+      "emoji": "🎣",
+      "label": "fishing",
+      "description": "quietly catching fish with a rod beside a river, lake, or sea as a hobby or recreation"
+    },
+    {
+      "id": "yoga",
+      "emoji": "🧘",
+      "label": "yoga",
+      "description": "stretching exercises and body poses combined with breathing, concentration, relaxation, and meditation"
+    },
+    {
+      "id": "cinema",
+      "emoji": "🎬",
+      "label": "film",
+      "description": "movie production, cinema, watching a film, and audiovisual entertainment"
+    },
+    {
+      "id": "headphones",
+      "emoji": "🎧",
+      "label": "headphones",
+      "description": "audio equipment worn over the ears for music, podcasts, calls, or private listening"
+    },
+    {
+      "id": "microphone",
+      "emoji": "🎤",
+      "label": "microphone",
+      "description": "audio device for singing, recording speech, broadcasting, performing, or speaking on stage"
+    },
+    {
+      "id": "painting",
+      "emoji": "🎨",
+      "label": "painting",
+      "description": "art supplies and creative painting with colors, brushes, drawing, and making images"
+    },
+    {
+      "id": "camera",
+      "emoji": "📷",
+      "label": "camera",
+      "description": "device used to take photographs, capture moments, record memories, or document an event"
+    },
+    {
+      "id": "puzzle",
+      "emoji": "🧩",
+      "label": "puzzle",
+      "description": "piece of a jigsaw or brain teaser, associated with solving problems and patient thinking"
+    },
+    {
+      "id": "dancing",
+      "emoji": "💃",
+      "label": "dancing",
+      "description": "moving the body to music for fun, performance, celebration, exercise, or artistic expression"
+    },
+    {
+      "id": "car",
+      "emoji": "🚗",
+      "label": "car",
+      "description": "road vehicle used for private travel, commuting, errands, road trips, or everyday transportation"
+    },
+    {
+      "id": "bus",
+      "emoji": "🚌",
+      "label": "bus",
+      "description": "large vehicle carrying many passengers on public city or regional transport routes"
+    },
+    {
+      "id": "train",
+      "emoji": "🚆",
+      "label": "train",
+      "description": "rail vehicle carrying passengers between stations, towns, or cities on a railway"
+    },
+    {
+      "id": "plane",
+      "emoji": "✈️",
+      "label": "airplane",
+      "description": "aircraft used for long-distance travel, flights, holidays, airports, and journeys between countries"
+    },
+    {
+      "id": "bicycle",
+      "emoji": "🚲",
+      "label": "bicycle",
+      "description": "two-wheeled human-powered vehicle used for transport, exercise, commuting, and recreation"
+    },
+    {
+      "id": "boat",
+      "emoji": "⛵",
+      "label": "boat",
+      "description": "small watercraft used for sailing, transport, fishing, or travel on a lake, river, or sea"
+    },
+    {
+      "id": "motorcycle",
+      "emoji": "🏍️",
+      "label": "motorcycle",
+      "description": "two-wheeled engine-powered vehicle associated with fast road travel, riding, helmets, and motor sport"
+    },
+    {
+      "id": "rocket",
+      "emoji": "🚀",
+      "label": "rocket",
+      "description": "space vehicle launched beyond Earth, associated with astronauts, science, exploration, and space travel"
+    },
+    {
+      "id": "taxi",
+      "emoji": "🚕",
+      "label": "taxi",
+      "description": "paid car service that transports passengers around a city when they need a ride"
+    },
+    {
+      "id": "subway",
+      "emoji": "🚇",
+      "label": "subway",
+      "description": "urban public train running mostly underground, used for fast travel around a city"
+    },
+    {
+      "id": "dog",
+      "emoji": "🐶",
+      "label": "dog",
+      "description": "domesticated canine pet, friendly companion, puppy, walking, barking, and everyday life with an animal"
+    },
+    {
+      "id": "cat",
+      "emoji": "🐱",
+      "label": "cat",
+      "description": "domesticated feline pet, independent companion, kitten, whiskers, meowing, and life with an animal"
+    },
+    {
+      "id": "rabbit",
+      "emoji": "🐰",
+      "label": "rabbit",
+      "description": "small long-eared animal kept as a pet or found in a meadow, associated with softness and hopping"
+    },
+    {
+      "id": "horse",
+      "emoji": "🐴",
+      "label": "horse",
+      "description": "large domesticated animal used for riding, sport, farm work, transport, and life at a stable"
+    },
+    {
+      "id": "cow",
+      "emoji": "🐮",
+      "label": "cow",
+      "description": "farm animal raised for milk and food, associated with fields, a barn, and agriculture"
+    },
+    {
+      "id": "lion",
+      "emoji": "🦁",
+      "label": "lion",
+      "description": "large wild cat and predator of the savanna, associated with strength, courage, and a mane"
+    },
+    {
+      "id": "monkey",
+      "emoji": "🐵",
+      "label": "monkey",
+      "description": "clever wild primate living in forests or zoos, associated with climbing, playfulness, and curiosity"
+    },
+    {
+      "id": "bird",
+      "emoji": "🐦",
+      "label": "bird",
+      "description": "animal with feathers and wings, associated with flying, singing, nests, and nature"
+    },
+    {
+      "id": "fish",
+      "emoji": "🐟",
+      "label": "fish",
+      "description": "aquatic animal living in a sea, lake, river, or aquarium, associated with swimming and water"
+    },
+    {
+      "id": "butterfly",
+      "emoji": "🦋",
+      "label": "butterfly",
+      "description": "colorful flying insect with wings, associated with flowers, gardens, spring, and transformation"
+    },
+    {
+      "id": "laptop",
+      "emoji": "💻",
+      "label": "laptop",
+      "description": "portable computer used for work, study, browsing the internet, coding, writing, and digital tasks"
+    },
+    {
+      "id": "phone",
+      "emoji": "📱",
+      "label": "phone",
+      "description": "smartphone used for calls, messages, internet access, photos, apps, and everyday communication"
+    },
+    {
+      "id": "keyboard",
+      "emoji": "⌨️",
+      "label": "keyboard",
+      "description": "computer input device with keys for typing text, entering commands, and controlling software"
+    },
+    {
+      "id": "lightbulb",
+      "emoji": "💡",
+      "label": "light bulb",
+      "description": "electric light source and common symbol for an idea, insight, inspiration, or solution"
+    },
+    {
+      "id": "wrench",
+      "emoji": "🔧",
+      "label": "wrench",
+      "description": "hand tool used to tighten, loosen, assemble, or repair mechanical parts and equipment"
+    },
+    {
+      "id": "hammer",
+      "emoji": "🔨",
+      "label": "hammer",
+      "description": "hand tool used for building, repairs, driving nails, or striking materials"
+    },
+    {
+      "id": "magnifier",
+      "emoji": "🔍",
+      "label": "magnifying glass",
+      "description": "tool with a lens used to search, inspect, enlarge, or examine small details"
+    },
+    {
+      "id": "calendar",
+      "emoji": "📅",
+      "label": "calendar",
+      "description": "page or app used to plan dates, deadlines, appointments, meetings, and events"
+    },
+    {
+      "id": "envelope",
+      "emoji": "✉️",
+      "label": "message",
+      "description": "envelope representing a letter, postal mail, email, or written communication"
+    },
+    {
+      "id": "chart",
+      "emoji": "📊",
+      "label": "chart",
+      "description": "visual display of data, statistics, measurements, trends, or business analysis"
+    },
+    {
+      "id": "house",
+      "emoji": "🏠",
+      "label": "house",
+      "description": "place where people live, associated with family, home life, privacy, safety, and rest"
+    },
+    {
+      "id": "school",
+      "emoji": "🏫",
+      "label": "school",
+      "description": "place for education, lessons, teachers, students, classrooms, and learning"
+    },
+    {
+      "id": "hospital",
+      "emoji": "🏥",
+      "label": "hospital",
+      "description": "medical facility for treatment, healthcare, doctors, nurses, patients, and emergencies"
+    },
+    {
+      "id": "bank",
+      "emoji": "🏦",
+      "label": "bank",
+      "description": "financial institution associated with money, accounts, savings, loans, payments, and credit"
+    },
+    {
+      "id": "hotel",
+      "emoji": "🏨",
+      "label": "hotel",
+      "description": "building providing paid rooms and lodging during travel, holidays, business trips, or vacations"
+    },
+    {
+      "id": "beach",
+      "emoji": "🏖️",
+      "label": "beach",
+      "description": "sandy seaside place associated with sun, water, swimming, holidays, and relaxing outdoors"
+    },
+    {
+      "id": "mountain",
+      "emoji": "⛰️",
+      "label": "mountains",
+      "description": "high natural terrain associated with peaks, hiking trails, climbing, views, and outdoor trips"
+    },
+    {
+      "id": "city",
+      "emoji": "🌆",
+      "label": "city",
+      "description": "urban area with buildings, streets, residents, lights, traffic, and city life"
+    },
+    {
+      "id": "office",
+      "emoji": "🏢",
+      "label": "office",
+      "description": "workplace for a company, employees, meetings, desks, business tasks, and professional life"
+    },
+    {
+      "id": "store",
+      "emoji": "🏪",
+      "label": "store",
+      "description": "place where products are displayed, sold, purchased, and customers receive service"
+    },
+    {
+      "id": "happy",
+      "emoji": "😀",
+      "label": "happiness",
+      "description": "positive emotion shown by a smile, associated with joy, good humor, satisfaction, and feeling glad"
+    },
+    {
+      "id": "sad",
+      "emoji": "😢",
+      "label": "sadness",
+      "description": "negative emotion shown by tears, associated with grief, disappointment, crying, and feeling unhappy"
+    },
+    {
+      "id": "angry",
+      "emoji": "😠",
+      "label": "anger",
+      "description": "strong negative emotion associated with frustration, irritation, conflict, outrage, and losing patience"
+    },
+    {
+      "id": "love",
+      "emoji": "❤️",
+      "label": "love",
+      "description": "feeling of affection, closeness, romance, care, attraction, or emotional connection"
+    },
+    {
+      "id": "laugh",
+      "emoji": "😂",
+      "label": "laughter",
+      "description": "joyful reaction to something funny, a joke, humor, amusement, or a very entertaining moment"
+    },
+    {
+      "id": "surprised",
+      "emoji": "😮",
+      "label": "surprise",
+      "description": "emotion of shock or amazement caused by unexpected news, an event, or a sudden discovery"
+    },
+    {
+      "id": "tired",
+      "emoji": "😴",
+      "label": "tiredness",
+      "description": "sleepiness or lack of energy, associated with rest, fatigue, bedtime, and the need for sleep"
+    },
+    {
+      "id": "party",
+      "emoji": "🥳",
+      "label": "party",
+      "description": "celebration with friends, birthdays, music, fun, festive mood, and a joyful gathering"
+    },
+    {
+      "id": "handshake",
+      "emoji": "🤝",
+      "label": "cooperation",
+      "description": "agreement, partnership, greeting, trust, teamwork, or working together on a shared goal"
+    },
+    {
+      "id": "thinking",
+      "emoji": "🤔",
+      "label": "thinking",
+      "description": "considering a question, analyzing information, expressing doubt, or making a careful decision"
+    },
+    {
+      "id": "grinning-face-with-big-eyes",
+      "emoji": "😃",
+      "label": "grinning face with big eyes",
+      "description": "emoji representing grinning face with big eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "grinning-face-with-smiling-eyes",
+      "emoji": "😄",
+      "label": "grinning face with smiling eyes",
+      "description": "emoji representing grinning face with smiling eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "beaming-face-with-smiling-eyes",
+      "emoji": "😁",
+      "label": "beaming face with smiling eyes",
+      "description": "emoji representing beaming face with smiling eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "grinning-squinting-face",
+      "emoji": "😆",
+      "label": "grinning squinting face",
+      "description": "emoji representing grinning squinting face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "grinning-face-with-sweat",
+      "emoji": "😅",
+      "label": "grinning face with sweat",
+      "description": "emoji representing grinning face with sweat, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "rolling-on-the-floor-laughing",
+      "emoji": "🤣",
+      "label": "rolling on the floor laughing",
+      "description": "emoji representing rolling on the floor laughing, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "slightly-smiling-face",
+      "emoji": "🙂",
+      "label": "slightly smiling face",
+      "description": "emoji representing slightly smiling face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "upside-down-face",
+      "emoji": "🙃",
+      "label": "upside-down face",
+      "description": "emoji representing upside-down face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "melting-face",
+      "emoji": "🫠",
+      "label": "melting face",
+      "description": "emoji representing melting face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "winking-face",
+      "emoji": "😉",
+      "label": "winking face",
+      "description": "emoji representing winking face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-smiling-eyes",
+      "emoji": "😊",
+      "label": "smiling face with smiling eyes",
+      "description": "emoji representing smiling face with smiling eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-halo",
+      "emoji": "😇",
+      "label": "smiling face with halo",
+      "description": "emoji representing smiling face with halo, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-hearts",
+      "emoji": "🥰",
+      "label": "smiling face with hearts",
+      "description": "emoji representing smiling face with hearts, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-heart-eyes",
+      "emoji": "😍",
+      "label": "smiling face with heart-eyes",
+      "description": "emoji representing smiling face with heart-eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "star-struck",
+      "emoji": "🤩",
+      "label": "star-struck",
+      "description": "emoji representing star-struck, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-blowing-a-kiss",
+      "emoji": "😘",
+      "label": "face blowing a kiss",
+      "description": "emoji representing face blowing a kiss, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "kissing-face",
+      "emoji": "😗",
+      "label": "kissing face",
+      "description": "emoji representing kissing face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face",
+      "emoji": "☺️",
+      "label": "smiling face",
+      "description": "emoji representing smiling face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "kissing-face-with-closed-eyes",
+      "emoji": "😚",
+      "label": "kissing face with closed eyes",
+      "description": "emoji representing kissing face with closed eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "kissing-face-with-smiling-eyes",
+      "emoji": "😙",
+      "label": "kissing face with smiling eyes",
+      "description": "emoji representing kissing face with smiling eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-tear",
+      "emoji": "🥲",
+      "label": "smiling face with tear",
+      "description": "emoji representing smiling face with tear, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-savoring-food",
+      "emoji": "😋",
+      "label": "face savoring food",
+      "description": "emoji representing face savoring food, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-tongue",
+      "emoji": "😛",
+      "label": "face with tongue",
+      "description": "emoji representing face with tongue, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "winking-face-with-tongue",
+      "emoji": "😜",
+      "label": "winking face with tongue",
+      "description": "emoji representing winking face with tongue, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "zany-face",
+      "emoji": "🤪",
+      "label": "zany face",
+      "description": "emoji representing zany face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "squinting-face-with-tongue",
+      "emoji": "😝",
+      "label": "squinting face with tongue",
+      "description": "emoji representing squinting face with tongue, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "money-mouth-face",
+      "emoji": "🤑",
+      "label": "money-mouth face",
+      "description": "emoji representing money-mouth face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-open-hands",
+      "emoji": "🤗",
+      "label": "smiling face with open hands",
+      "description": "emoji representing smiling face with open hands, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-hand-over-mouth",
+      "emoji": "🤭",
+      "label": "face with hand over mouth",
+      "description": "emoji representing face with hand over mouth, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-open-eyes-and-hand-over-mouth",
+      "emoji": "🫢",
+      "label": "face with open eyes and hand over mouth",
+      "description": "emoji representing face with open eyes and hand over mouth, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-peeking-eye",
+      "emoji": "🫣",
+      "label": "face with peeking eye",
+      "description": "emoji representing face with peeking eye, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "shushing-face",
+      "emoji": "🤫",
+      "label": "shushing face",
+      "description": "emoji representing shushing face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "saluting-face",
+      "emoji": "🫡",
+      "label": "saluting face",
+      "description": "emoji representing saluting face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "zipper-mouth-face",
+      "emoji": "🤐",
+      "label": "zipper-mouth face",
+      "description": "emoji representing zipper-mouth face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-raised-eyebrow",
+      "emoji": "🤨",
+      "label": "face with raised eyebrow",
+      "description": "emoji representing face with raised eyebrow, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "neutral-face",
+      "emoji": "😐",
+      "label": "neutral face",
+      "description": "emoji representing neutral face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "expressionless-face",
+      "emoji": "😑",
+      "label": "expressionless face",
+      "description": "emoji representing expressionless face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-without-mouth",
+      "emoji": "😶",
+      "label": "face without mouth",
+      "description": "emoji representing face without mouth, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "dotted-line-face",
+      "emoji": "🫥",
+      "label": "dotted line face",
+      "description": "emoji representing dotted line face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-in-clouds",
+      "emoji": "😶‍🌫️",
+      "label": "face in clouds",
+      "description": "emoji representing face in clouds, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smirking-face",
+      "emoji": "😏",
+      "label": "smirking face",
+      "description": "emoji representing smirking face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "unamused-face",
+      "emoji": "😒",
+      "label": "unamused face",
+      "description": "emoji representing unamused face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-rolling-eyes",
+      "emoji": "🙄",
+      "label": "face with rolling eyes",
+      "description": "emoji representing face with rolling eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "grimacing-face",
+      "emoji": "😬",
+      "label": "grimacing face",
+      "description": "emoji representing grimacing face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-exhaling",
+      "emoji": "😮‍💨",
+      "label": "face exhaling",
+      "description": "emoji representing face exhaling, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "lying-face",
+      "emoji": "🤥",
+      "label": "lying face",
+      "description": "emoji representing lying face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "shaking-face",
+      "emoji": "🫨",
+      "label": "shaking face",
+      "description": "emoji representing shaking face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "head-shaking-horizontally",
+      "emoji": "🙂‍↔️",
+      "label": "head shaking horizontally",
+      "description": "emoji representing head shaking horizontally, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "head-shaking-vertically",
+      "emoji": "🙂‍↕️",
+      "label": "head shaking vertically",
+      "description": "emoji representing head shaking vertically, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "relieved-face",
+      "emoji": "😌",
+      "label": "relieved face",
+      "description": "emoji representing relieved face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "pensive-face",
+      "emoji": "😔",
+      "label": "pensive face",
+      "description": "emoji representing pensive face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "sleepy-face",
+      "emoji": "😪",
+      "label": "sleepy face",
+      "description": "emoji representing sleepy face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "drooling-face",
+      "emoji": "🤤",
+      "label": "drooling face",
+      "description": "emoji representing drooling face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-bags-under-eyes",
+      "emoji": "🫩",
+      "label": "face with bags under eyes",
+      "description": "emoji representing face with bags under eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-medical-mask",
+      "emoji": "😷",
+      "label": "face with medical mask",
+      "description": "emoji representing face with medical mask, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-thermometer",
+      "emoji": "🤒",
+      "label": "face with thermometer",
+      "description": "emoji representing face with thermometer, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-head-bandage",
+      "emoji": "🤕",
+      "label": "face with head-bandage",
+      "description": "emoji representing face with head-bandage, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "nauseated-face",
+      "emoji": "🤢",
+      "label": "nauseated face",
+      "description": "emoji representing nauseated face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-vomiting",
+      "emoji": "🤮",
+      "label": "face vomiting",
+      "description": "emoji representing face vomiting, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "sneezing-face",
+      "emoji": "🤧",
+      "label": "sneezing face",
+      "description": "emoji representing sneezing face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "hot-face",
+      "emoji": "🥵",
+      "label": "hot face",
+      "description": "emoji representing hot face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "cold-face",
+      "emoji": "🥶",
+      "label": "cold face",
+      "description": "emoji representing cold face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "woozy-face",
+      "emoji": "🥴",
+      "label": "woozy face",
+      "description": "emoji representing woozy face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-crossed-out-eyes",
+      "emoji": "😵",
+      "label": "face with crossed-out eyes",
+      "description": "emoji representing face with crossed-out eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-spiral-eyes",
+      "emoji": "😵‍💫",
+      "label": "face with spiral eyes",
+      "description": "emoji representing face with spiral eyes, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "exploding-head",
+      "emoji": "🤯",
+      "label": "exploding head",
+      "description": "emoji representing exploding head, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "cowboy-hat-face",
+      "emoji": "🤠",
+      "label": "cowboy hat face",
+      "description": "emoji representing cowboy hat face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "disguised-face",
+      "emoji": "🥸",
+      "label": "disguised face",
+      "description": "emoji representing disguised face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-sunglasses",
+      "emoji": "😎",
+      "label": "smiling face with sunglasses",
+      "description": "emoji representing smiling face with sunglasses, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "nerd-face",
+      "emoji": "🤓",
+      "label": "nerd face",
+      "description": "emoji representing nerd face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-monocle",
+      "emoji": "🧐",
+      "label": "face with monocle",
+      "description": "emoji representing face with monocle, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "confused-face",
+      "emoji": "😕",
+      "label": "confused face",
+      "description": "emoji representing confused face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-diagonal-mouth",
+      "emoji": "🫤",
+      "label": "face with diagonal mouth",
+      "description": "emoji representing face with diagonal mouth, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "worried-face",
+      "emoji": "😟",
+      "label": "worried face",
+      "description": "emoji representing worried face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "slightly-frowning-face",
+      "emoji": "🙁",
+      "label": "slightly frowning face",
+      "description": "emoji representing slightly frowning face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "frowning-face",
+      "emoji": "☹️",
+      "label": "frowning face",
+      "description": "emoji representing frowning face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "hushed-face",
+      "emoji": "😯",
+      "label": "hushed face",
+      "description": "emoji representing hushed face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "astonished-face",
+      "emoji": "😲",
+      "label": "astonished face",
+      "description": "emoji representing astonished face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "flushed-face",
+      "emoji": "😳",
+      "label": "flushed face",
+      "description": "emoji representing flushed face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "pleading-face",
+      "emoji": "🥺",
+      "label": "pleading face",
+      "description": "emoji representing pleading face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-holding-back-tears",
+      "emoji": "🥹",
+      "label": "face holding back tears",
+      "description": "emoji representing face holding back tears, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "frowning-face-with-open-mouth",
+      "emoji": "😦",
+      "label": "frowning face with open mouth",
+      "description": "emoji representing frowning face with open mouth, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "anguished-face",
+      "emoji": "😧",
+      "label": "anguished face",
+      "description": "emoji representing anguished face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "fearful-face",
+      "emoji": "😨",
+      "label": "fearful face",
+      "description": "emoji representing fearful face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "anxious-face-with-sweat",
+      "emoji": "😰",
+      "label": "anxious face with sweat",
+      "description": "emoji representing anxious face with sweat, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "sad-but-relieved-face",
+      "emoji": "😥",
+      "label": "sad but relieved face",
+      "description": "emoji representing sad but relieved face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "loudly-crying-face",
+      "emoji": "😭",
+      "label": "loudly crying face",
+      "description": "emoji representing loudly crying face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-screaming-in-fear",
+      "emoji": "😱",
+      "label": "face screaming in fear",
+      "description": "emoji representing face screaming in fear, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "confounded-face",
+      "emoji": "😖",
+      "label": "confounded face",
+      "description": "emoji representing confounded face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "persevering-face",
+      "emoji": "😣",
+      "label": "persevering face",
+      "description": "emoji representing persevering face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "disappointed-face",
+      "emoji": "😞",
+      "label": "disappointed face",
+      "description": "emoji representing disappointed face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "downcast-face-with-sweat",
+      "emoji": "😓",
+      "label": "downcast face with sweat",
+      "description": "emoji representing downcast face with sweat, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "weary-face",
+      "emoji": "😩",
+      "label": "weary face",
+      "description": "emoji representing weary face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "tired-face",
+      "emoji": "😫",
+      "label": "tired face",
+      "description": "emoji representing tired face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "yawning-face",
+      "emoji": "🥱",
+      "label": "yawning face",
+      "description": "emoji representing yawning face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-steam-from-nose",
+      "emoji": "😤",
+      "label": "face with steam from nose",
+      "description": "emoji representing face with steam from nose, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "enraged-face",
+      "emoji": "😡",
+      "label": "enraged face",
+      "description": "emoji representing enraged face, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "face-with-symbols-on-mouth",
+      "emoji": "🤬",
+      "label": "face with symbols on mouth",
+      "description": "emoji representing face with symbols on mouth, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "smiling-face-with-horns",
+      "emoji": "😈",
+      "label": "smiling face with horns",
+      "description": "emoji representing smiling face with horns, used to describe people, objects, activities, feelings, or situations"
+    },
+    {
+      "id": "angry-face-with-horns",
+      "emoji": "👿",
+      "label": "angry face with horns",
+      "description": "emoji representing angry face with horns, used to describe people, objects, activities, feelings, or situations"
+    }
+  ]
+}

@@ -3,14 +3,14 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "laya-emoji-demo-backend"
+name = "laya-arcade-backend"
 version = "0.1.0"
-description = "Local API for the LAYA emoji decision demo"
+description = "Local API for the LAYA decision demos"
 requires-python = ">=3.10"
 dependencies = [
+  "httpx>=0.28,<1",
   "laya[serve]==0.3.20",
   "pydantic>=2.9,<3",
-  "sentence-transformers>=6.1,<7",
 ]
 
 [tool.setuptools.packages.find]

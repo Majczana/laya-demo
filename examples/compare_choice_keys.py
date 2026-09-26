@@ -25,8 +25,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "text",
         nargs="?",
-        default="jedzenie zdrowe",
-        help="Polish text that the emoji should be matched against.",
+        default="healthy food",
+        help="English text that the emoji should be matched against.",
     )
     return parser.parse_args()
 

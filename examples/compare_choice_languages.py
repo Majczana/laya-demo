@@ -16,7 +16,7 @@ from app.laya_runtime import predict_choice
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CATALOGS = {
-    "pl": PROJECT_ROOT / "data" / "emojis.json",
+    "pl": PROJECT_ROOT / "data" / "emojis_pl.json",
     "en": PROJECT_ROOT / "data" / "emojis_eng.json",
 }
 FOCUS_CASE_ID = "healthy-food"

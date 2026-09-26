@@ -41,7 +41,7 @@ def _load_model(path: Path, model_type: type[ModelType]) -> ModelType:
 def load_emoji_catalog(path: Path | None = None) -> EmojiCatalog:
     """Load the emoji catalog from disk and validate its structure."""
 
-    source = path or DEFAULT_DATA_DIR / "emojis.json"
+    source = path or DEFAULT_DATA_DIR / "emojis_pl.json"
     return _load_model(source, EmojiCatalog)
 
 
@@ -57,7 +57,7 @@ def load_demo_data(data_dir: Path | None = None) -> DemoData:
 
     source_dir = data_dir or DEFAULT_DATA_DIR
     return load_demo_data_files(
-        source_dir / "emojis.json",
+        source_dir / "emojis_pl.json",
         source_dir / "test-cases.json",
     )
 
@@ -68,11 +68,9 @@ def load_demo_data_files(emoji_path: Path, test_path: Path) -> DemoData:
     emojis = load_emoji_catalog(emoji_path)
     tests = load_test_suite(test_path)
 
-    if emojis.language != tests.language:
-        raise DataLoadError(
-            "emoji catalog and test suite must use the same language"
-        )
-
+    # The test suite language describes the input phrases. It may differ from
+    # the catalog language because the multilingual checkpoint matches across
+    # languages (for example Polish phrases against English descriptions).
     if tests.evaluation.k > len(emojis.items):
         raise DataLoadError("evaluation k cannot exceed the number of emoji")
 

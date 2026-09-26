@@ -51,13 +51,19 @@ export function EmojiPile({ items, lifted, anchorRef }: EmojiPileProps) {
   const liftedRef = useRef(lifted);
   liftedRef.current = lifted;
 
+  // Labels change with the language, the IDs do not; only a new ID set
+  // rebuilds the physics world (and drops the pile again).
+  const idsKey = items.map((item) => item.id).join(",");
+
   const indexById = useRef(new Map<string, number>());
   indexById.current = new Map(items.map((item, index) => [item.id, index]));
 
   /** Sends the current selection to the world: lift matches, drop the rest. */
   function syncLift(world: World) {
     const selection = liftedRef.current;
-    const anchorBottom = anchorRef.current?.getBoundingClientRect().bottom ?? 0;
+    // Measure in field coordinates: the page header sits above the field.
+    const fieldTop = fieldRef.current?.getBoundingClientRect().top ?? 0;
+    const anchorBottom = (anchorRef.current?.getBoundingClientRect().bottom ?? fieldTop) - fieldTop;
     const targets = rowTargets(world, selection.length, anchorBottom);
     const liftedIndexes = new Set<number>();
 
@@ -77,7 +83,11 @@ export function EmojiPile({ items, lifted, anchorRef }: EmojiPileProps) {
     const field = fieldRef.current;
     if (!field || !items.length) return;
 
-    const world = new World(items.length, field.clientWidth, field.clientHeight);
+    const world = new World(
+      items.length,
+      field.clientWidth,
+      field.clientHeight,
+    );
     worldRef.current = world;
     const rendered = world.bodies.map(() => ({
       x: NaN,
@@ -135,7 +145,7 @@ export function EmojiPile({ items, lifted, anchorRef }: EmojiPileProps) {
       observer.disconnect();
       worldRef.current = null;
     };
-  }, [items]);
+  }, [idsKey]);
 
   useEffect(() => {
     if (worldRef.current) syncLift(worldRef.current);
@@ -158,7 +168,9 @@ export function EmojiPile({ items, lifted, anchorRef }: EmojiPileProps) {
             <span className="emoji-glyph">{item.emoji}</span>
             <span className="emoji-caption">
               {item.label}
-              {score !== undefined && <strong>{Math.round(score * 100)}%</strong>}
+              {score !== undefined && (
+                <strong>{Math.round(score * 100)}%</strong>
+              )}
             </span>
           </span>
         );

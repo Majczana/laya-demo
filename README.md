@@ -1,246 +1,235 @@
-# LAYA Emoji Demo
+# LAYA demos
 
-Lokalne demo technologiczne pokazujące, które emoji najlepiej pasują do
-wpisanego zdania.
+Two small demos of one local
+[LAYA](https://huggingface.co/convaiinnovations/laya) model using the
+`multilingual` checkpoint:
 
-Backend dopasowuje emoji przez podobieństwo embeddingów polskiego modelu
-`sdadas/mmlw-retrieval-roberta-large`. Wcześniej używał modelu decyzyjnego LAYA
-(`noul`), ale w porównaniu na 13 frazach embeddingi osiągnęły NDCG@5 `0,8654`
-zamiast `0,7308` i były około 40× szybsze (szczegóły w `examples/README.md`).
-Skrypty z eksperymentami LAYA (`choice`, `noul`) pozostają w `examples/`.
+| Demo | What LAYA does |
+| --- | --- |
+| Emoji Rain | Scores 200 independent `noul` associations while you type. |
+| Tetris | Rates up to four legal piece placements with independent `noul` questions. |
 
-## Architektura
+Open `http://localhost:5173`. Model results are experimental.
 
-```text
-przeglądarka -> React/Vite -> FastAPI -> embeddingi (sentence-transformers)
-```
+The whole app has a Polish/English switch in the header (Polish by default;
+the choice is remembered in the browser). In Emoji Rain the language also
+selects the backend catalog and prompt: `data/emojis_200_pl.json` with Polish
+instructions and tak/nie labels, or `data/emojis_200.json` with English ones.
+Both catalogs list the same emoji IDs in the same order. On the Polish test
+phrases the Polish setup scores NDCG@5 0.7297 against 0.4316 for the English
+catalog. The Tetris prompt stays in English in both modes: it is internal, and
+the Polish version scored at chance level (23–31/60) in
+`examples/evaluate_tetris_moves.py`.
 
-- `frontend/` — interfejs React + TypeScript,
-- `backend/` — lokalne API FastAPI z modelem embeddingów oraz integracja LAYA używana przez eksperymenty,
-- `data/` — wspólny katalog emoji oraz oczekiwanych wyników testów,
-- `examples/` — skrypty eksperymentów LAYA (`choice`, `noul`) i embeddingów.
+## Run locally
 
-## Wymagania
+**Quick start (Windows):** double-click `start.cmd` in the repository folder.
+On the first run it creates `.venv` and installs the backend and frontend
+dependencies. It then opens the backend (with `--reload`) and the frontend in
+their own windows, skipping any that already run on ports 8000 or 5173, and
+opens `http://localhost:5173`. Close both windows to stop the demo.
 
-- Node.js 22.12 lub nowszy,
-- Python 3.10 lub nowszy (środowisko zostało sprawdzone na Pythonie 3.14),
-- Git.
+Manual start:
 
-## Frontend
+Open two terminals in the repository folder. On the first run, install the
+dependencies.
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Interfejs będzie dostępny pod adresem `http://localhost:5173`.
-
-Wszystkie 100 emoji z `data/emojis_100.json` leży nieruchomo na dnie ekranu
-jako stos z prostą fizyką. Emoji, których wynik dopasowania przekracza próg
-dopasowania, unoszą się i świecą w szeregu pod panelem. Mieści się tam do 12
-najlepszych. Gdy emoji przestaje pasować, spada bezwładnie na stos. Domyślny
-próg to `70%` (`DEFAULT_THRESHOLD` w `frontend/src/App.tsx`), a w interfejsie
-można go zmienić suwakiem.
-
-## Backend
-
-Windows PowerShell:
+**Terminal 1 — backend (Windows PowerShell)**
 
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
 python -m pip install -r .\backend\requirements.lock
 python -m pip install --no-deps -e .\backend
 uvicorn app.main:app --reload --app-dir backend
 ```
 
-macOS/Linux:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r ./backend/requirements.lock
-python -m pip install --no-deps -e ./backend
-uvicorn app.main:app --reload --app-dir backend
-```
-
-Kontrola działania API: `http://localhost:8000/health`.
-
-Przy pierwszym uruchomieniu backend pobiera wagi modelu embeddingów z Hugging
-Face (około 0,8 GB). Nie zapisujemy ich w repozytorium.
-
-Wynik dopasowania to podobieństwo kosinusowe frazy do tekstu „etykieta: opis”
-danego emoji, przeskalowane liniowo z zakresu `0,65–0,83` do `0–1`
-(`SIMILARITY_FLOOR` i `SIMILARITY_CEILING` w `backend/app/embedding_runtime.py`).
-Granice dobrano na zbiorze testowym tak, aby przy progu `70%` przechodziły
-prawie wyłącznie oczekiwane emoji. Niedokończone słowa dają niższe wyniki niż
-pełne, więc przy pisaniu emoji unoszą się zwykle dopiero po całym słowie.
-
-### Urządzenie obliczeniowe
-
-Domyślne `EMBEDDING_DEVICE=auto` pozwala wybrać dostępne GPU (CUDA lub MPS),
-a przy jego braku automatycznie używa CPU. Wymuszenie urządzenia w PowerShell:
+**Terminal 2 — frontend**
 
 ```powershell
-$env:EMBEDDING_DEVICE = "cpu"
-$env:EMBEDDING_DEVICE = "cuda"
+cd frontend
+npm install
+npm run dev
 ```
 
-Skrypty LAYA w `examples/` nadal korzystają z osobnej zmiennej `LAYA_DEVICE`.
+On later runs, skip environment creation and installation: activate `.venv` in
+the first terminal and start `uvicorn`; in the second terminal run `npm run
+dev` from the `frontend` folder.
 
-Podstawowy plik zależności pozostaje przenośny. Użytkownik Windows z kartą
-NVIDIA i odpowiednim sterownikiem może po jego instalacji zastąpić PyTorch
-wariantem CUDA 13.2:
+On macOS/Linux, use `python3 -m venv .venv` and
+`source .venv/bin/activate`; the remaining commands are the same.
+
+The API starts immediately and the catalog is available while LAYA is cold.
+The first prediction can take longer because it downloads and loads the LAYA
+weights. API health: `http://localhost:8000/health`. LAYA runs locally and
+needs no API key.
+
+## Jev (comparison model)
+
+The header has a LAYA / Jev switch. Both demos send exactly the same
+questions to the selected model, so you can flip back and forth and compare
+the answers; the choice is remembered in the browser. Jev
+([TypeSafe](https://docs.typesafe.ai/introduction)) is called through the
+[OpenRouter Decisions API](https://openrouter.ai/docs/guides/community/jev)
+and needs an OpenRouter key. Put it in `.env` in the repository root (the file
+is git-ignored) and restart the backend:
+
+```text
+OPENROUTER_API_KEY=sk-or-v1-...
+```
+
+A real environment variable takes precedence over `.env`. Optional:
+`JEV_MODEL` (default `typesafe/jev-1.13`) and `JEV_API_URL` (default
+`https://openrouter.ai/api/alpha/decisions`). Without a key the Jev button is
+disabled. Jev is billed per input token; one Emoji Rain request carries 200
+questions, and the backend caches recent phrases per model so switching back
+does not pay again.
+
+In Emoji Rain both models get the same question. The yes/no answer
+descriptions differ because the two APIs read them differently: LAYA gets the
+short labels tak/nie (yes/no), Jev gets `criteria` that say when the answer is
+true or false (NDCG@5 about 0.73 -> 0.78–0.80 for Jev; the same descriptions
+lowered LAYA's). The two models score on different scales, so each has its own
+lift threshold, remembered separately: **LAYA 85%, Jev 45%**. Two more rules
+apply to both: nothing is sent before 3 characters, and if more than 20 emoji
+pass the threshold the page shows “no clear match” instead of lifting them.
+
+`examples/diagnose_emoji_typing.py` measured this on the 13 test phrases, every
+prefix typed on the way to them, and 21 extra phrases with hand-picked expected
+emoji (typos, missing diacritics, emotions, negation, indirect associations,
+gibberish). On the 34 complete phrases:
+
+| At the default thresholds | LAYA 85% | Jev 45% |
+| --- | --- | --- |
+| Emoji lifted per phrase | 1.8 | 3.2 |
+| Lifted emoji that are right | 70% | 60% |
+| Expected emoji found | 47% | 75% |
+| Phrases with nothing lifted | 8 of 32 | 1 of 32 |
+| Ranking (AUC, 13 test phrases) | 0.89 | 0.97 |
+
+- **Thresholds:** LAYA's best F1 is at 85%; below that it quickly adds wrong
+  emoji. Jev scores cautiously: with LAYA's old 75% it lifted about one emoji
+  per phrase. Its best F1 is at 55%, but that left four phrases, “jedzenie”
+  (food) among them, with nothing lifted, so the default is 45%.
+- **Typing:** after one or two letters Jev in particular guesses from the
+  letters (“ub” -> bread, burger), hence the 3-character minimum. Mid-word
+  prefixes still lift wrong emoji now and then for both models (LAYA: “coś na
+  desz” -> strawberry; Jev: “chcę tw” -> T-shirt, keyboard); quality rises
+  steadily as the phrase is completed.
+- **Gibberish:** In the earlier 100-item benchmark, LAYA scored almost every
+  emoji near 100% for “asdfgh” or “xyz 123” (44–86 of 100 above the threshold,
+  while real phrases reached at most 7), which the “no clear match” rule caught.
+  Jev lifted nothing for them.
+- **LAYA's typical mistakes:** confident unrelated emoji (“mecz”, match -> city
+  0.91, metro 0.84, cheese 0.72; “wkurzyłem się”, I got angry -> surprise 0.95;
+  “pies na spacerze”, dog on a walk -> mountains 0.89, no dog), broad phrases
+  scored near zero (“ubrania”, clothes: gloves 0.01, hat 0.03) and missing
+  diacritics (“ide na basen” -> guitar).
+- **Jev's typical mistakes:** the house emoji for anything near home or travel
+  (“lecę na wakacje”, flying on holiday -> house 0.95), typos (“jedznie” ->
+  tiredness, keyboard; LAYA handles it) and weak indirect links (“zoo” -> lion
+  0.15).
+
+The expected emoji of the extra phrases were chosen by hand, and Jev's answers
+vary slightly between runs, so small differences are noise.
+
+## Architecture
+
+```text
+browser → React / Vite → FastAPI → LAYA multilingual (local)
+                                  → Jev via OpenRouter (optional)
+```
+
+- `frontend/` — the start page and both demos,
+- `backend/` — the local API and LAYA question construction,
+- `data/` — the 200-item emoji catalogs (Polish and English) and evaluation cases,
+- `examples/` — experiments with `choice` and `noul` question types.
+
+The API exposes `POST /predict` (`{"text", "lang", "engine"}`) for emoji and
+`POST /tetris/choose` (`{"candidates", "engine"}`, answering with the scores and
+the move descriptions sent to the model) for Tetris. The emoji catalog is available through
+`GET /catalog?lang=pl|en`; `GET /health` reports the model and the device it
+runs on. Both demos use the same local LAYA checkpoint. LAYA scores 200 emoji in one
+batch of independent questions; the demo slider sets the display threshold,
+75% by default. `noul` scores are not a correctness guarantee.
+
+### Tetris
+
+The game starts immediately. The game engine enumerates legal placements and
+ranks them with its own heuristic (lines, holes, stack height, bumpiness, nearly
+complete rows and the next-piece clear potential). The model gets the top 4, the
+top 8 or all of them (the “Candidates” setting, 4 by default) and rates each move
+with its own `noul` question (“A Tetris player wants to clear lines and avoid
+holes and a tall stack. Would this move help them? The move …”); the best-rated
+move is played, and on a tie the engine's order decides. Moves are described in
+words, relative to the board before the move: lines cleared, new holes, how much
+the stack rises, whether the surface gets flatter or rougher, a warning near the
+top and the next piece's clear potential. In earlier tests LAYA ignored raw
+numbers and picked by option position.
+
+`examples/compare_tetris_prompts.py` plays six seeded headless games (up to 250
+pieces each; the same piece sequences for every variant) with a Python port of
+the engine. Mean lines per game:
+
+| Variant | LAYA | Jev |
+| --- | --- | --- |
+| Earlier absolute description (“leaves two covered holes, the stack gets tall”), 4 candidates | 20.5 (60% tied scores) | 69.3 (32% ties) |
+| **Relative description (current), 4 candidates** | **40.2** (15% ties) | **97.2** (4% ties) |
+| Relative description, 8 candidates | 9.5 | – |
+| Relative description, all candidates | 3.3 | 94.5 |
+| Stricter question (“Is this a good Tetris move? A good move …”), relative, 4 | 5.7 | 97.0 |
+| References: engine's top move 96.7 · random of top 4: 3.7 · random of all: 0.0 | | |
+
+Jev reached the 250-piece cap in every game with the relative description,
+even when choosing among all moves without the engine's shortlist. LAYA gains
+most from the relative description, loses most of its advantage once it has
+more than four candidates, and did much worse with the stricter question, so
+the question stays as it was. `examples/evaluate_tetris_moves.py` checks the
+question on pairs where one move is strictly better, and
+`frontend/scripts/benchmark-tetris.mts` plays the same comparison through the
+backend.
+
+Tetris is a model test with no manual control. Each piece waits at the top
+until the selected model answers, so a slower model (Jev over the network) does
+not lose moves to gravity. After the choice the piece rotates, slides and falls
+one step at a time to the chosen landing; if its path is blocked, it is placed
+directly there. The speed slider (1–10) sets the delay per step, from 300 ms to
+9 ms, and is the only thing that sets the pace: levels only affect scoring.
+Pause and New game are the only controls. Switching the model starts a new
+game, so each game is played by one model.
+
+The decision log on the left lists every move: time, piece, model, response
+time, the chosen column and rotation with its score, the scores of all
+candidates, the steps taken (↻ rotations, ← → columns, ↓ rows) and the lines
+cleared. The model panel shows the current candidates with their scores, the
+word description each one was sent with, and the question template; the chosen
+landing is outlined on the board. The scores are not calibrated win
+probabilities, and equal descriptions often get equal scores, in which case the
+engine's shortlist order decides.
+
+Finished, stopped and model-switched games are listed under “Recent games in
+this session” (score, lines, pieces, mean response time and mean score, plus the
+mean lines per model). The list is kept in `sessionStorage`, so it survives a
+reload of the tab. The game includes scoring, levels, combos, back-to-back
+Tetris bonuses, a next-piece preview and a seven-bag piece randomizer.
+
+## Tests
+
+Fast checks that do not load the model:
 
 ```powershell
-python -m pip install --force-reinstall --no-deps `
-  -r .\backend\requirements-cuda.lock
-python -c "import torch; print(torch.cuda.is_available())"
+python -m unittest discover -s backend/tests -t backend
 ```
 
-Druga komenda powinna wypisać `True`. Wariant CUDA nie jest wymagany do
-uruchomienia repozytorium na komputerze bez karty NVIDIA.
+## Device
 
-## Sprawdzenie danych
-
-Po aktywowaniu środowiska backendu uruchom loader z katalogu głównego:
-
-```bash
-python -m app.data_loader
-```
-
-Loader odczytuje oba pliki JSON, sprawdza ich strukturę oraz zależności między
-nimi. Nie uruchamia jeszcze modelu LAYA.
-
-Rozszerzony katalog `data/emojis_100.json` zawiera 100 emoji. Zachowuje
-wszystkie elementy katalogu podstawowego i dodaje kandydatów z obszarów takich
-jak jedzenie, odzież, pogoda, sport, kultura, transport, zwierzęta, technologia,
-miejsca i emocje. Katalogi obsługują od 1 do 100 unikalnych emoji.
-
-## Podgląd zapytania `choice`
-
-Możesz zbudować i obejrzeć zapytanie bez uruchamiania modelu:
-
-```bash
-python examples/build_choice_request.py "jedzenie zdrowe"
-```
-
-Każde emoji staje się jedną opcją w `criteria`. Kluczem jest stabilne `id`, a
-wartością polska etykieta połączona z opisem semantycznym.
-
-## Pierwsza decyzja LAYA
-
-Jedno kontrolowane wywołanie wielojęzycznego modelu na urządzeniu wybranym
-przez `LAYA_DEVICE`:
-
-```bash
-python examples/run_choice_once.py "jedzenie zdrowe"
-```
-
-Pierwsze uruchomienie pobiera wagi modelu. Skrypt wypisuje niezmienioną
-odpowiedź LAYA razem z czasem całej operacji.
-
-Porównanie tego samego zapytania z dwoma budżetami opcji:
-
-```bash
-python examples/compare_choice_budgets.py "jedzenie zdrowe"
-```
-
-Porównanie pełnych opisów z samymi etykietami:
-
-```bash
-python examples/compare_choice_descriptions.py "jedzenie zdrowe"
-```
-
-Porównanie semantycznych identyfikatorów z neutralnymi kluczami `A–P`:
-
-```bash
-python examples/compare_choice_keys.py "jedzenie zdrowe"
-```
-
-Porównanie polskich i angielskich opisów na wszystkich polskich przypadkach
-testowych:
-
-```bash
-python examples/compare_choice_languages.py
-```
-
-Angielski katalog znajduje się w `data/emojis_eng.json`. Skrypt zachowuje te
-same emoji, identyfikatory, kolejność, zapytania i ustawienia modelu, a zmienia
-wyłącznie język etykiet oraz opisów.
-
-Porównanie jednego pytania `choice` z 16 niezależnymi pytaniami `noul`:
-
-```bash
-python examples/compare_choice_noul.py
-```
-
-Wariant `noul` ocenia każde emoji niezależnie, ale wszystkie pytania przekazuje
-modelowi razem w jednym wywołaniu.
-
-W eksperymencie na 13 przypadkach polskich opisów wariant `noul` korzystający
-z polskich etykiet odpowiedzi `nie`/`tak` osiągnął średnie NDCG@5 równe
-`0,8889`, a `choice` — `0,5795`. Jest przy tym wolniejszy i zużywa więcej
-tokenów, co skrypt pokazuje razem z jakością.
-
-Benchmark `noul` na wybranym urządzeniu:
+LAYA automatically selects the available device. Set `LAYA_DEVICE=cpu` or
+`LAYA_DEVICE=cuda` before starting the backend. Optional PyTorch CUDA build for
+Windows/NVIDIA:
 
 ```powershell
-python examples/benchmark_noul_device.py --device cpu
-python examples/benchmark_noul_device.py --device cuda
-python examples/benchmark_noul_device.py --device cuda --catalog-size 100
+python -m pip install --force-reinstall --no-deps -r .\backend\requirements-cuda.lock
 ```
 
-Pierwszy pomiar obejmuje załadowanie modelu, a statystyki `warm_seconds`
-obejmują dziesięć kolejnych predykcji po rozgrzaniu.
-
-Pomiar referencyjny na RTX 3060 Ti dla 16 pytań `noul`:
-
-| Urządzenie | Średni czas po rozgrzaniu |
-| --- | ---: |
-| CPU | `0,3336 s` |
-| CUDA | `0,0336 s` |
-
-GPU było około `9,9×` szybsze i wykorzystało około `1528 MB` pamięci. Czas
-pierwszego wywołania wynosił około `5,2 s` na obu urządzeniach, ponieważ
-obejmuje wczytanie i zbudowanie modelu. Ranking pięciu najlepszych emoji
-pozostał taki sam.
-
-Porównanie jakości i kosztu katalogów 16 oraz 100 emoji:
-
-```powershell
-python examples/compare_noul_catalog_sizes.py
-```
-
-Skrypt używa tych samych 13 fraz testowych. Plik `data/test-cases_100.json`
-rozszerza jednak listy oczekiwanych odpowiedzi, ponieważ np. marchew i
-truskawka również są poprawnymi wynikami dla „jedzenie zdrowe”.
-
-Pierwszy pomiar rozszerzonego katalogu:
-
-| Katalog | NDCG@5 | Tokeny | CPU | RTX 3060 Ti |
-| --- | ---: | ---: | ---: | ---: |
-| 16 emoji | `0,8889` | `1112` | `0,3336 s` | `0,0336 s` |
-| 100 emoji | `0,7297` | `7256` | `2,6654 s` | `0,1430 s` |
-
-Dla 100 emoji GPU było około `18,6×` szybsze od CPU i wykorzystało około
-`1685 MB` VRAM. Dla frazy „jedzenie zdrowe” pierwsze cztery miejsca zajęły
-brokuły, truskawka, marchew i jabłko. Spadek średniej jakości stanowi bazę do
-późniejszego strojenia opisów i pytań na trudniejszym katalogu.
-
-## Porównywanie `choice` i `noul`
-
-Oba podejścia zwracają inaczej znormalizowane prawdopodobieństwa, dlatego nie
-porównujemy ich surowych wartości. W obu przypadkach sortujemy emoji malejąco
-według wyniku i mierzymy jakość rankingu za pomocą NDCG@5:
-
-- oczekiwany wynik `primary` ma trafność `2`,
-- wynik `related` ma trafność `1`,
-- pozostałe wyniki mają trafność `0`.
-
-Takie porównanie sprawdza, czy właściwe emoji znalazły się wysoko, niezależnie
-od tego, czy wyniki pochodzą ze wspólnego rozkładu `choice`, czy z niezależnych
-prawdopodobieństw `noul`.
+Experiment details and reproduction commands are in
+[examples/README.md](examples/README.md).

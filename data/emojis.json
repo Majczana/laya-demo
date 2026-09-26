@@ -1,102 +1,102 @@
 {
   "version": 1,
-  "language": "pl",
+  "language": "en",
   "items": [
     {
       "id": "pizza",
       "emoji": "🍕",
       "label": "pizza",
-      "description": "ciepłe, sycące jedzenie typu fast food"
+      "description": "warm, filling fast food"
     },
     {
       "id": "broccoli",
       "emoji": "🥦",
-      "label": "brokuły",
-      "description": "zdrowe zielone warzywo i lekkie jedzenie"
+      "label": "broccoli",
+      "description": "a healthy green vegetable and light food"
     },
     {
       "id": "apple",
       "emoji": "🍎",
-      "label": "jabłko",
-      "description": "zdrowy owoc i lekka przekąska"
+      "label": "apple",
+      "description": "a healthy fruit and light snack"
     },
     {
       "id": "coffee",
       "emoji": "☕",
-      "label": "kawa",
-      "description": "gorący napój dodający energii"
+      "label": "coffee",
+      "description": "a hot drink that provides energy"
     },
     {
       "id": "coat",
       "emoji": "🧥",
-      "label": "kurtka",
-      "description": "ciepłe ubranie wierzchnie na chłodne dni"
+      "label": "coat",
+      "description": "warm outerwear for cold days"
     },
     {
       "id": "scarf",
       "emoji": "🧣",
-      "label": "szalik",
-      "description": "zimowe ubranie chroniące szyję przed chłodem"
+      "label": "scarf",
+      "description": "winter clothing that protects the neck from cold"
     },
     {
       "id": "sneaker",
       "emoji": "👟",
-      "label": "but sportowy",
-      "description": "wygodne obuwie do chodzenia, biegania i sportu"
+      "label": "sneaker",
+      "description": "comfortable footwear for walking, running, and sports"
     },
     {
       "id": "dress",
       "emoji": "👗",
-      "label": "sukienka",
-      "description": "lekkie lub eleganckie ubranie"
+      "label": "dress",
+      "description": "light or elegant clothing"
     },
     {
       "id": "rain",
       "emoji": "🌧️",
-      "label": "deszcz",
-      "description": "mokra, pochmurna pogoda i opady wody"
+      "label": "rain",
+      "description": "wet, cloudy weather with falling water"
     },
     {
       "id": "snow",
       "emoji": "❄️",
-      "label": "śnieg",
-      "description": "zimowa, mroźna pogoda i opady śniegu"
+      "label": "snow",
+      "description": "cold winter weather and falling snow"
     },
     {
       "id": "sun",
       "emoji": "☀️",
-      "label": "słońce",
-      "description": "jasna, ciepła i słoneczna pogoda"
+      "label": "sun",
+      "description": "bright, warm, sunny weather"
     },
     {
       "id": "umbrella",
       "emoji": "☂️",
-      "label": "parasol",
-      "description": "przedmiot chroniący człowieka przed deszczem"
+      "label": "umbrella",
+      "description": "an object that protects a person from rain"
     },
     {
       "id": "football",
       "emoji": "⚽",
-      "label": "piłka nożna",
-      "description": "sport zespołowy i aktywność fizyczna na zewnątrz"
+      "label": "football",
+      "description": "a team sport and outdoor physical activity"
     },
     {
       "id": "video-game",
       "emoji": "🎮",
-      "label": "gra komputerowa",
-      "description": "cyfrowa rozrywka i aktywność wykonywana w domu"
+      "label": "video game",
+      "description": "digital entertainment and an activity done at home"
     },
     {
       "id": "books",
       "emoji": "📚",
-      "label": "książki",
-      "description": "czytanie, nauka i spokojne zajęcie w domu"
+      "label": "books",
+      "description": "reading, learning, and a quiet activity at home"
     },
     {
       "id": "guitar",
       "emoji": "🎸",
-      "label": "gitara",
-      "description": "instrument muzyczny, granie muzyki i kreatywność"
+      "label": "guitar",
+      "description": "a musical instrument, playing music, and creativity"
     }
   ]
 }

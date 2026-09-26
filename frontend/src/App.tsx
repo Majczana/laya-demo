@@ -1,197 +1,137 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { EmojiPile, type LiftedItem } from "./EmojiPile";
+import { useEffect, useState } from "react";
+import { EmojiDemo } from "./EmojiDemo";
+import { TetrisDemo } from "./TetrisDemo";
+import { EngineSwitch, ENGINES, useEngine } from "./engine";
+import { LanguageSwitch, useI18n } from "./i18n";
 
-type CatalogItem = {
-  id: string;
-  emoji: string;
-  label: string;
-};
+type Game = "emoji" | "tetris";
 
-type PredictionItem = CatalogItem & {
-  score: number;
-  rank: number;
-};
+const GAMES: Game[] = ["emoji", "tetris"];
+const MODEL_NAMES = "convaiinnovations/laya-multilingual, typesafe/jev-1.13";
 
-type PredictionResponse = {
-  text: string;
-  model: string;
-  device: string;
-  elapsed_ms: number;
-  items: PredictionItem[];
-};
+function gameFromHash(): Game | null {
+  const name = window.location.hash.slice(1);
+  return GAMES.includes(name as Game) ? (name as Game) : null;
+}
 
-const REQUEST_DELAY_MS = 70;
-const DEFAULT_THRESHOLD = 0.7;
-const MAX_LIFTED = 12;
-const THRESHOLD_KEY = "laya-demo:threshold";
+/** The L-shaped tetromino from the favicon. */
+function LogoMark() {
+  return (
+    <svg className="logo-mark" viewBox="0 0 16 16" aria-hidden="true">
+      <rect x="1" y="1" width="6" height="6" rx="1" />
+      <rect x="1" y="9" width="6" height="6" rx="1" />
+      <rect x="9" y="9" width="6" height="6" rx="1" />
+    </svg>
+  );
+}
 
-function readStoredThreshold() {
-  try {
-    const stored = Number(window.localStorage.getItem(THRESHOLD_KEY));
-    return stored > 0 && stored < 1 ? stored : DEFAULT_THRESHOLD;
-  } catch {
-    return DEFAULT_THRESHOLD;
-  }
+function EmojiPreview() {
+  return (
+    <span className="preview preview-emoji" aria-hidden="true">
+      <span className="is-up">🌧️</span>
+      <span>🍕</span>
+      <span className="is-up">☂️</span>
+      <span>⚽</span>
+    </span>
+  );
+}
+
+// 4×4 cells, top to bottom; letters are piece colours.
+const TETRIS_PREVIEW = "..T..TTT.I..JIOO";
+
+function TetrisPreview() {
+  return (
+    <span className="preview preview-tetris" aria-hidden="true">
+      {[...TETRIS_PREVIEW].map((cell, index) => (
+        <span key={index} className={cell === "." ? "" : `piece-${cell}`} />
+      ))}
+    </span>
+  );
+}
+
+function BackendStatus() {
+  const { t } = useI18n();
+  const { backend } = useEngine();
+
+  return (
+    <p className={`backend-status is-${backend.state}`} aria-live="polite">
+      <span className="dot" />
+      {backend.state === "ready"
+        ? t.home.ready(backend.health.device, backend.health.engines.jev.available)
+        : t.home[backend.state]}
+    </p>
+  );
 }
 
 export default function App() {
-  const [catalog, setCatalog] = useState<CatalogItem[]>([]);
-  const [text, setText] = useState("");
-  const [prediction, setPrediction] = useState<PredictionResponse | null>(null);
-  const [status, setStatus] = useState("Ładowanie katalogu…");
-  const [error, setError] = useState<string | null>(null);
-  const [threshold, setThreshold] = useState(readStoredThreshold);
-  const latestQuery = useRef("");
-  const inFlight = useRef(false);
-  const panelRef = useRef<HTMLElement>(null);
+  const { t } = useI18n();
+  const { backend } = useEngine();
+  const [activeGame, setActiveGame] = useState<Game | null>(gameFromHash);
+  const modelNames = backend.state === "ready"
+    ? ENGINES.map((engine) => backend.health.engines[engine].model).join(", ")
+    : MODEL_NAMES;
 
   useEffect(() => {
-    try {
-      window.localStorage.setItem(THRESHOLD_KEY, String(threshold));
-    } catch {
-      // Storage is only a convenience; the slider still works without it.
-    }
-  }, [threshold]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadCatalog() {
-      try {
-        const response = await fetch("/api/catalog", { signal: controller.signal });
-        if (!response.ok) throw new Error(`API zwróciło ${response.status}`);
-        const data = (await response.json()) as { items: CatalogItem[] };
-        setCatalog(data.items);
-        setStatus("Model gotowy · zacznij pisać");
-      } catch (reason) {
-        if (reason instanceof DOMException && reason.name === "AbortError") return;
-        setError("Nie udało się połączyć z backendem.");
-        setStatus("Brak połączenia");
-      }
-    }
-
-    loadCatalog();
-    return () => controller.abort();
-  }, []);
-
-  // The model handles one prediction at a time, so keep at most one request in
-  // flight and, when it returns, send only the newest text. Firing a request
-  // per keystroke would queue them on the backend and add up their latency.
-  const sendLatest = useCallback(async () => {
-    const query = latestQuery.current;
-    if (inFlight.current || !query) return;
-
-    inFlight.current = true;
-    setStatus("Model analizuje…");
-    setError(null);
-
-    try {
-      const response = await fetch("/api/predict", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: query }),
-      });
-      if (!response.ok) throw new Error(`API zwróciło ${response.status}`);
-
-      const data = (await response.json()) as PredictionResponse;
-      if (latestQuery.current) {
-        setPrediction(data);
-        setStatus(`${data.elapsed_ms.toFixed(0)} ms · ${data.device}`);
-      }
-    } catch {
-      if (latestQuery.current) {
-        setError("Predykcja nie powiodła się. Sprawdź backend.");
-        setStatus("Błąd predykcji");
-      }
-    } finally {
-      inFlight.current = false;
-    }
-
-    if (latestQuery.current && latestQuery.current !== query) sendLatest();
+    const sync = () => setActiveGame(gameFromHash());
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
   }, []);
 
   useEffect(() => {
-    const query = text.trim();
-    latestQuery.current = query;
-
-    if (!query) {
-      setPrediction(null);
-      setError(null);
-      if (catalog.length) setStatus("Model gotowy · zacznij pisać");
-      return;
-    }
-
-    const timer = window.setTimeout(sendLatest, REQUEST_DELAY_MS);
-    return () => window.clearTimeout(timer);
-  }, [text, catalog.length, sendLatest]);
-
-  const lifted = useMemo<LiftedItem[]>(
-    () =>
-      prediction
-        ? prediction.items
-            .filter((item) => item.score >= threshold)
-            .sort((a, b) => a.rank - b.rank)
-            .slice(0, MAX_LIFTED)
-            .map(({ id, score }) => ({ id, score }))
-        : [],
-    [prediction, threshold],
-  );
-
-  const matchCount = prediction
-    ? prediction.items.filter((item) => item.score >= threshold).length
-    : 0;
+    window.scrollTo(0, 0);
+  }, [activeGame]);
 
   return (
-    <main className="stage">
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
+    <div className={`app ${activeGame ? `app-${activeGame}` : "app-home"}`}>
+      <header className="site-header">
+        <a className="site-name" href="#">
+          <LogoMark />
+          {t.nav.home}
+        </a>
+        <nav aria-label={t.nav.main}>
+          {GAMES.map((game) => (
+            <a key={game} href={`#${game}`} aria-current={activeGame === game ? "page" : undefined}>
+              {t.games[game].title}
+            </a>
+          ))}
+        </nav>
+        <EngineSwitch />
+        <LanguageSwitch />
+      </header>
 
-      <EmojiPile items={catalog} lifted={lifted} anchorRef={panelRef} />
+      {activeGame === "emoji" && <EmojiDemo />}
+      {activeGame === "tetris" && <TetrisDemo />}
+      {activeGame === null && (
+        <main className="home">
+          <section className="home-intro">
+            <p className="eyebrow">{t.home.eyebrow}</p>
+            <h1>{t.home.title}</h1>
+            <p className="lead">{t.home.lead}</p>
+            <BackendStatus />
+          </section>
 
-      <section className="control-panel" ref={panelRef}>
-        <p className="eyebrow">Embeddingi · 100 emoji</p>
-        <h1>Co masz na myśli?</h1>
-        <p className="intro">
-          Pisz lub usuwaj znaki. Emoji reagują także na niepełne słowa.
-        </p>
+          <ol className="demo-list">
+            {GAMES.map((game, index) => (
+              <li key={game}>
+                <a href={`#${game}`}>
+                  {game === "emoji" ? <EmojiPreview /> : <TetrisPreview />}
+                  <span className="demo-text">
+                    <span className="demo-title">
+                      <span className="demo-number">{String(index + 1).padStart(2, "0")}</span>
+                      {t.games[game].title}
+                    </span>
+                    <span className="demo-description">{t.games[game].description}</span>
+                    <span className="demo-meta">{t.games[game].meta}</span>
+                  </span>
+                  <span className="demo-arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ol>
 
-        <label className="prompt">
-          <span className="sr-only">Tekst dla modelu</span>
-          <input
-            autoFocus
-            maxLength={240}
-            onChange={(event) => setText(event.target.value)}
-            placeholder="np. jedzenie zdrowe"
-            spellCheck={false}
-            value={text}
-          />
-          <span className={`status ${error ? "has-error" : ""}`} aria-live="polite">
-            <span className="status-dot" />
-            {error ?? status}
-          </span>
-        </label>
-
-        <label className="threshold">
-          <span>
-            Próg dopasowania <strong>{Math.round(threshold * 100)}%</strong>
-          </span>
-          <input
-            type="range"
-            min={0.05}
-            max={0.95}
-            step={0.05}
-            value={threshold}
-            onChange={(event) => setThreshold(Number(event.target.value))}
-          />
-          <span className="threshold-note" aria-live="polite">
-            {prediction
-              ? matchCount > MAX_LIFTED
-                ? `${matchCount} pasuje · unosi się ${MAX_LIFTED} najlepszych`
-                : `${matchCount} z ${prediction.items.length} emoji pasuje`
-              : "Emoji powyżej progu uniosą się nad stos"}
-          </span>
-        </label>
-      </section>
-    </main>
+          <p className="home-footer">{t.home.footer(modelNames)}</p>
+        </main>
+      )}
+    </div>
   );
 }

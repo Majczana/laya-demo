@@ -29,8 +29,8 @@ class EmojiCatalog(DataModel):
 
     @model_validator(mode="after")
     def validate_catalog(self) -> "EmojiCatalog":
-        if len(self.items) > 100:
-            raise ValueError("the demo supports at most 100 emoji")
+        if len(self.items) > 200:
+            raise ValueError("the demo supports at most 200 emoji")
 
         item_ids = [item.id for item in self.items]
         if len(item_ids) != len(set(item_ids)):
@@ -99,6 +99,7 @@ class TestSuite(DataModel):
     """Versioned collection of controlled model experiments."""
 
     version: int = Field(ge=1)
+    # Language of the input phrases, not necessarily of the emoji catalog.
     language: str = Field(pattern=r"^[a-z]{2}(?:-[A-Z]{2})?$")
     evaluation: EvaluationConfig
     cases: list[TestCase] = Field(min_length=1)

@@ -47,8 +47,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--text",
-        default="jedzenie zdrowe",
-        help="Polish text used for every prediction.",
+        default="healthy food",
+        help="English text used for every prediction.",
     )
     args = parser.parse_args()
     if args.iterations < 1:

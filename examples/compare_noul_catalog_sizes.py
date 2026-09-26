@@ -17,11 +17,11 @@ from compare_choice_noul import ndcg_at_k, noul_ranking
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATASETS = {
     "16": {
-        "catalog": PROJECT_ROOT / "data" / "emojis.json",
+        "catalog": PROJECT_ROOT / "data" / "emojis_pl.json",
         "tests": PROJECT_ROOT / "data" / "test-cases.json",
     },
     "100": {
-        "catalog": PROJECT_ROOT / "data" / "emojis_100.json",
+        "catalog": PROJECT_ROOT / "data" / "emojis_100_pl.json",
         "tests": PROJECT_ROOT / "data" / "test-cases_100.json",
     },
 }

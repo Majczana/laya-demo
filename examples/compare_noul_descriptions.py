@@ -15,7 +15,7 @@ from compare_choice_noul import ndcg_at_k, noul_ranking
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CATALOG_PATH = PROJECT_ROOT / "data" / "emojis_100.json"
+CATALOG_PATH = PROJECT_ROOT / "data" / "emojis_100_pl.json"
 TESTS_PATH = PROJECT_ROOT / "data" / "test-cases_100.json"
 MODES: tuple[CriteriaMode, ...] = ("descriptions", "labels")
 

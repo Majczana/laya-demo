@@ -1,0 +1,1206 @@
+{
+  "version": 2,
+  "language": "pl",
+  "items": [
+    {
+      "id": "pizza",
+      "emoji": "🍕",
+      "label": "pizza",
+      "description": "ciepłe, sycące jedzenie typu fast food"
+    },
+    {
+      "id": "broccoli",
+      "emoji": "🥦",
+      "label": "brokuły",
+      "description": "zdrowe zielone warzywo i lekkie jedzenie"
+    },
+    {
+      "id": "apple",
+      "emoji": "🍎",
+      "label": "jabłko",
+      "description": "zdrowy owoc i lekka przekąska"
+    },
+    {
+      "id": "coffee",
+      "emoji": "☕",
+      "label": "kawa",
+      "description": "gorący napój dodający energii"
+    },
+    {
+      "id": "coat",
+      "emoji": "🧥",
+      "label": "kurtka",
+      "description": "ciepłe ubranie wierzchnie na chłodne dni"
+    },
+    {
+      "id": "scarf",
+      "emoji": "🧣",
+      "label": "szalik",
+      "description": "zimowe ubranie chroniące szyję przed chłodem"
+    },
+    {
+      "id": "sneaker",
+      "emoji": "👟",
+      "label": "but sportowy",
+      "description": "wygodne obuwie do chodzenia, biegania i sportu"
+    },
+    {
+      "id": "dress",
+      "emoji": "👗",
+      "label": "sukienka",
+      "description": "lekkie lub eleganckie ubranie"
+    },
+    {
+      "id": "rain",
+      "emoji": "🌧️",
+      "label": "deszcz",
+      "description": "mokra, pochmurna pogoda i opady wody"
+    },
+    {
+      "id": "snow",
+      "emoji": "❄️",
+      "label": "śnieg",
+      "description": "zimowa, mroźna pogoda i opady śniegu"
+    },
+    {
+      "id": "sun",
+      "emoji": "☀️",
+      "label": "słońce",
+      "description": "jasna, ciepła i słoneczna pogoda"
+    },
+    {
+      "id": "umbrella",
+      "emoji": "☂️",
+      "label": "parasol",
+      "description": "przedmiot chroniący człowieka przed deszczem"
+    },
+    {
+      "id": "football",
+      "emoji": "⚽",
+      "label": "piłka nożna",
+      "description": "sport zespołowy i aktywność fizyczna na zewnątrz"
+    },
+    {
+      "id": "video-game",
+      "emoji": "🎮",
+      "label": "gra komputerowa",
+      "description": "cyfrowa rozrywka i aktywność wykonywana w domu"
+    },
+    {
+      "id": "books",
+      "emoji": "📚",
+      "label": "książki",
+      "description": "czytanie, nauka i spokojne zajęcie w domu"
+    },
+    {
+      "id": "guitar",
+      "emoji": "🎸",
+      "label": "gitara",
+      "description": "instrument muzyczny, granie muzyki i kreatywność"
+    },
+    {
+      "id": "bread",
+      "emoji": "🍞",
+      "label": "chleb",
+      "description": "pieczywo, podstawowe jedzenie i produkt zbożowy na śniadanie lub kanapki"
+    },
+    {
+      "id": "cheese",
+      "emoji": "🧀",
+      "label": "ser",
+      "description": "produkt mleczny, jedzenie i składnik kanapek lub pizzy"
+    },
+    {
+      "id": "carrot",
+      "emoji": "🥕",
+      "label": "marchew",
+      "description": "zdrowe pomarańczowe warzywo, lekka żywność i składnik posiłków"
+    },
+    {
+      "id": "strawberry",
+      "emoji": "🍓",
+      "label": "truskawka",
+      "description": "słodki czerwony owoc, zdrowa przekąska i składnik deserów"
+    },
+    {
+      "id": "burger",
+      "emoji": "🍔",
+      "label": "burger",
+      "description": "sycące jedzenie typu fast food, kanapka z mięsem lub warzywami"
+    },
+    {
+      "id": "tea",
+      "emoji": "🍵",
+      "label": "herbata",
+      "description": "gorący napój do odpoczynku, rozgrzania i spokojnego spotkania"
+    },
+    {
+      "id": "t-shirt",
+      "emoji": "👕",
+      "label": "koszulka",
+      "description": "lekka odzież i codzienny element garderoby na górną część ciała"
+    },
+    {
+      "id": "jeans",
+      "emoji": "👖",
+      "label": "spodnie",
+      "description": "odzież i codzienny element garderoby zakrywający nogi"
+    },
+    {
+      "id": "hat",
+      "emoji": "🎩",
+      "label": "kapelusz",
+      "description": "nakrycie głowy, elegancki dodatek i element garderoby"
+    },
+    {
+      "id": "gloves",
+      "emoji": "🧤",
+      "label": "rękawiczki",
+      "description": "zimowa odzież chroniąca dłonie przed zimnem i mrozem"
+    },
+    {
+      "id": "boots",
+      "emoji": "🥾",
+      "label": "buty trekkingowe",
+      "description": "wytrzymałe obuwie do chodzenia po górach, szlakach i trudnym terenie"
+    },
+    {
+      "id": "backpack",
+      "emoji": "🎒",
+      "label": "plecak",
+      "description": "torba noszona na plecach do szkoły, podróży lub wycieczki"
+    },
+    {
+      "id": "cloud",
+      "emoji": "☁️",
+      "label": "chmura",
+      "description": "pochmurna pogoda, zachmurzone niebo i możliwe opady"
+    },
+    {
+      "id": "lightning",
+      "emoji": "⚡",
+      "label": "błyskawica",
+      "description": "burza, piorun i gwałtowne zjawisko pogodowe na niebie"
+    },
+    {
+      "id": "rainbow",
+      "emoji": "🌈",
+      "label": "tęcza",
+      "description": "kolorowe zjawisko na niebie pojawiające się po deszczu"
+    },
+    {
+      "id": "tree",
+      "emoji": "🌳",
+      "label": "drzewo",
+      "description": "roślina, las, zieleń i natura spotykana na zewnątrz"
+    },
+    {
+      "id": "flower",
+      "emoji": "🌻",
+      "label": "kwiat",
+      "description": "kolorowa roślina, ogród, natura i symbol lata lub prezentu"
+    },
+    {
+      "id": "fire",
+      "emoji": "🔥",
+      "label": "ogień",
+      "description": "płomień, ciepło, pożar lub źródło światła i ogrzewania"
+    },
+    {
+      "id": "basketball",
+      "emoji": "🏀",
+      "label": "koszykówka",
+      "description": "sport zespołowy, gra piłką do kosza i aktywność fizyczna"
+    },
+    {
+      "id": "tennis",
+      "emoji": "🎾",
+      "label": "tenis",
+      "description": "sport z rakietą i piłką rozgrywany na korcie"
+    },
+    {
+      "id": "swimming",
+      "emoji": "🏊",
+      "label": "pływanie",
+      "description": "sport wodny, ruch w basenie lub jeziorze i aktywność fizyczna"
+    },
+    {
+      "id": "cycling",
+      "emoji": "🚴",
+      "label": "jazda na rowerze",
+      "description": "sport, aktywność fizyczna i przemieszczanie się rowerem na zewnątrz"
+    },
+    {
+      "id": "running",
+      "emoji": "🏃",
+      "label": "bieganie",
+      "description": "sport, trening i aktywność fizyczna wykonywana pieszo"
+    },
+    {
+      "id": "skiing",
+      "emoji": "⛷️",
+      "label": "narciarstwo",
+      "description": "zimowy sport na śniegu, narty i aktywność w górach"
+    },
+    {
+      "id": "camping",
+      "emoji": "⛺",
+      "label": "kemping",
+      "description": "nocleg w namiocie, biwak, wycieczka i odpoczynek na łonie natury"
+    },
+    {
+      "id": "fishing",
+      "emoji": "🎣",
+      "label": "wędkarstwo",
+      "description": "łowienie ryb, hobby i spokojna aktywność nad wodą"
+    },
+    {
+      "id": "yoga",
+      "emoji": "🧘",
+      "label": "joga",
+      "description": "ćwiczenia ciała, relaks, medytacja i spokojna aktywność fizyczna"
+    },
+    {
+      "id": "cinema",
+      "emoji": "🎬",
+      "label": "film",
+      "description": "kino, oglądanie filmu i rozrywka audiowizualna"
+    },
+    {
+      "id": "headphones",
+      "emoji": "🎧",
+      "label": "słuchawki",
+      "description": "sprzęt audio do słuchania muzyki, podcastów lub dźwięku"
+    },
+    {
+      "id": "microphone",
+      "emoji": "🎤",
+      "label": "mikrofon",
+      "description": "sprzęt audio do śpiewania, nagrywania głosu lub występu"
+    },
+    {
+      "id": "painting",
+      "emoji": "🎨",
+      "label": "malarstwo",
+      "description": "sztuka, farby, rysowanie i kreatywne tworzenie obrazów"
+    },
+    {
+      "id": "camera",
+      "emoji": "📷",
+      "label": "aparat",
+      "description": "fotografia, robienie zdjęć i zapisywanie wspomnień"
+    },
+    {
+      "id": "puzzle",
+      "emoji": "🧩",
+      "label": "puzzle",
+      "description": "układanka, łamigłówka i spokojna rozrywka wymagająca myślenia"
+    },
+    {
+      "id": "dancing",
+      "emoji": "💃",
+      "label": "taniec",
+      "description": "ruch do muzyki, zabawa, występ i aktywność artystyczna"
+    },
+    {
+      "id": "car",
+      "emoji": "🚗",
+      "label": "samochód",
+      "description": "pojazd drogowy i prywatny środek transportu do podróżowania"
+    },
+    {
+      "id": "bus",
+      "emoji": "🚌",
+      "label": "autobus",
+      "description": "duży pojazd i publiczny środek transportu miejskiego"
+    },
+    {
+      "id": "train",
+      "emoji": "🚆",
+      "label": "pociąg",
+      "description": "kolejowy środek transportu do podróży między miastami"
+    },
+    {
+      "id": "plane",
+      "emoji": "✈️",
+      "label": "samolot",
+      "description": "lotniczy środek transportu do dalekich podróży i wakacji"
+    },
+    {
+      "id": "bicycle",
+      "emoji": "🚲",
+      "label": "rower",
+      "description": "dwukołowy pojazd napędzany siłą mięśni, transport i rekreacja"
+    },
+    {
+      "id": "boat",
+      "emoji": "⛵",
+      "label": "łódź",
+      "description": "wodny środek transportu, żeglowanie i podróż po wodzie"
+    },
+    {
+      "id": "motorcycle",
+      "emoji": "🏍️",
+      "label": "motocykl",
+      "description": "dwukołowy pojazd silnikowy i szybki transport drogowy"
+    },
+    {
+      "id": "rocket",
+      "emoji": "🚀",
+      "label": "rakieta",
+      "description": "pojazd kosmiczny, lot w kosmos, nauka i eksploracja"
+    },
+    {
+      "id": "taxi",
+      "emoji": "🚕",
+      "label": "taksówka",
+      "description": "płatny samochód przewożący pasażerów po mieście"
+    },
+    {
+      "id": "subway",
+      "emoji": "🚇",
+      "label": "metro",
+      "description": "miejski transport publiczny poruszający się koleją podziemną"
+    },
+    {
+      "id": "dog",
+      "emoji": "🐶",
+      "label": "pies",
+      "description": "domowe zwierzę, przyjazny pupil i towarzysz człowieka"
+    },
+    {
+      "id": "cat",
+      "emoji": "🐱",
+      "label": "kot",
+      "description": "domowe zwierzę, niezależny pupil i towarzysz człowieka"
+    },
+    {
+      "id": "rabbit",
+      "emoji": "🐰",
+      "label": "królik",
+      "description": "małe zwierzę z długimi uszami, pupil lub mieszkaniec łąki"
+    },
+    {
+      "id": "horse",
+      "emoji": "🐴",
+      "label": "koń",
+      "description": "duże zwierzę hodowlane używane do jazdy i pracy"
+    },
+    {
+      "id": "cow",
+      "emoji": "🐮",
+      "label": "krowa",
+      "description": "zwierzę gospodarskie hodowane na farmie dla mleka"
+    },
+    {
+      "id": "lion",
+      "emoji": "🦁",
+      "label": "lew",
+      "description": "dzikie duże zwierzę, drapieżnik żyjący na sawannie"
+    },
+    {
+      "id": "monkey",
+      "emoji": "🐵",
+      "label": "małpa",
+      "description": "dzikie inteligentne zwierzę żyjące w lasach i zoo"
+    },
+    {
+      "id": "bird",
+      "emoji": "🐦",
+      "label": "ptak",
+      "description": "zwierzę ze skrzydłami, latanie, śpiew i natura"
+    },
+    {
+      "id": "fish",
+      "emoji": "🐟",
+      "label": "ryba",
+      "description": "zwierzę wodne żyjące w morzu, jeziorze lub akwarium"
+    },
+    {
+      "id": "butterfly",
+      "emoji": "🦋",
+      "label": "motyl",
+      "description": "kolorowy latający owad związany z kwiatami i naturą"
+    },
+    {
+      "id": "laptop",
+      "emoji": "💻",
+      "label": "laptop",
+      "description": "przenośny komputer do pracy, nauki, internetu i programowania"
+    },
+    {
+      "id": "phone",
+      "emoji": "📱",
+      "label": "telefon",
+      "description": "smartfon do rozmów, wiadomości, internetu i aplikacji"
+    },
+    {
+      "id": "keyboard",
+      "emoji": "⌨️",
+      "label": "klawiatura",
+      "description": "sprzęt komputerowy do pisania tekstu i sterowania komputerem"
+    },
+    {
+      "id": "lightbulb",
+      "emoji": "💡",
+      "label": "żarówka",
+      "description": "źródło światła oraz symbol pomysłu, inspiracji i rozwiązania"
+    },
+    {
+      "id": "wrench",
+      "emoji": "🔧",
+      "label": "klucz",
+      "description": "narzędzie do naprawy, montażu i dokręcania elementów"
+    },
+    {
+      "id": "hammer",
+      "emoji": "🔨",
+      "label": "młotek",
+      "description": "narzędzie do budowania, naprawy i wbijania gwoździ"
+    },
+    {
+      "id": "magnifier",
+      "emoji": "🔍",
+      "label": "lupa",
+      "description": "narzędzie do szukania, badania i powiększania szczegółów"
+    },
+    {
+      "id": "calendar",
+      "emoji": "📅",
+      "label": "kalendarz",
+      "description": "planowanie dat, terminów, spotkań i organizacja czasu"
+    },
+    {
+      "id": "envelope",
+      "emoji": "✉️",
+      "label": "wiadomość",
+      "description": "list, poczta, e-mail i komunikacja pisemna"
+    },
+    {
+      "id": "chart",
+      "emoji": "📊",
+      "label": "wykres",
+      "description": "dane, statystyki, analiza i prezentacja wyników biznesowych"
+    },
+    {
+      "id": "house",
+      "emoji": "🏠",
+      "label": "dom",
+      "description": "miejsce zamieszkania, rodzina, odpoczynek i życie prywatne"
+    },
+    {
+      "id": "school",
+      "emoji": "🏫",
+      "label": "szkoła",
+      "description": "miejsce nauki, edukacji, lekcji i spotkań uczniów"
+    },
+    {
+      "id": "hospital",
+      "emoji": "🏥",
+      "label": "szpital",
+      "description": "miejsce leczenia, opieki medycznej, lekarzy i pacjentów"
+    },
+    {
+      "id": "bank",
+      "emoji": "🏦",
+      "label": "bank",
+      "description": "miejsce związane z pieniędzmi, kontem, kredytem i finansami"
+    },
+    {
+      "id": "hotel",
+      "emoji": "🏨",
+      "label": "hotel",
+      "description": "miejsce noclegu podczas podróży, urlopu lub wyjazdu"
+    },
+    {
+      "id": "beach",
+      "emoji": "🏖️",
+      "label": "plaża",
+      "description": "miejsce nad morzem z piaskiem, słońcem, wodą i wypoczynkiem"
+    },
+    {
+      "id": "mountain",
+      "emoji": "⛰️",
+      "label": "góry",
+      "description": "wysoki teren, natura, szlaki, wspinaczka i wycieczki"
+    },
+    {
+      "id": "city",
+      "emoji": "🌆",
+      "label": "miasto",
+      "description": "obszar miejski, budynki, ulice, mieszkańcy i życie miejskie"
+    },
+    {
+      "id": "office",
+      "emoji": "🏢",
+      "label": "biuro",
+      "description": "miejsce pracy zawodowej, firmy, spotkań i obowiązków"
+    },
+    {
+      "id": "store",
+      "emoji": "🏪",
+      "label": "sklep",
+      "description": "miejsce zakupów, sprzedaży produktów i obsługi klientów"
+    },
+    {
+      "id": "happy",
+      "emoji": "😀",
+      "label": "radość",
+      "description": "pozytywna emocja, szczęście, dobry humor i uśmiech"
+    },
+    {
+      "id": "sad",
+      "emoji": "😢",
+      "label": "smutek",
+      "description": "negatywna emocja, płacz, żal i przygnębienie"
+    },
+    {
+      "id": "angry",
+      "emoji": "😠",
+      "label": "złość",
+      "description": "silna negatywna emocja, gniew, frustracja i zdenerwowanie"
+    },
+    {
+      "id": "love",
+      "emoji": "❤️",
+      "label": "miłość",
+      "description": "uczucie bliskości, romantyczna relacja, serce i sympatia"
+    },
+    {
+      "id": "laugh",
+      "emoji": "😂",
+      "label": "śmiech",
+      "description": "wesoła reakcja, humor, żart i bardzo dobra zabawa"
+    },
+    {
+      "id": "surprised",
+      "emoji": "😮",
+      "label": "zaskoczenie",
+      "description": "emocja zdziwienia, niespodziewana wiadomość lub wydarzenie"
+    },
+    {
+      "id": "tired",
+      "emoji": "😴",
+      "label": "zmęczenie",
+      "description": "senność, brak energii, odpoczynek i potrzeba snu"
+    },
+    {
+      "id": "party",
+      "emoji": "🥳",
+      "label": "impreza",
+      "description": "świętowanie, urodziny, zabawa i radosne spotkanie"
+    },
+    {
+      "id": "handshake",
+      "emoji": "🤝",
+      "label": "współpraca",
+      "description": "porozumienie, partnerstwo, powitanie i wspólne działanie"
+    },
+    {
+      "id": "thinking",
+      "emoji": "🤔",
+      "label": "myślenie",
+      "description": "zastanawianie się, analiza, pytanie i podejmowanie decyzji"
+    },
+    {
+      "id": "grinning-face-with-big-eyes",
+      "emoji": "😃",
+      "label": "uśmiechnięta twarz z otwartymi ustami",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z otwartymi ustami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "grinning-face-with-smiling-eyes",
+      "emoji": "😄",
+      "label": "uśmiechnięta twarz z otwartymi ustami i roześmianymi oczami",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z otwartymi ustami i roześmianymi oczami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "beaming-face-with-smiling-eyes",
+      "emoji": "😁",
+      "label": "szeroko uśmiechnięta twarz o roześmianych oczach",
+      "description": "emoji oznaczające \"szeroko uśmiechnięta twarz o roześmianych oczach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "grinning-squinting-face",
+      "emoji": "😆",
+      "label": "uśmiechnięta twarz z przymrużonymi oczami",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z przymrużonymi oczami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "grinning-face-with-sweat",
+      "emoji": "😅",
+      "label": "uśmiechnięta twarz z otwartymi ustami, oblana zimnym potem",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z otwartymi ustami, oblana zimnym potem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "rolling-on-the-floor-laughing",
+      "emoji": "🤣",
+      "label": "tarza się ze śmiechu",
+      "description": "emoji oznaczające \"tarza się ze śmiechu\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "slightly-smiling-face",
+      "emoji": "🙂",
+      "label": "lekko uśmiechnięta twarz",
+      "description": "emoji oznaczające \"lekko uśmiechnięta twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "upside-down-face",
+      "emoji": "🙃",
+      "label": "odwrócona twarz",
+      "description": "emoji oznaczające \"odwrócona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "melting-face",
+      "emoji": "🫠",
+      "label": "roztapiająca się twarz",
+      "description": "emoji oznaczające \"roztapiająca się twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "winking-face",
+      "emoji": "😉",
+      "label": "twarz puszczająca oko",
+      "description": "emoji oznaczające \"twarz puszczająca oko\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-smiling-eyes",
+      "emoji": "😊",
+      "label": "uśmiechnięta twarz o roześmianych oczach",
+      "description": "emoji oznaczające \"uśmiechnięta twarz o roześmianych oczach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-halo",
+      "emoji": "😇",
+      "label": "uśmiechnięta twarz z aureolą",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z aureolą\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-hearts",
+      "emoji": "🥰",
+      "label": "uśmiechnięta buźka z sercami",
+      "description": "emoji oznaczające \"uśmiechnięta buźka z sercami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-heart-eyes",
+      "emoji": "😍",
+      "label": "uśmiechnięta twarz z oczami w kształcie serca",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z oczami w kształcie serca\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "star-struck",
+      "emoji": "🤩",
+      "label": "zafascynowany",
+      "description": "emoji oznaczające \"zafascynowany\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-blowing-a-kiss",
+      "emoji": "😘",
+      "label": "twarz przesyłająca całusa",
+      "description": "emoji oznaczające \"twarz przesyłająca całusa\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "kissing-face",
+      "emoji": "😗",
+      "label": "całująca twarz",
+      "description": "emoji oznaczające \"całująca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face",
+      "emoji": "☺️",
+      "label": "uśmiechnięta twarz",
+      "description": "emoji oznaczające \"uśmiechnięta twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "kissing-face-with-closed-eyes",
+      "emoji": "😚",
+      "label": "całująca twarz z zamkniętymi oczami",
+      "description": "emoji oznaczające \"całująca twarz z zamkniętymi oczami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "kissing-face-with-smiling-eyes",
+      "emoji": "😙",
+      "label": "całująca twarz o roześmianych oczach",
+      "description": "emoji oznaczające \"całująca twarz o roześmianych oczach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-tear",
+      "emoji": "🥲",
+      "label": "uśmiechnięta buźka ze łzą",
+      "description": "emoji oznaczające \"uśmiechnięta buźka ze łzą\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-savoring-food",
+      "emoji": "😋",
+      "label": "twarz delektująca się pysznym jedzeniem",
+      "description": "emoji oznaczające \"twarz delektująca się pysznym jedzeniem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-tongue",
+      "emoji": "😛",
+      "label": "twarz wystawiająca język",
+      "description": "emoji oznaczające \"twarz wystawiająca język\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "winking-face-with-tongue",
+      "emoji": "😜",
+      "label": "twarz wystawiająca język i puszczająca oko",
+      "description": "emoji oznaczające \"twarz wystawiająca język i puszczająca oko\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "zany-face",
+      "emoji": "🤪",
+      "label": "szalona twarz",
+      "description": "emoji oznaczające \"szalona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "squinting-face-with-tongue",
+      "emoji": "😝",
+      "label": "twarz ze zmrużonymi oczami wystawiająca język",
+      "description": "emoji oznaczające \"twarz ze zmrużonymi oczami wystawiająca język\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "money-mouth-face",
+      "emoji": "🤑",
+      "label": "twarz z pieniędzmi na ustach",
+      "description": "emoji oznaczające \"twarz z pieniędzmi na ustach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-open-hands",
+      "emoji": "🤗",
+      "label": "twarz z gestem przytulania",
+      "description": "emoji oznaczające \"twarz z gestem przytulania\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-hand-over-mouth",
+      "emoji": "🤭",
+      "label": "twarz z ręką na ustach",
+      "description": "emoji oznaczające \"twarz z ręką na ustach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-open-eyes-and-hand-over-mouth",
+      "emoji": "🫢",
+      "label": "twarz z otwartymi oczami i ręką na ustach",
+      "description": "emoji oznaczające \"twarz z otwartymi oczami i ręką na ustach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-peeking-eye",
+      "emoji": "🫣",
+      "label": "twarz z podglądającym okiem",
+      "description": "emoji oznaczające \"twarz z podglądającym okiem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "shushing-face",
+      "emoji": "🤫",
+      "label": "uciszająca twarz",
+      "description": "emoji oznaczające \"uciszająca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "saluting-face",
+      "emoji": "🫡",
+      "label": "salutująca twarz",
+      "description": "emoji oznaczające \"salutująca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "zipper-mouth-face",
+      "emoji": "🤐",
+      "label": "twarz z zamkiem błyskawicznym na ustach",
+      "description": "emoji oznaczające \"twarz z zamkiem błyskawicznym na ustach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-raised-eyebrow",
+      "emoji": "🤨",
+      "label": "twarz z podniesioną brwią",
+      "description": "emoji oznaczające \"twarz z podniesioną brwią\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "neutral-face",
+      "emoji": "😐",
+      "label": "neutralna twarz",
+      "description": "emoji oznaczające \"neutralna twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "expressionless-face",
+      "emoji": "😑",
+      "label": "twarz bez wyrazu",
+      "description": "emoji oznaczające \"twarz bez wyrazu\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-without-mouth",
+      "emoji": "😶",
+      "label": "twarz bez ust",
+      "description": "emoji oznaczające \"twarz bez ust\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "dotted-line-face",
+      "emoji": "🫥",
+      "label": "twarz otoczona linią przerywaną",
+      "description": "emoji oznaczające \"twarz otoczona linią przerywaną\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-in-clouds",
+      "emoji": "😶‍🌫️",
+      "label": "twarz w chmurach",
+      "description": "emoji oznaczające \"twarz w chmurach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smirking-face",
+      "emoji": "😏",
+      "label": "twarz z uśmieszkiem",
+      "description": "emoji oznaczające \"twarz z uśmieszkiem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "unamused-face",
+      "emoji": "😒",
+      "label": "niezadowolona twarz",
+      "description": "emoji oznaczające \"niezadowolona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-rolling-eyes",
+      "emoji": "🙄",
+      "label": "twarz przewracająca oczami",
+      "description": "emoji oznaczające \"twarz przewracająca oczami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "grimacing-face",
+      "emoji": "😬",
+      "label": "twarz z grymasem",
+      "description": "emoji oznaczające \"twarz z grymasem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-exhaling",
+      "emoji": "😮‍💨",
+      "label": "twarz wypuszczająca powietrze",
+      "description": "emoji oznaczające \"twarz wypuszczająca powietrze\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "lying-face",
+      "emoji": "🤥",
+      "label": "twarz kłamcy",
+      "description": "emoji oznaczające \"twarz kłamcy\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "shaking-face",
+      "emoji": "🫨",
+      "label": "wstrząśnięta twarz",
+      "description": "emoji oznaczające \"wstrząśnięta twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "head-shaking-horizontally",
+      "emoji": "🙂‍↔️",
+      "label": "głowa kręcąca się poziomo",
+      "description": "emoji oznaczające \"głowa kręcąca się poziomo\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "head-shaking-vertically",
+      "emoji": "🙂‍↕️",
+      "label": "głowa kiwająca się pionowo",
+      "description": "emoji oznaczające \"głowa kiwająca się pionowo\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "relieved-face",
+      "emoji": "😌",
+      "label": "twarz z wyrazem ulgi",
+      "description": "emoji oznaczające \"twarz z wyrazem ulgi\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "pensive-face",
+      "emoji": "😔",
+      "label": "zamyślona twarz",
+      "description": "emoji oznaczające \"zamyślona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "sleepy-face",
+      "emoji": "😪",
+      "label": "senna twarz",
+      "description": "emoji oznaczające \"senna twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "drooling-face",
+      "emoji": "🤤",
+      "label": "śliniąca się twarz",
+      "description": "emoji oznaczające \"śliniąca się twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-bags-under-eyes",
+      "emoji": "🫩",
+      "label": "twarz z workami pod oczami",
+      "description": "emoji oznaczające \"twarz z workami pod oczami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-medical-mask",
+      "emoji": "😷",
+      "label": "twarz w masce medycznej",
+      "description": "emoji oznaczające \"twarz w masce medycznej\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-thermometer",
+      "emoji": "🤒",
+      "label": "twarz z termometrem",
+      "description": "emoji oznaczające \"twarz z termometrem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-head-bandage",
+      "emoji": "🤕",
+      "label": "twarz z bandażem",
+      "description": "emoji oznaczające \"twarz z bandażem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "nauseated-face",
+      "emoji": "🤢",
+      "label": "twarz z mdłościami",
+      "description": "emoji oznaczające \"twarz z mdłościami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-vomiting",
+      "emoji": "🤮",
+      "label": "wymiotująca twarz",
+      "description": "emoji oznaczające \"wymiotująca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "sneezing-face",
+      "emoji": "🤧",
+      "label": "kichająca twarz",
+      "description": "emoji oznaczające \"kichająca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "hot-face",
+      "emoji": "🥵",
+      "label": "rozgrzana twarz",
+      "description": "emoji oznaczające \"rozgrzana twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "cold-face",
+      "emoji": "🥶",
+      "label": "zmarznięta twarz",
+      "description": "emoji oznaczające \"zmarznięta twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "woozy-face",
+      "emoji": "🥴",
+      "label": "zamroczona twarz",
+      "description": "emoji oznaczające \"zamroczona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-crossed-out-eyes",
+      "emoji": "😵",
+      "label": "oszołomiona twarz",
+      "description": "emoji oznaczające \"oszołomiona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-spiral-eyes",
+      "emoji": "😵‍💫",
+      "label": "twarz ze spiralnymi oczami",
+      "description": "emoji oznaczające \"twarz ze spiralnymi oczami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "exploding-head",
+      "emoji": "🤯",
+      "label": "eksplodująca głowa",
+      "description": "emoji oznaczające \"eksplodująca głowa\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "cowboy-hat-face",
+      "emoji": "🤠",
+      "label": "głowa w kapeluszu kowbojskim",
+      "description": "emoji oznaczające \"głowa w kapeluszu kowbojskim\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "disguised-face",
+      "emoji": "🥸",
+      "label": "buźka w przebraniu",
+      "description": "emoji oznaczające \"buźka w przebraniu\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-sunglasses",
+      "emoji": "😎",
+      "label": "uśmiechnięta twarz w okularach przeciwsłonecznych",
+      "description": "emoji oznaczające \"uśmiechnięta twarz w okularach przeciwsłonecznych\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "nerd-face",
+      "emoji": "🤓",
+      "label": "kujon",
+      "description": "emoji oznaczające \"kujon\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-monocle",
+      "emoji": "🧐",
+      "label": "twarz z monoklem",
+      "description": "emoji oznaczające \"twarz z monoklem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "confused-face",
+      "emoji": "😕",
+      "label": "zdezorientowana twarz",
+      "description": "emoji oznaczające \"zdezorientowana twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-diagonal-mouth",
+      "emoji": "🫤",
+      "label": "twarz z ukośnymi ustami",
+      "description": "emoji oznaczające \"twarz z ukośnymi ustami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "worried-face",
+      "emoji": "😟",
+      "label": "zmartwiona twarz",
+      "description": "emoji oznaczające \"zmartwiona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "slightly-frowning-face",
+      "emoji": "🙁",
+      "label": "lekko zachmurzona twarz",
+      "description": "emoji oznaczające \"lekko zachmurzona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "frowning-face",
+      "emoji": "☹️",
+      "label": "zachmurzona twarz",
+      "description": "emoji oznaczające \"zachmurzona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "hushed-face",
+      "emoji": "😯",
+      "label": "zdumiona twarz",
+      "description": "emoji oznaczające \"zdumiona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "astonished-face",
+      "emoji": "😲",
+      "label": "zadziwiona twarz",
+      "description": "emoji oznaczające \"zadziwiona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "flushed-face",
+      "emoji": "😳",
+      "label": "twarz z rumieńcami",
+      "description": "emoji oznaczające \"twarz z rumieńcami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "pleading-face",
+      "emoji": "🥺",
+      "label": "błagająca twarz",
+      "description": "emoji oznaczające \"błagająca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-holding-back-tears",
+      "emoji": "🥹",
+      "label": "twarz powstrzymująca łzy",
+      "description": "emoji oznaczające \"twarz powstrzymująca łzy\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "frowning-face-with-open-mouth",
+      "emoji": "😦",
+      "label": "zachmurzona twarz z otwartymi ustami",
+      "description": "emoji oznaczające \"zachmurzona twarz z otwartymi ustami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "anguished-face",
+      "emoji": "😧",
+      "label": "udręczona twarz",
+      "description": "emoji oznaczające \"udręczona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "fearful-face",
+      "emoji": "😨",
+      "label": "przestraszona twarz",
+      "description": "emoji oznaczające \"przestraszona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "anxious-face-with-sweat",
+      "emoji": "😰",
+      "label": "zaniepokojona twarz oblana potem",
+      "description": "emoji oznaczające \"zaniepokojona twarz oblana potem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "sad-but-relieved-face",
+      "emoji": "😥",
+      "label": "smutna twarz z wyrazem ulgi",
+      "description": "emoji oznaczające \"smutna twarz z wyrazem ulgi\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "loudly-crying-face",
+      "emoji": "😭",
+      "label": "głośno płacząca twarz",
+      "description": "emoji oznaczające \"głośno płacząca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-screaming-in-fear",
+      "emoji": "😱",
+      "label": "twarz krzycząca ze strachu",
+      "description": "emoji oznaczające \"twarz krzycząca ze strachu\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "confounded-face",
+      "emoji": "😖",
+      "label": "zakłopotana twarz",
+      "description": "emoji oznaczające \"zakłopotana twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "persevering-face",
+      "emoji": "😣",
+      "label": "uparta twarz",
+      "description": "emoji oznaczające \"uparta twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "disappointed-face",
+      "emoji": "😞",
+      "label": "rozczarowana twarz",
+      "description": "emoji oznaczające \"rozczarowana twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "downcast-face-with-sweat",
+      "emoji": "😓",
+      "label": "twarz ze spuszczonymi oczami oblana potem",
+      "description": "emoji oznaczające \"twarz ze spuszczonymi oczami oblana potem\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "weary-face",
+      "emoji": "😩",
+      "label": "znużona twarz",
+      "description": "emoji oznaczające \"znużona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "tired-face",
+      "emoji": "😫",
+      "label": "zmęczona twarz",
+      "description": "emoji oznaczające \"zmęczona twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "yawning-face",
+      "emoji": "🥱",
+      "label": "ziewająca twarz",
+      "description": "emoji oznaczające \"ziewająca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-steam-from-nose",
+      "emoji": "😤",
+      "label": "prychająca twarz",
+      "description": "emoji oznaczające \"prychająca twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "enraged-face",
+      "emoji": "😡",
+      "label": "nadąsana twarz",
+      "description": "emoji oznaczające \"nadąsana twarz\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "face-with-symbols-on-mouth",
+      "emoji": "🤬",
+      "label": "twarz z symbolami na ustach",
+      "description": "emoji oznaczające \"twarz z symbolami na ustach\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "smiling-face-with-horns",
+      "emoji": "😈",
+      "label": "uśmiechnięta twarz z rogami",
+      "description": "emoji oznaczające \"uśmiechnięta twarz z rogami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    },
+    {
+      "id": "angry-face-with-horns",
+      "emoji": "👿",
+      "label": "zagniewana twarz z rogami",
+      "description": "emoji oznaczające \"zagniewana twarz z rogami\", używane do opisywania osób, przedmiotów, aktywności, uczuć lub sytuacji"
+    }
+  ]
+}
