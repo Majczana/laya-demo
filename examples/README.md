@@ -115,3 +115,47 @@ używają tych samych fraz, a następnie porównuje NDCG@5, czas, tokeny i ranki
 
 W pierwszym pomiarze katalog 100 emoji osiągnął NDCG@5 `0,7297`. Rozgrzana
 predykcja trwała średnio `2,6654 s` na CPU i `0,1430 s` na RTX 3060 Ti.
+
+## Porównanie embeddingów z LAYA
+
+Eksperyment korzysta z `sentence-transformers` z zależności backendu.
+
+Słowa kluczowe emoji z polskich adnotacji Unicode CLDR generuje:
+
+```bash
+python examples/build_cldr_keywords.py
+```
+
+Skrypt zapisuje `data/emoji_keywords_cldr_pl.json`. Porównanie uruchom poleceniem:
+
+```bash
+python examples/compare_embedding_retrieval.py
+```
+
+Skrypt mierzy NDCG@5 na 100 emoji i 13 frazach dla:
+
+- LAYA `noul` z etykietą i opisem (obecny backend),
+- `intfloat/multilingual-e5-large` i `sdadas/mmlw-retrieval-roberta-large`
+  z dokumentami: sama etykieta, etykieta z CLDR, etykieta z opisem oraz
+  etykieta z opisem i CLDR,
+- najlepszego wariantu embeddingów z rerankingiem top 10 przez LAYA: jednym
+  pytaniem `choice` z neutralnymi kluczami `A–J` albo osobnymi pytaniami `noul`.
+
+W pierwszym pomiarze na Apple GPU (MPS):
+
+| wariant | NDCG@5 | czas zapytania |
+|---|---|---|
+| LAYA `noul`, etykieta + opis (obecny backend) | 0,7308 | 1,029 s |
+| e5-large, etykieta | 0,4377 | 0,039 s |
+| e5-large, etykieta + CLDR | 0,7934 | 0,038 s |
+| e5-large, etykieta + opis | 0,8601 | 0,038 s |
+| e5-large, etykieta + opis + CLDR | 0,8586 | 0,038 s |
+| mmlw-roberta-large, etykieta | 0,6132 | 0,026 s |
+| mmlw-roberta-large, etykieta + CLDR | 0,7575 | 0,026 s |
+| mmlw-roberta-large, etykieta + opis | **0,8654** | 0,026 s |
+| mmlw-roberta-large, etykieta + opis + CLDR | 0,8514 | 0,025 s |
+| mmlw + reranking LAYA `choice` top 10 | 0,6266 | 0,113 s |
+| mmlw + reranking LAYA `noul` top 10 | 0,8277 | 0,201 s |
+
+Zbiór testowy ma tylko 13 pełnych fraz, a interfejs wysyła też niedokończone
+słowa, więc wyniki są wskazówką, a nie ostatecznym rozstrzygnięciem.

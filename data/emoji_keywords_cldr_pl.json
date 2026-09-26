@@ -1,0 +1,787 @@
+{
+  "version": 1,
+  "language": "pl",
+  "source": "Unicode CLDR annotations (pl), https://github.com/unicode-org/cldr",
+  "license": "Unicode License v3, https://www.unicode.org/license.txt",
+  "keywords": {
+    "pizza": [
+      "fast food",
+      "jedzenie",
+      "kawałek",
+      "pizza",
+      "pizzy"
+    ],
+    "broccoli": [
+      "brokuł",
+      "jedzenie",
+      "warzywo",
+      "zielone"
+    ],
+    "apple": [
+      "czerwone",
+      "jabłko",
+      "jedzenie",
+      "owoc",
+      "słodkie"
+    ],
+    "coffee": [
+      "filiżanka",
+      "gorąca",
+      "gorący",
+      "herbata",
+      "kawa",
+      "napój",
+      "parująca",
+      "picie"
+    ],
+    "coat": [
+      "kurtka",
+      "płaszcz",
+      "zima",
+      "zimno"
+    ],
+    "scarf": [
+      "szalik",
+      "szyja",
+      "ubranie",
+      "zima",
+      "zimno"
+    ],
+    "sneaker": [
+      "bieganie",
+      "but",
+      "but do biegania",
+      "sport",
+      "trampek"
+    ],
+    "dress": [
+      "lato",
+      "sukienka",
+      "suknia",
+      "ubiór",
+      "ubranie"
+    ],
+    "rain": [
+      "chmura",
+      "chmura i deszcz",
+      "deszcz",
+      "pogoda"
+    ],
+    "snow": [
+      "płatek śniegu",
+      "pogoda",
+      "śnieg",
+      "śnieżynka",
+      "zima",
+      "zimno"
+    ],
+    "sun": [
+      "jasne",
+      "kosmos",
+      "pogoda",
+      "promienie",
+      "słońce",
+      "słonecznie"
+    ],
+    "umbrella": [
+      "deszcz",
+      "opady",
+      "pada",
+      "parasol",
+      "pogoda"
+    ],
+    "football": [
+      "futbolówka",
+      "mecz",
+      "nożna",
+      "piłka",
+      "sport"
+    ],
+    "video-game": [
+      "do gier",
+      "gamepad",
+      "gra",
+      "gra wideo",
+      "konsola",
+      "kontroler",
+      "pad"
+    ],
+    "books": [
+      "biblioteka",
+      "czytać",
+      "książka",
+      "książki",
+      "nauka"
+    ],
+    "guitar": [
+      "gitara",
+      "instrument",
+      "muzyka"
+    ],
+    "bread": [
+      "bochenek",
+      "chleb",
+      "chleba",
+      "jedzenie",
+      "kawałek",
+      "pieczywo"
+    ],
+    "cheese": [
+      "jedzenie",
+      "kawałek sera",
+      "ser",
+      "szwajcarski",
+      "z dziurami",
+      "żółty"
+    ],
+    "carrot": [
+      "jedzenie",
+      "marchew",
+      "marchewka",
+      "warzywo"
+    ],
+    "strawberry": [
+      "jedzenie",
+      "owoc",
+      "truskawka"
+    ],
+    "burger": [
+      "bułka",
+      "burger",
+      "fast food",
+      "hamburger",
+      "jedzenie"
+    ],
+    "tea": [
+      "bez uszka",
+      "filiżanka",
+      "herbata",
+      "miseczka",
+      "spodek"
+    ],
+    "t-shirt": [
+      "koszulka",
+      "krótkie rękawy",
+      "męska",
+      "t-shirt",
+      "z krótkimi rękawami"
+    ],
+    "jeans": [
+      "dżinsy",
+      "jeansy",
+      "spodnie",
+      "ubiór",
+      "ubranie"
+    ],
+    "hat": [
+      "cylinder",
+      "kapelusz",
+      "męskie nakrycie głowy"
+    ],
+    "gloves": [
+      "ręka",
+      "rękawiczka",
+      "rękawiczki"
+    ],
+    "boots": [
+      "biwak",
+      "brązowe",
+      "brązowy",
+      "but",
+      "buty",
+      "dzicz",
+      "kemping",
+      "obuwie",
+      "spacer",
+      "szlak",
+      "trapery",
+      "turystyczny",
+      "wędrówka",
+      "wyprawa"
+    ],
+    "backpack": [
+      "edukacja",
+      "plecak",
+      "szkoła",
+      "tornister"
+    ],
+    "cloud": [
+      "chmura",
+      "pogoda",
+      "zachmurzenie"
+    ],
+    "lightning": [
+      "błysk",
+      "błyskawica",
+      "elektryczność",
+      "napięcie",
+      "niebezpieczeństwo",
+      "piorun",
+      "prąd",
+      "wysokie napięcie"
+    ],
+    "rainbow": [
+      "deszcz",
+      "gej",
+      "geje",
+      "kolory",
+      "les",
+      "lesbijki",
+      "lgbt",
+      "lgbtq",
+      "lgbtqia",
+      "nadzieja",
+      "pogoda",
+      "pride",
+      "słońce",
+      "tęcza",
+      "transpłciowość"
+    ],
+    "tree": [
+      "drzewo",
+      "liściaste",
+      "roślina"
+    ],
+    "flower": [
+      "kwiat",
+      "roślina",
+      "słońce",
+      "słonecznik"
+    ],
+    "fire": [
+      "ogień",
+      "płomień",
+      "pożar"
+    ],
+    "basketball": [
+      "do kosza",
+      "do koszykówki",
+      "kosz",
+      "koszykowa",
+      "koszykówka",
+      "piłka",
+      "sport"
+    ],
+    "tennis": [
+      "do tenisa",
+      "piłka",
+      "rakieta",
+      "sport",
+      "tenis",
+      "tenisowa"
+    ],
+    "swimming": [
+      "basen",
+      "kraulem",
+      "na basenie",
+      "osoba",
+      "pływająca osoba",
+      "pływak",
+      "pływanie",
+      "sport",
+      "triathlon",
+      "woda",
+      "zawody"
+    ],
+    "cycling": [
+      "kolarka",
+      "kolarz",
+      "na rowerze",
+      "osoba",
+      "rower",
+      "rowerzysta",
+      "rowerzystka",
+      "sport",
+      "wyścig"
+    ],
+    "running": [
+      "bieg",
+      "biegacz",
+      "biegaczka",
+      "bieganie",
+      "biegnąca",
+      "maraton",
+      "osoba",
+      "pośpiech",
+      "sport",
+      "szybko",
+      "w ruchu"
+    ],
+    "skiing": [
+      "narciarz",
+      "narty",
+      "śnieg",
+      "sport",
+      "stok",
+      "zawody",
+      "zima"
+    ],
+    "camping": [
+      "kemping",
+      "namiot",
+      "obóz",
+      "pole namiotowe"
+    ],
+    "fishing": [
+      "łowienie ryb",
+      "wędka",
+      "wędka z rybą",
+      "złowić"
+    ],
+    "yoga": [
+      "joga",
+      "medytacja",
+      "osoba",
+      "relaks",
+      "siedząca",
+      "siedzący",
+      "siedzieć",
+      "spokój",
+      "w pozycji lotosu",
+      "zen"
+    ],
+    "cinema": [
+      "film",
+      "kino",
+      "klaps"
+    ],
+    "headphones": [
+      "muzyka",
+      "słuchawka",
+      "słuchawki"
+    ],
+    "microphone": [
+      "karaoke",
+      "mikrofon",
+      "muzyka",
+      "śpiewać"
+    ],
+    "painting": [
+      "farby",
+      "kolory",
+      "malarska",
+      "malarz",
+      "muzeum",
+      "paleta",
+      "sztuka"
+    ],
+    "camera": [
+      "aparat",
+      "fotografia",
+      "fotograficzny",
+      "robić zdjęcie",
+      "wideo",
+      "zdjęcie"
+    ],
+    "puzzle": [
+      "element",
+      "element układanki",
+      "łączenie",
+      "łamigłówka",
+      "puzzle",
+      "rebus",
+      "układanka"
+    ],
+    "dancing": [
+      "impreza",
+      "kobieta",
+      "tancerka",
+      "tańcząca",
+      "tańczyć",
+      "taniec",
+      "zabawa",
+      "zawód"
+    ],
+    "car": [
+      "auto",
+      "pojazd",
+      "samochód"
+    ],
+    "bus": [
+      "autobus",
+      "autokar",
+      "pojazd"
+    ],
+    "train": [
+      "kolej",
+      "pociąg",
+      "podróż",
+      "pojazd"
+    ],
+    "plane": [
+      "podróż",
+      "pojazd",
+      "samolot"
+    ],
+    "bicycle": [
+      "pojazd",
+      "rower",
+      "rowerek"
+    ],
+    "boat": [
+      "jacht",
+      "łódka",
+      "łódź",
+      "morze",
+      "statek",
+      "wakacje",
+      "żaglówka"
+    ],
+    "motorcycle": [
+      "motocykl",
+      "motor",
+      "wyścigi"
+    ],
+    "rocket": [
+      "kosmiczny",
+      "kosmos",
+      "pojazd",
+      "rakieta",
+      "statek"
+    ],
+    "taxi": [
+      "auto",
+      "pojazd",
+      "samochód",
+      "taksówka",
+      "taryfa",
+      "taxi",
+      "żółta",
+      "żółty"
+    ],
+    "subway": [
+      "kolejka",
+      "metro",
+      "pociąg",
+      "pojazd",
+      "tunel"
+    ],
+    "dog": [
+      "buźka",
+      "głowa",
+      "głowa psa",
+      "pies",
+      "piesek",
+      "psiaczek",
+      "pysk",
+      "pyszczek",
+      "szczeniaczek",
+      "zwierzę"
+    ],
+    "cat": [
+      "buźka",
+      "głowa",
+      "kicia",
+      "kot",
+      "kota",
+      "kotek",
+      "pyszczek",
+      "zwierzę"
+    ],
+    "rabbit": [
+      "buźka",
+      "futrzak",
+      "głowa",
+      "króliczek",
+      "królik",
+      "królika",
+      "zając",
+      "zająca",
+      "zwierzę"
+    ],
+    "horse": [
+      "głowa",
+      "koń",
+      "konia",
+      "konik",
+      "końska",
+      "koński",
+      "łeb",
+      "zwierzę"
+    ],
+    "cow": [
+      "buźka",
+      "głowa",
+      "krowa",
+      "krówka",
+      "krowy",
+      "łaty",
+      "mleko",
+      "zwierzę"
+    ],
+    "lion": [
+      "buźka",
+      "dziki",
+      "głowa",
+      "grzywa",
+      "kot",
+      "lew",
+      "lwa",
+      "pysk",
+      "zodiak",
+      "zwierzę"
+    ],
+    "monkey": [
+      "buźka",
+      "głowa",
+      "głowa małpy",
+      "małpka",
+      "zwierzę"
+    ],
+    "bird": [
+      "ornitologia",
+      "ptak",
+      "zwierzę"
+    ],
+    "fish": [
+      "morze",
+      "ocean",
+      "ryba",
+      "rybka",
+      "ryby",
+      "woda",
+      "zodiak",
+      "zwierzę"
+    ],
+    "butterfly": [
+      "kolorowy",
+      "motyl",
+      "owad",
+      "zwierzę"
+    ],
+    "laptop": [
+      "komputer",
+      "laptop",
+      "notebook",
+      "osobisty",
+      "wyświetlacz"
+    ],
+    "phone": [
+      "komóra",
+      "komórka",
+      "smartfon",
+      "telefon",
+      "telefon komórkowy"
+    ],
+    "keyboard": [
+      "klawiatura",
+      "komputer",
+      "pisać"
+    ],
+    "lightbulb": [
+      "idea",
+      "pomysł",
+      "prąd",
+      "światło",
+      "żarówka"
+    ],
+    "wrench": [
+      "klucz",
+      "klucz warsztatowy",
+      "mechanik",
+      "narzędzia",
+      "narzędzie",
+      "warsztat"
+    ],
+    "hammer": [
+      "młot",
+      "młotek",
+      "naprawa",
+      "narzędzia",
+      "narzędzie"
+    ],
+    "magnifier": [
+      "detektyw",
+      "lupa",
+      "pochylona",
+      "skierowana",
+      "szukaj",
+      "w lewo"
+    ],
+    "calendar": [
+      "data",
+      "kalendarz"
+    ],
+    "envelope": [
+      "e-mail",
+      "email",
+      "koperta",
+      "list",
+      "mail",
+      "wiadomość"
+    ],
+    "chart": [
+      "diagram",
+      "słupek",
+      "słupkowy",
+      "wykres"
+    ],
+    "house": [
+      "budynek",
+      "dom",
+      "mieszkalny"
+    ],
+    "school": [
+      "budynek",
+      "szkoła",
+      "zegar"
+    ],
+    "hospital": [
+      "budynek",
+      "lecznica",
+      "lekarz",
+      "medycyna",
+      "szpital"
+    ],
+    "bank": [
+      "bank",
+      "budynek"
+    ],
+    "hotel": [
+      "budynek",
+      "hotel"
+    ],
+    "beach": [
+      "lato",
+      "morze",
+      "parasol",
+      "parasol na plaży",
+      "piasek",
+      "plaża",
+      "wakacje"
+    ],
+    "mountain": [
+      "góra",
+      "góry",
+      "wycieczka"
+    ],
+    "city": [
+      "budynki",
+      "miasto",
+      "miasto o zmierzchu",
+      "wieżowce",
+      "zachód słońca",
+      "zmierzch"
+    ],
+    "office": [
+      "biurowiec",
+      "blok",
+      "budynek"
+    ],
+    "store": [
+      "budynek",
+      "sklep",
+      "sklep całodobowy"
+    ],
+    "happy": [
+      "haha",
+      "hehe",
+      "roześmiana buźka",
+      "śmiech",
+      "szeroko uśmiechnięta twarz",
+      "uśmiech"
+    ],
+    "sad": [
+      "buźka",
+      "buźka ze łzą w oku",
+      "łezka",
+      "płacz",
+      "płacząca twarz",
+      "przykro mi",
+      "smutek"
+    ],
+    "angry": [
+      "buźka",
+      "gniew",
+      "rozgniewana buźka",
+      "zagniewana twarz",
+      "złość"
+    ],
+    "love": [
+      "czerwone",
+      "kocham",
+      "miłość",
+      "serce"
+    ],
+    "laugh": [
+      "absurd",
+      "buźka",
+      "haha",
+      "hehe",
+      "lol",
+      "łza",
+      "łzy",
+      "łzy radości",
+      "płacz",
+      "śmiech",
+      "śmieszne",
+      "twarz ze łzami radości",
+      "wesoły"
+    ],
+    "surprised": [
+      "buźka",
+      "o",
+      "och",
+      "szok",
+      "twarz z otwartymi ustami",
+      "zaskoczenie",
+      "zaskoczona buźka"
+    ],
+    "tired": [
+      "buźka",
+      "chrapanie",
+      "dobranoc",
+      "drzemka",
+      "noc",
+      "nuda",
+      "sen",
+      "spać",
+      "spanie",
+      "śpiąca twarz",
+      "śpiący",
+      "twarz",
+      "ziew",
+      "zmęczenie",
+      "zzz"
+    ],
+    "party": [
+      "buźka",
+      "czapeczka",
+      "ekscytacja",
+      "hura",
+      "impreza",
+      "piszczałka",
+      "przyjęcie",
+      "święto",
+      "świętować",
+      "świętowanie",
+      "świętująca buźka",
+      "świętująca twarz",
+      "trąbka",
+      "urodziny",
+      "życzenia"
+    ],
+    "handshake": [
+      "cześć",
+      "dłonie",
+      "powitanie",
+      "ręce",
+      "ręka",
+      "spotkanie",
+      "tak",
+      "uścisk",
+      "uścisk dłoni",
+      "zgoda"
+    ],
+    "thinking": [
+      "buźka",
+      "hm",
+      "hmm",
+      "myśląca twarz",
+      "myślę",
+      "zamyślony",
+      "zastanawiam się",
+      "zastanowienie"
+    ]
+  }
+}

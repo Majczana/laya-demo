@@ -1,4 +1,4 @@
-"""FastAPI application exposing the live LAYA emoji experiment."""
+"""FastAPI application exposing live emoji matching by embedding similarity."""
 
 from contextlib import asynccontextmanager
 from functools import lru_cache
@@ -13,13 +13,10 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from app.data_loader import DEFAULT_DATA_DIR, load_emoji_catalog
 from app.data_models import EmojiCatalog
-from app.laya_requests import build_noul_request
-from app.laya_runtime import get_router, predict_noul
+from app.embedding_runtime import MODEL_NAME, EmojiScorer
 
 
 CATALOG_PATH = Path(DEFAULT_DATA_DIR) / "emojis_100.json"
-MODEL_NAME = "multilingual"
-HEAD_MAX_LEN = 256
 WARMUP_TEXT = "jedzenie zdrowe"
 
 # FastAPI runs sync endpoints in a thread pool; GPU backends such as MPS crash
@@ -42,38 +39,37 @@ def get_catalog() -> EmojiCatalog:
     return load_emoji_catalog(CATALOG_PATH)
 
 
+@lru_cache(maxsize=1)
+def get_scorer() -> EmojiScorer:
+    """Embed the catalog once so each phrase costs a single encoder pass."""
+
+    with MODEL_LOCK:
+        return EmojiScorer(get_catalog())
+
+
 @lru_cache(maxsize=256)
 def predict_scores(text: str) -> tuple[tuple[str, float], ...]:
     """Cache recent prefixes so deleting and retyping feels immediate."""
 
-    request = build_noul_request(text, get_catalog())
+    scorer = get_scorer()
     with MODEL_LOCK:
-        result = predict_noul(
-            request,
-            model=MODEL_NAME,
-            head_max_len=HEAD_MAX_LEN,
-        )
-    return tuple(
-        (emoji_id, float(answer["noul"]))
-        for emoji_id, answer in result["answers"].items()
-    )
+        scores = scorer.scores(text)
+    return tuple(scores.items())
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Warm the selected model before accepting interactive requests."""
 
-    get_catalog()
     predict_scores(WARMUP_TEXT)
-    agent = get_router().load(MODEL_NAME)
-    app.state.model_device = str(agent.device)
+    app.state.model_device = get_scorer().device
     yield
 
 
 app = FastAPI(
     title="LAYA Emoji Demo API",
-    version="0.2.0",
-    description="Local API for live independent emoji matching with LAYA.",
+    version="0.3.0",
+    description="Local API for live emoji matching with sentence embeddings.",
     lifespan=lifespan,
 )
 
@@ -115,7 +111,7 @@ def catalog() -> dict[str, Any]:
 
 @app.post("/predict")
 def predict(payload: PredictionRequest) -> dict[str, Any]:
-    """Score all emoji independently for a partial or complete phrase."""
+    """Score all emoji for a partial or complete phrase."""
 
     started_at = perf_counter()
     raw_scores = predict_scores(payload.text)

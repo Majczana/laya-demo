@@ -65,7 +65,7 @@ export default function App() {
         setStatus("Model gotowy · zacznij pisać");
       } catch (reason) {
         if (reason instanceof DOMException && reason.name === "AbortError") return;
-        setError("Nie udało się połączyć z backendem LAYA.");
+        setError("Nie udało się połączyć z backendem.");
         setStatus("Brak połączenia");
       }
     }
@@ -82,7 +82,7 @@ export default function App() {
     if (inFlight.current || !query) return;
 
     inFlight.current = true;
-    setStatus("LAYA analizuje…");
+    setStatus("Model analizuje…");
     setError(null);
 
     try {
@@ -149,7 +149,7 @@ export default function App() {
       <EmojiPile items={catalog} lifted={lifted} anchorRef={panelRef} />
 
       <section className="control-panel" ref={panelRef}>
-        <p className="eyebrow">LAYA · 100 niezależnych decyzji</p>
+        <p className="eyebrow">Embeddingi · 100 emoji</p>
         <h1>Co masz na myśli?</h1>
         <p className="intro">
           Pisz lub usuwaj znaki. Emoji reagują także na niepełne słowa.

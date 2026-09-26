@@ -1,21 +1,24 @@
 # LAYA Emoji Demo
 
-Lokalne demo technologiczne pokazujące, jak model decyzyjny LAYA może oceniać,
-które emoji najlepiej pasują do wpisanego zdania.
+Lokalne demo technologiczne pokazujące, które emoji najlepiej pasują do
+wpisanego zdania.
 
-Projekt rozwijamy małymi krokami. Obecny etap obejmuje działającą lokalnie
-integrację LAYA oraz kontrolowane eksperymenty porównujące `choice` i `noul`.
+Backend dopasowuje emoji przez podobieństwo embeddingów polskiego modelu
+`sdadas/mmlw-retrieval-roberta-large`. Wcześniej używał modelu decyzyjnego LAYA
+(`noul`), ale w porównaniu na 13 frazach embeddingi osiągnęły NDCG@5 `0,8654`
+zamiast `0,7308` i były około 40× szybsze (szczegóły w `examples/README.md`).
+Skrypty z eksperymentami LAYA (`choice`, `noul`) pozostają w `examples/`.
 
 ## Architektura
 
 ```text
-przeglądarka -> React/Vite -> FastAPI -> LAYA
+przeglądarka -> React/Vite -> FastAPI -> embeddingi (sentence-transformers)
 ```
 
 - `frontend/` — interfejs React + TypeScript,
-- `backend/` — lokalne API FastAPI i późniejsza integracja LAYA,
+- `backend/` — lokalne API FastAPI z modelem embeddingów oraz integracja LAYA używana przez eksperymenty,
 - `data/` — wspólny katalog emoji oraz oczekiwanych wyników testów,
-- `examples/` — skrypty uruchamiające eksperymenty `choice` i `noul`.
+- `examples/` — skrypty eksperymentów LAYA (`choice`, `noul`) i embeddingów.
 
 ## Wymagania
 
@@ -34,7 +37,7 @@ npm run dev
 Interfejs będzie dostępny pod adresem `http://localhost:5173`.
 
 Wszystkie 100 emoji z `data/emojis_100.json` leży nieruchomo na dnie ekranu
-jako stos z prostą fizyką. Emoji, których wynik `noul` przekracza próg
+jako stos z prostą fizyką. Emoji, których wynik dopasowania przekracza próg
 dopasowania, unoszą się i świecą w szeregu pod panelem. Mieści się tam do 12
 najlepszych. Gdy emoji przestaje pasować, spada bezwładnie na stos. Domyślny
 próg to `70%` (`DEFAULT_THRESHOLD` w `frontend/src/App.tsx`), a w interfejsie
@@ -66,18 +69,27 @@ uvicorn app.main:app --reload --app-dir backend
 
 Kontrola działania API: `http://localhost:8000/health`.
 
-Przy pierwszym rzeczywistym użyciu LAYA zostaną pobrane wagi modelu z Hugging
-Face. Nie zapisujemy ich w repozytorium.
+Przy pierwszym uruchomieniu backend pobiera wagi modelu embeddingów z Hugging
+Face (około 0,8 GB). Nie zapisujemy ich w repozytorium.
+
+Wynik dopasowania to podobieństwo kosinusowe frazy do tekstu „etykieta: opis”
+danego emoji, przeskalowane liniowo z zakresu `0,65–0,83` do `0–1`
+(`SIMILARITY_FLOOR` i `SIMILARITY_CEILING` w `backend/app/embedding_runtime.py`).
+Granice dobrano na zbiorze testowym tak, aby przy progu `70%` przechodziły
+prawie wyłącznie oczekiwane emoji. Niedokończone słowa dają niższe wyniki niż
+pełne, więc przy pisaniu emoji unoszą się zwykle dopiero po całym słowie.
 
 ### Urządzenie obliczeniowe
 
-Domyślne `LAYA_DEVICE=auto` pozwala LAYA wybrać dostępne GPU, a przy jego braku
-automatycznie używa CPU. Wymuszenie urządzenia w PowerShell:
+Domyślne `EMBEDDING_DEVICE=auto` pozwala wybrać dostępne GPU (CUDA lub MPS),
+a przy jego braku automatycznie używa CPU. Wymuszenie urządzenia w PowerShell:
 
 ```powershell
-$env:LAYA_DEVICE = "cpu"
-$env:LAYA_DEVICE = "cuda"
+$env:EMBEDDING_DEVICE = "cpu"
+$env:EMBEDDING_DEVICE = "cuda"
 ```
+
+Skrypty LAYA w `examples/` nadal korzystają z osobnej zmiennej `LAYA_DEVICE`.
 
 Podstawowy plik zależności pozostaje przenośny. Użytkownik Windows z kartą
 NVIDIA i odpowiednim sterownikiem może po jego instalacji zastąpić PyTorch

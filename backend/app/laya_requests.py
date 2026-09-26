@@ -108,12 +108,24 @@ def build_choice_request(
     }
 
 
-def build_noul_request(text: str, catalog: EmojiCatalog) -> NoulRequest:
+def build_noul_request(
+    text: str,
+    catalog: EmojiCatalog,
+    *,
+    criteria_mode: CriteriaMode = "descriptions",
+) -> NoulRequest:
     """Create one independent yes-or-no matching question per emoji."""
 
     normalized_text = text.strip()
     if not normalized_text:
         raise ValueError("text must not be empty")
+    if criteria_mode not in ("descriptions", "labels"):
+        raise ValueError(f"unsupported criteria mode: {criteria_mode}")
+
+    def category(item) -> str:
+        if criteria_mode == "labels":
+            return item.label
+        return f"{item.label}: {item.description}"
 
     return {
         "state": {"text": normalized_text},
@@ -122,7 +134,7 @@ def build_noul_request(text: str, catalog: EmojiCatalog) -> NoulRequest:
                 "type": "noul",
                 "instructions": (
                     "Czy treść użytkownika w polu `text` pasuje znaczeniowo "
-                    f"do kategorii „{item.label}: {item.description}”?"
+                    f"do kategorii „{category(item)}”?"
                 ),
                 "labels": {"false": "nie", "true": "tak"},
             }
