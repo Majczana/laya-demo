@@ -189,11 +189,15 @@ export function stepDown(game: GameState, soft = false): GameState {
   return lockPiece(game, game.active);
 }
 
-/** Move the active piece down during model thinking, without locking it. */
-export function fallWhileThinking(game: GameState): GameState {
+/** True while the active piece has a free row below it. */
+export function canFall(game: GameState): boolean {
+  return fits(game.board, { ...game.active, y: game.active.y + 1 });
+}
+
+/** Lock the active piece where it is; a real-time game does this when the lock delay runs out. */
+export function lockActive(game: GameState): GameState {
   if (game.status !== "playing") return game;
-  const active = { ...game.active, y: game.active.y + 1 };
-  return fits(game.board, active) ? { ...game, active } : game;
+  return lockPiece(game, game.active);
 }
 
 export function hardDrop(game: GameState): GameState {

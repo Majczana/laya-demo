@@ -1,13 +1,77 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EmojiDemo } from "./EmojiDemo";
 import { TetrisDemo } from "./TetrisDemo";
+import { SnakeDemo } from "./SnakeDemo";
+import { InjectionDemo } from "./InjectionDemo";
+import { TicketDemo } from "./TicketDemo";
+import { RepairScoreDemo } from "./RepairScoreDemo";
+import { NoteGateDemo } from "./NoteGateDemo";
+import { ActionGateDemo } from "./ActionGateDemo";
+import { DocumentSorterDemo } from "./DocumentSorterDemo";
+import { GroundingDemo } from "./GroundingDemo";
+import { PartsDemo } from "./PartsDemo";
+import { DispatchDemo } from "./DispatchDemo";
 import { EngineSwitch, ENGINES, useEngine } from "./engine";
 import { LanguageSwitch, useI18n } from "./i18n";
 
-type Game = "emoji" | "tetris";
+type Game = "emoji" | "tetris" | "snake" | "injection" | "tickets" | "repairs" | "notes" | "actions" | "documents" | "grounding" | "parts" | "queue";
 
-const GAMES: Game[] = ["emoji", "tetris"];
+const GAMES: Game[] = ["emoji", "tetris", "snake", "injection", "tickets", "repairs", "notes", "actions", "documents", "grounding", "parts", "queue"];
 const MODEL_NAMES = "convaiinnovations/laya-multilingual, typesafe/jev-1.13";
+
+type GroupId = "games" | "classify" | "score";
+
+/** Menu categories; the numbers shown next to a demo follow GAMES, not this order. */
+const GROUPS: { id: GroupId; games: Game[] }[] = [
+  { id: "games", games: ["emoji", "tetris", "snake"] },
+  { id: "classify", games: ["injection", "tickets", "queue", "documents", "parts"] },
+  { id: "score", games: ["repairs", "notes", "actions", "grounding"] },
+];
+
+/** Category buttons that open a list of demos, so every demo stays reachable however many there are. */
+function NavMenu({ active }: { active: Game | null }) {
+  const { t } = useI18n();
+  const [open, setOpen] = useState<GroupId | null>(null);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const close = (event: Event) => {
+      if (event instanceof KeyboardEvent ? event.key === "Escape" : !ref.current?.contains(event.target as Node)) setOpen(null);
+    };
+    document.addEventListener("pointerdown", close);
+    document.addEventListener("keydown", close);
+    return () => {
+      document.removeEventListener("pointerdown", close);
+      document.removeEventListener("keydown", close);
+    };
+  }, []);
+
+  return (
+    <nav className="nav-menu" aria-label={t.nav.main} ref={ref}>
+      {GROUPS.map((group) => {
+        const isOpen = open === group.id;
+        return (
+          <div className={`nav-group${isOpen ? " open" : ""}`} key={group.id}>
+            <button type="button" className={`nav-trigger${active && group.games.includes(active) ? " active" : ""}`} aria-expanded={isOpen} aria-haspopup="true" onClick={() => setOpen(isOpen ? null : group.id)}>
+              {t.nav.groups[group.id]}<span className="nav-count">{group.games.length}</span><i aria-hidden="true">▾</i>
+            </button>
+            {isOpen && (
+              <div className="nav-panel">
+                {group.games.map((game) => (
+                  <a key={game} href={`#${game}`} aria-current={active === game ? "page" : undefined} onClick={() => setOpen(null)}>
+                    <span className="nav-num">{String(GAMES.indexOf(game) + 1).padStart(2, "0")}</span>
+                    <span className="nav-text"><strong>{t.games[game].title}</strong><small>{t.games[game].meta}</small></span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+      {active && <span className="nav-current"><small>{t.nav.current}</small>{t.games[active].title}</span>}
+    </nav>
+  );
+}
 
 function gameFromHash(): Game | null {
   const name = window.location.hash.slice(1);
@@ -49,6 +113,55 @@ function TetrisPreview() {
   );
 }
 
+// 4×4 cells, top to bottom: h head, b body, f food.
+const SNAKE_PREVIEW = "....bbbb.f.h.b..";
+
+function SnakePreview() {
+  return (
+    <span className="preview preview-snake" aria-hidden="true">
+      {[...SNAKE_PREVIEW].map((cell, index) => (
+        <span key={index} className={cell === "h" ? "is-head" : cell === "b" ? "is-body" : cell === "f" ? "is-food" : ""} />
+      ))}
+    </span>
+  );
+}
+
+function InjectionPreview() {
+  return <span className="preview preview-injection" aria-hidden="true"><span>?</span><span>✓</span></span>;
+}
+
+function TicketPreview() {
+  return <span className="preview preview-injection preview-ticket" aria-hidden="true"><span>P1</span><span>→</span></span>;
+}
+
+function RepairPreview() {
+  return <span className="preview preview-injection preview-repair" aria-hidden="true"><span>0</span><span>→</span><span>2</span></span>;
+}
+
+function NotePreview() {
+  return <span className="preview preview-injection preview-note" aria-hidden="true"><span>✎</span><span>✓</span></span>;
+}
+
+function ActionPreview() {
+  return <span className="preview preview-injection preview-note" aria-hidden="true"><span>!</span><span>✓</span></span>;
+}
+
+function DocumentPreview() {
+  return <span className="preview preview-injection preview-note" aria-hidden="true"><span>▤</span><span>→</span></span>;
+}
+
+function GroundingPreview() {
+  return <span className="preview preview-injection preview-note" aria-hidden="true"><span>✓</span><span>?</span><span>✕</span></span>;
+}
+
+function PartsPreview() {
+  return <span className="preview preview-injection preview-note" aria-hidden="true"><span>⚙</span><span>◎</span></span>;
+}
+
+function QueuePreview() {
+  return <span className="preview preview-injection preview-ticket" aria-hidden="true"><span>P1</span><span>▸</span><span>P3</span></span>;
+}
+
 function BackendStatus() {
   const { t } = useI18n();
   const { backend } = useEngine();
@@ -88,19 +201,23 @@ export default function App() {
           <LogoMark />
           {t.nav.home}
         </a>
-        <nav aria-label={t.nav.main}>
-          {GAMES.map((game) => (
-            <a key={game} href={`#${game}`} aria-current={activeGame === game ? "page" : undefined}>
-              {t.games[game].title}
-            </a>
-          ))}
-        </nav>
+        <NavMenu active={activeGame} />
         <EngineSwitch />
         <LanguageSwitch />
       </header>
 
       {activeGame === "emoji" && <EmojiDemo />}
       {activeGame === "tetris" && <TetrisDemo />}
+      {activeGame === "snake" && <SnakeDemo />}
+      {activeGame === "injection" && <InjectionDemo />}
+      {activeGame === "tickets" && <TicketDemo />}
+      {activeGame === "repairs" && <RepairScoreDemo />}
+      {activeGame === "notes" && <NoteGateDemo />}
+      {activeGame === "actions" && <ActionGateDemo />}
+      {activeGame === "documents" && <DocumentSorterDemo />}
+      {activeGame === "grounding" && <GroundingDemo />}
+      {activeGame === "parts" && <PartsDemo />}
+      {activeGame === "queue" && <DispatchDemo />}
       {activeGame === null && (
         <main className="home">
           <section className="home-intro">
@@ -114,7 +231,7 @@ export default function App() {
             {GAMES.map((game, index) => (
               <li key={game}>
                 <a href={`#${game}`}>
-                  {game === "emoji" ? <EmojiPreview /> : <TetrisPreview />}
+                  {game === "emoji" ? <EmojiPreview /> : game === "tetris" ? <TetrisPreview /> : game === "snake" ? <SnakePreview /> : game === "injection" ? <InjectionPreview /> : game === "tickets" ? <TicketPreview /> : game === "repairs" ? <RepairPreview /> : game === "notes" ? <NotePreview /> : game === "actions" ? <ActionPreview /> : game === "documents" ? <DocumentPreview /> : game === "grounding" ? <GroundingPreview /> : game === "parts" ? <PartsPreview /> : <QueuePreview />}
                   <span className="demo-text">
                     <span className="demo-title">
                       <span className="demo-number">{String(index + 1).padStart(2, "0")}</span>

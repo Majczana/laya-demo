@@ -9,6 +9,7 @@ import App from "./App";
 import { EngineProvider } from "./engine";
 import { LanguageProvider } from "./i18n";
 import "./styles.css";
+import "./stage.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

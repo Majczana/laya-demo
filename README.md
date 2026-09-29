@@ -1,15 +1,86 @@
 # LAYA demos
 
-Two small demos of one local
-[LAYA](https://huggingface.co/convaiinnovations/laya) model using the
-`multilingual` checkpoint:
+Eleven decision demos using local
+[LAYA](https://huggingface.co/convaiinnovations/laya) (`multilingual` checkpoint)
+or optional Jev through OpenRouter:
 
 | Demo | What LAYA does |
 | --- | --- |
 | Emoji Rain | Scores 200 independent `noul` associations while you type. |
 | Tetris | Rates up to four legal piece placements with independent `noul` questions. |
+| Prompt injection | Checks editable A–E attack/control pairs with one `noul` judgment. |
+| PUDU ticket triage | Assigns a P1–P4 priority, identifies a robot from the supplied PUDU/CVTE inventory, and scores ten parts only when a component fault is indicated. |
+| Repair scoring | Rates service complexity, repair risk, effort, unsafe practice and impact from 0–2; custom criteria can be added. |
+| Note quality gate | Checks customer replies, service notes and sales notes before use. |
+| Action justification gate | Jev checks a reason before a simulated removal, cancellation, project rejection or ticket closure; attempts are logged in the browser. |
+| Document filing | A live sorting line: documents leave a stack, pass a scanner and land in the folder of a robot and category; a timer, accuracy against known answers, cost and throughput update as it runs. Jev classifies; uncertain cases wait in a review lane for a folder choice. Optional OpenAI Responses API support is available with a separate key. |
+| Source check | Splits an assistant answer into sentences and checks each against a source text: supported, not in the source, or (Jev only) contradicted. |
+| Fault schematic | Rates every part of a serving or cleaning robot against a fault description with one independent question per part, and lights the likely parts on a drawing of the robot. |
+| Dispatch desk | Tickets arrive live; the model triages them one at a time (priority and team) while technicians work the lanes. A slow model lets the inbox grow, a wrong priority breaches the response time and a wrong team sends the ticket back. |
 
-Open `http://localhost:5173`. Model results are experimental.
+Open `http://localhost:5173`. The header groups the demos into three menus
+(Games, Classify and route, Score and gates). Model results are experimental.
+
+The new demos show the JSON sent to each model and its raw response. Ticket
+triage uses staged calls: a no-fault ticket never sends part questions, and a
+ticket unrelated to equipment reports no robot with 0% confidence. Explicit
+model names are read directly from the text; unnamed robots are inferred from
+the user's 24-entry PUDU/CVTE inventory and may be marked unclear. CVTE's
+[C3 product page](https://www.cvte.com/en/product/cleaningrobot) describes its
+floor washing and vacuuming functions. The action gate only simulates system
+changes; its attempt log is stored in this browser's local storage. Jev's
+reported per-call cost and token counts are shown when available. Volume tables
+multiply the observed per-call cost by 1 through 1,000,000 identical requests;
+LAYA has no API fee but local hardware and electricity are not measured. Jev's
+listed rate is $0.042 per million input tokens and $0 per million output tokens
+as checked on 2026-09-29; verify the [current model pricing](https://openrouter.ai/typesafe/jev-1.13/api)
+before budgeting. The PUDU categories and parts are illustrative, not an
+official service catalog. Priority and quality thresholds are demo rules and
+need evaluation on labeled cases before operational use.
+
+### Source check, fault schematic and dispatch desk
+
+**Source check** (`POST /grounding/check`). The answer is split into sentences by
+a small deterministic algorithm (not the model); each sentence becomes an
+independent “does the source support it?” question, and Jev also gets “does the
+source contradict it?”. On the demo examples Jev separated the three cases as
+intended; LAYA's answers to the contradiction question were at chance level (8–14
+of 24 for every phrasing tried), so LAYA is only asked about support and its
+verdicts are “supported / unconfirmed”. LAYA also read only the start of a long
+source (about 400 tokens). Keep sources short for LAYA.
+
+**Fault schematic** (`POST /parts/locate`). One independent question per part,
+using the ticket-triage part list restricted to what the robot family has (a
+serving robot has trays, a cleaning robot a pump and filter). The question is
+short and in English whatever the UI language: on eight example faults LAYA
+picked the expected part first 5 times with it, against 1–3 with longer or Polish
+wordings, and Jev picked it 8 of 8 times. The drawings follow the PUDU BellaBot
+and CC1 simplified; brightness is relative to the strongest signal.
+
+**Dispatch desk** (`POST /tickets/triage`, no new endpoint). The simulation in
+`frontend/src/queueSim.ts` has no DOM or network. Its rules are tested without a
+backend:
+
+```powershell
+node --test --experimental-strip-types frontend/scripts/queue-sim.test.mts
+```
+
+On 18 sample tickets with an expected priority and team, Jev got 18/18 priorities
+and 18/18 teams at about 650 ms per ticket; LAYA got 9/18 and 6/18 at about 90 ms.
+Handling times, response times and the technician team are a simulation.
+
+Document filing accepts TXT, MD, CSV, DOCX and text-based PDF up to 10 MB.
+The backend extracts up to 20,000 characters and sends that text to the chosen
+model. Image-only scans need OCR first. The demo library is stored in this
+browser's local storage and is not a shared document repository. Clear model
+names can be filed automatically; when the model cannot be identified, the
+person must choose a model or a shared folder. Jev scores are shown as model
+outputs, not calibrated probabilities. Optional OpenAI classification uses
+`gpt-4.1-mini` and a strict JSON response. To enable it, set `OPENAI_API_KEY`
+in the root `.env` or backend environment and restart the backend. The OpenAI
+option has not been live-tested without that key. OpenAI documents the
+[Responses file inputs](https://developers.openai.com/api/docs/guides/file-inputs)
+and [structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs).
 
 The whole app has a Polish/English switch in the header (Polish by default;
 the choice is remembered in the browser). In Emoji Rain the language also
@@ -66,7 +137,7 @@ needs no API key.
 
 ## Jev (comparison model)
 
-The header has a LAYA / Jev switch. Both demos send exactly the same
+The header has a LAYA / Jev switch. Each demo sends exactly the same
 questions to the selected model, so you can flip back and forth and compare
 the answers; the choice is remembered in the browser. Jev
 ([TypeSafe](https://docs.typesafe.ai/introduction)) is called through the
@@ -140,16 +211,19 @@ browser → React / Vite → FastAPI → LAYA multilingual (local)
                                   → Jev via OpenRouter (optional)
 ```
 
-- `frontend/` — the start page and both demos,
+- `frontend/` — the start page and eight demos,
 - `backend/` — the local API and LAYA question construction,
 - `data/` — the 200-item emoji catalogs (Polish and English) and evaluation cases,
 - `examples/` — experiments with `choice` and `noul` question types.
 
-The API exposes `POST /predict` (`{"text", "lang", "engine"}`) for emoji and
-`POST /tetris/choose` (`{"candidates", "engine"}`, answering with the scores and
-the move descriptions sent to the model) for Tetris. The emoji catalog is available through
+The API exposes `POST /predict` (`{"text", "lang", "engine"}`) for emoji,
+`POST /tetris/choose` (`{"candidates", "engine"}`) for Tetris, and
+`POST /injection/detect`, `/tickets/triage`, `/repairs/score`, `/notes/gate`,
+`/actions/review`, `/documents/extract`, and `/documents/classify` for the new
+decision demos. The document catalog and available engines are exposed through
+`GET /documents/catalog` and `/documents/status`. The emoji catalog is available through
 `GET /catalog?lang=pl|en`; `GET /health` reports the model and the device it
-runs on. Both demos use the same local LAYA checkpoint. LAYA scores 200 emoji in one
+runs on. All demos use the same local LAYA checkpoint. LAYA scores 200 emoji in one
 batch of independent questions; the demo slider sets the display threshold,
 75% by default. `noul` scores are not a correctness guarantee.
 
@@ -189,14 +263,53 @@ question on pairs where one move is strictly better, and
 `frontend/scripts/benchmark-tetris.mts` plays the same comparison through the
 backend.
 
-Tetris is a model test with no manual control. Each piece waits at the top
-until the selected model answers, so a slower model (Jev over the network) does
-not lose moves to gravity. After the choice the piece rotates, slides and falls
-one step at a time to the chosen landing; if its path is blocked, it is placed
-directly there. The speed slider (1–10) sets the delay per step, from 300 ms to
-9 ms, and is the only thing that sets the pace: levels only affect scoring.
-Pause and New game are the only controls. Switching the model starts a new
-game, so each game is played by one model.
+Tetris is a live model test with no manual control, and the clock never waits
+for the model. Each piece falls at the current gravity and locks where it rests
+(after a 400 ms lock delay) whether or not the model has answered. When the
+answer arrives, a bot presses a key (rotate, left or right) every 70 ms to steer
+the piece to the chosen landing, then drops it. If the answer is late, the piece
+is already too low or its path is blocked, the bot gives up after three blocked
+presses and the piece lands wherever gravity puts it: nothing is placed for the
+model. Gravity also speeds up as pieces are placed (the “Speeding up” setting:
+off, 10% or 20% faster every 5 pieces, down to 25 ms per row), so a model that
+cannot keep up ends up with pieces piled on top of each other and the game ends.
+Requests are single-flight: an answer that arrives after its piece locked is
+dropped and the model is asked about the current piece next. The model panel
+shows the time left before the piece would lock unaided, and each log entry says
+whether the piece landed on target, missed the spot or got no answer in time.
+The “Falling speed” slider (1–10) sets the starting gravity, from 1200 ms to
+50 ms per row. Pause and New game are the only controls; changing the model, the
+speed, the speeding-up or the candidates starts a new game, so each game is played
+by one model with one set of settings.
+
+The rules live in `frontend/src/tetrisSession.ts` (no DOM, no network), shared by
+the browser demo and the scripts below:
+
+```powershell
+# Rules of the session (no backend needed).
+node --test --experimental-strip-types frontend/scripts/tetris-session.test.mts
+
+# Plays real-time games against the running backend and reports how well each
+# model keeps up as gravity speeds up. "instant" is a zero-latency reference bot.
+node --experimental-strip-types frontend/scripts/tetris-live.mts --engine instant,laya,jev --gravity 600,300,150,80 --max 60 --games 2
+```
+
+The live script advances the game clock by the time each request really took.
+Example (4 candidates, +18% speed every 5 pieces, first 50–80 pieces; “on target”
+is the share of pieces that landed where the model chose; one seeded game per
+row for Jev, two for the others, so treat the numbers as indicative):
+
+| Start gravity (ms/row) | Instant reference | LAYA (≈45 ms answers) | Jev (≈270 ms answers) |
+| --- | --- | --- | --- |
+| 600 | 100% | 99% | 100% |
+| 300 | 100% | 96% | 100% |
+| 150 | 100% | 94% | 100% |
+| 80 | 100% | 92% (both games topped out) | 82% (topped out) |
+
+LAYA answers quickly but chooses worse moves, so it tops out earlier at high
+speed; Jev picks better but its ≈270 ms network round trip costs it pieces once
+gravity is fast. The reference bot, which is limited only by its key rate,
+still lands 100% on target at 80 ms per row and starts missing at 40 ms.
 
 The decision log on the left lists every move: time, piece, model, response
 time, the chosen column and rotation with its score, the scores of all
@@ -212,6 +325,62 @@ this session” (score, lines, pieces, mean response time and mean score, plus t
 mean lines per model). The list is kept in `sessionStorage`, so it survives a
 reload of the tab. The game includes scoring, levels, combos, back-to-back
 Tetris bonuses, a next-piece preview and a seven-bag piece randomizer.
+
+### Snake
+
+A second live test of a decision model, with no manual control. The engine
+(`frontend/src/snakeEngine.ts`, no DOM, no network) lists what the snake can do
+and the model rates each option with one independent yes/no question, like
+Tetris. The clock never waits for the model, and the snake speeds up as it eats.
+Two ways to steer it (the “Control” setting):
+
+- **Strategy (default):** the model picks a standing order (go for the food,
+  follow the tail, take the most room) and the engine turns it into a move on the
+  current position every step. One question is always open. An answer that
+  arrives late is still applied, and the snake keeps following the old order
+  until then, so a model slower than one step reacts late but does not crash the
+  snake. If the order has nothing to do (no path to the food) or has become
+  unsafe, the engine follows the tail instead and counts the override.
+- **Moves:** the model picks each move (straight, left, right). If its answer is
+  not in by the end of the step, the snake goes straight ahead, which is fatal at
+  a wall, and the late answer is dropped. A model slower than one step never gets
+  to steer: Jev takes about 300 ms per answer (≈450 ms through the backend), so
+  from a 240 ms step (speed 6) every move is unanswered and the snake hits a wall.
+  The page warns when the last question took longer than the step.
+
+The “Safety filter” removes options that trap the snake (cut off from its own
+tail, no room, no way out) whenever a safe one exists, and overrides an order
+that has become unsafe. With it off, the model alone decides.
+
+Wording matters. The first move description named the danger (“boxes the snake
+into a space too small for it”) and both models rated it as good: LAYA picked the
+safe option in 33% of scenarios, below chance. Stating the outcome (“…and the
+snake survives / gets stuck and dies”) and saying that waiting strategies “get no
+food” gives 100% safe picks for LAYA and Jev, and 100% food picks when everything
+is safe (`examples/compare_snake_prompts.py`).
+
+```powershell
+# Rules of the engine, strategies and session (no backend needed).
+node --test --experimental-strip-types frontend/scripts/snake-strategy.test.mts frontend/scripts/snake-session.test.mts
+
+# Real-time games against the running backend. "instant" is a zero-latency
+# reference and "random" the honest baseline: strategy mode leaves much of the
+# work to the engine, so a model only counts if it beats random.
+node --experimental-strip-types frontend/scripts/snake-live.mts --engine instant,random,laya,jev --mode both --step 600,240 --max 300 --games 3 --ramp 0
+
+# Compare option wordings on scenarios with a known right answer.
+python examples/compare_snake_prompts.py --engine laya
+```
+
+Example (16×16, constant speed, safety filter on, 3 seeded games × 300 moves;
+food eaten, none of these games ended unless noted):
+
+| Mode | Instant reference | Random | LAYA | Jev (240 ms step, 2 games × 150 moves) |
+| --- | --- | --- | --- | --- |
+| Strategy | 81 | 22 | 81 | 25, none ended, answers ≈270 ms |
+| Moves | 78 (1 ended) | 0 | 78 (a cold start after a backend restart cost one game) | 0, both games ended at a wall |
+
+The backend endpoints are `POST /snake/choose` (moves) and `POST /snake/strategy`.
 
 ## Tests
 

@@ -295,3 +295,102 @@ def build_tetris_request(
             for index, move in enumerate(moves)
         },
     }
+
+
+class SnakeMoveFeatures(TypedDict):
+    """What one legal Snake move does, computed by the game engine."""
+
+    eats: bool
+    foodDelta: int
+    openPercent: int
+    exits: int
+    boxedIn: bool
+
+
+class SnakeStrategyFeatures(TypedDict):
+    """What following one Snake strategy leads to, computed by the game engine."""
+
+    strategy: str
+    steps: int
+    safe: bool
+    openPercent: int
+
+
+def _steps(count: int) -> str:
+    return "one step" if count == 1 else f"{count} steps"
+
+
+def _survival(safe: bool) -> str:
+    return "the snake survives" if safe else "the snake gets stuck and dies"
+
+
+def describe_snake_move(move: SnakeMoveFeatures) -> str:
+    """Describe in words what a Snake move does and whether the snake survives it.
+
+    On examples/compare_snake_prompts.py the earlier wording, which named the
+    danger ("boxes the snake into a space too small for it", "leads into a dead
+    end"), made both models rate the trapping move higher: LAYA picked the safe
+    option in 33% of scenarios, below chance. Stating the outcome instead
+    ("and then the snake survives / gets stuck and dies") gave 100% for LAYA
+    and Jev.
+    """
+
+    if move["eats"]:
+        base = "eats the food"
+    else:
+        base = "moves towards the food" if move["foodDelta"] < 0 else "moves away from the food"
+    risky = move["boxedIn"] or move["exits"] == 0
+    return f"{base}, and then {_survival(not risky)}"
+
+
+def describe_snake_strategy(option: SnakeStrategyFeatures) -> str:
+    """Describe in words what a Snake strategy does and whether the snake survives it.
+
+    Chosen on examples/compare_snake_prompts.py, where both models picked the
+    safe option 100% of the time and, when everything was safe, went for the
+    food 100% of the time. Two things mattered: waiting strategies say they get
+    no food (otherwise LAYA preferred following its tail over far-away food and
+    the snake circled forever), and the food wording leaves out the distance
+    (with "N steps away" LAYA rated a trapping route above a safe wait).
+    """
+
+    kind = option["strategy"]
+    if kind == "food":
+        if option["safe"]:
+            return "heads for the food, eats it, and the snake survives"
+        return "heads for the food, and then the snake gets stuck and dies"
+    name = "follows its own tail" if kind == "tail" else "moves into the largest open area"
+    if option["safe"]:
+        return f"{name}, and the snake survives but gets no food"
+    return f"{name}, and the snake gets stuck and dies"
+
+
+# Kept in English whatever the UI language, like the Tetris prompt.
+SNAKE_INSTRUCTIONS = (
+    "A Snake player wants to eat the food and stay alive as long as possible. "
+    "Would this move help them? The move {description}."
+)
+
+
+def _build_snake_request(descriptions: list[str]) -> NoulRequest:
+    """One independent yes-or-no question per option, so the order of the options cannot matter."""
+
+    return {
+        "state": {"game": "Snake"},
+        "questions": {
+            f"move_{index}": {
+                "type": "noul",
+                "instructions": SNAKE_INSTRUCTIONS.format(description=description),
+                "labels": {"false": "no", "true": "yes"},
+            }
+            for index, description in enumerate(descriptions)
+        },
+    }
+
+
+def build_snake_request(moves: list[SnakeMoveFeatures]) -> NoulRequest:
+    return _build_snake_request([describe_snake_move(move) for move in moves])
+
+
+def build_snake_strategy_request(options: list[SnakeStrategyFeatures]) -> NoulRequest:
+    return _build_snake_request([describe_snake_strategy(option) for option in options])

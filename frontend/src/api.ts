@@ -31,7 +31,7 @@ async function responseError(response: Response): Promise<ApiError> {
   }
   if (response.status === 422) {
     const first = Array.isArray(detail) ? (detail[0] as { msg?: string } | undefined)?.msg : null;
-    return new ApiError("input", 422, (first ?? "invalid request").replace(/^Value error, /, ""));
+    return new ApiError("input", 422, (first ?? (typeof detail === "string" ? detail : "invalid request")).replace(/^Value error, /, ""));
   }
   // Jev failures (no API key, credits, rate limits) carry a readable detail.
   const message = typeof detail === "string" ? detail : "";
@@ -50,6 +50,21 @@ export async function postJson<T>(path: string, body: unknown, signal?: AbortSig
       body: JSON.stringify(body),
       signal,
     });
+  } catch (reason) {
+    if (isAbort(reason)) throw reason;
+    throw new ApiError("unreachable");
+  }
+  if (!response.ok) throw await responseError(response);
+  return (await response.json()) as T;
+}
+
+/** Upload a file to the local backend for text extraction. */
+export async function postFile<T>(path: string, file: File, signal?: AbortSignal): Promise<T> {
+  const form = new FormData();
+  form.append("file", file);
+  let response: Response;
+  try {
+    response = await fetch(`/api${path}`, { method: "POST", body: form, signal });
   } catch (reason) {
     if (isAbort(reason)) throw reason;
     throw new ApiError("unreachable");
